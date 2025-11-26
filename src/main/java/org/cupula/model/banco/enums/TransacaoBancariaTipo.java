@@ -1,0 +1,15 @@
+package org.cupula.model.banco.enums;
+
+public enum TransacaoBancariaTipo {
+    PAGAMENTO_SERVICO_GUILDA(),
+    PAGAMENTO_SERVICO_MARKET(),
+    PAGAMENTO_PRODUTO_MARKET(),
+    PAGAMENTO_SALARIO_EMPRESA(),
+    PAGAMENTO_SALARIO_ILHA(),
+    PAGAMENTO_SALARIO_GUILDA(),
+    PAGAMENTO_IMPOSTO_ILHA(),
+    PAGAMENTO_IMPOSTO_GUILDA(),
+    DEPOSITO_CONTA();
+    
+    
+}

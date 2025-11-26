@@ -2,7 +2,7 @@ package org.cupula.model.items.baseview;
 
 import java.util.List;
 
-import org.cupula.model.items.enums.ItemTipo;
+import org.cupula.model.items.ItemTipo;
 
 public class BaseItemStructure {
 

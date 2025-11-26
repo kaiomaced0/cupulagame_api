@@ -14,4 +14,7 @@ public class Material {
     private Long quantidadeItemPorPixel;
     private List<ColorMaterial> colorsPossiveis;
 
+    private Long resistenciaFogo;
+    private Long resistenciaAgua;
+    private Long resistenciaImpacto;
 }
