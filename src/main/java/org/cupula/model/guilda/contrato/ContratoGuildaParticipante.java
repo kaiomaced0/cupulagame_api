@@ -1,4 +1,4 @@
-package org.cupula.model.guilda;
+package org.cupula.model.guilda.contrato;
 
 import org.cupula.model.entities.Player;
 import org.cupula.model.guilda.enums.ContratoGuildaMembroTipoParticipante;

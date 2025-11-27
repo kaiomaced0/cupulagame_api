@@ -12,4 +12,5 @@ public class ItemStructurePart {
     private Long fimZ;
     private Material material;
     private ColorMaterial color;
+    private Boolean areaContato;
 }

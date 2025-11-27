@@ -1,9 +1,11 @@
-package org.cupula.model.guilda;
+package org.cupula.model.guilda.negociacao;
 
 import java.util.List;
 
 import org.cupula.model.empresa.Empresa;
 import org.cupula.model.entities.Player;
+import org.cupula.model.guilda.CatalogoServicoGuilda;
+import org.cupula.model.guilda.Guilda;
 import org.cupula.model.guilda.enums.NegociacaoServicoGuildaStatus;
 import org.cupula.model.guilda.enums.NegociacaoTipoPagamento;
 import org.cupula.model.islands.Ilha;
