@@ -3,7 +3,11 @@ package org.cupula.model.guilda;
 import org.cupula.model.entities.Player;
 import org.cupula.model.guilda.enums.CargoGuilda;
 
-public class GuildaMembro {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class GuildaMembro extends EntityClass {
     
     private Guilda guilda;
     private Player membro;

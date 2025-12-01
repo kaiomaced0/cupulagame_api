@@ -3,7 +3,11 @@ package org.cupula.model.guilda.contrato;
 import org.cupula.model.entities.Player;
 import org.cupula.model.guilda.enums.ContratoGuildaMembroTipoParticipante;
 
-public class ContratoGuildaParticipante {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class ContratoGuildaParticipante extends EntityClass {
     
     private ContratoGuilda contratoGuilda;
     private Player participante;

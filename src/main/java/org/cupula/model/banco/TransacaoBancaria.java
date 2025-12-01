@@ -1,6 +1,10 @@
 package org.cupula.model.banco;
 
-public class TransacaoBancaria {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class TransacaoBancaria extends EntityClass {
     
     private ContaBancaria contaOrigem;
     private ContaBancaria contaDestino;

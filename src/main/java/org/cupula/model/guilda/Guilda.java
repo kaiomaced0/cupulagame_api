@@ -2,7 +2,11 @@ package org.cupula.model.guilda;
 
 import java.util.List;
 
-public class Guilda {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class Guilda extends EntityClass {
 
     private String nome;
     private String descricao;

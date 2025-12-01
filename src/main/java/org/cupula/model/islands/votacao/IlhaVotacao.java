@@ -6,7 +6,11 @@ import java.util.List;
 import org.cupula.model.islands.votacao.enums.IlhaVotacaoStatus;
 import org.cupula.model.islands.votacao.enums.IlhaVotacaoTipo;
 
-public class IlhaVotacao {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class IlhaVotacao extends EntityClass {
     
     private List<IlhaVotacaoMembro> votos;
     private LocalDateTime dataInicioVotacao;

@@ -3,7 +3,11 @@ package org.cupula.model.items;
 import org.cupula.model.items.enums.ItemTier;
 import org.cupula.model.structures.ItemStructure;
 
-public class Item {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class Item extends EntityClass {
 
     private ItemStructure itemStructure;
     private ItemTipo itemTipo;

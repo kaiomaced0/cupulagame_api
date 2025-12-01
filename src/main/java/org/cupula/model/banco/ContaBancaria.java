@@ -9,7 +9,11 @@ import org.cupula.model.islands.Ilha;
 import org.cupula.model.islands.cargos.IlhaDepartamento;
 import org.cupula.model.market.services.Contrato;
 
-public class ContaBancaria {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class ContaBancaria extends EntityClass {
     
     private String numeroConta;
     private String titular;

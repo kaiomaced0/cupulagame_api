@@ -4,7 +4,11 @@ import java.time.LocalDateTime;
 
 import org.cupula.model.entities.Player;
 
-public class StructureAcesso {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class StructureAcesso extends EntityClass {
     
     private Player player;
     private Boolean acessoLiberado;

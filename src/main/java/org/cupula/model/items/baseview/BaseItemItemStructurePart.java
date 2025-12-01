@@ -4,7 +4,11 @@ import java.util.List;
 
 import org.cupula.model.structures.ItemStructurePart;
 
-public class BaseItemItemStructurePart {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class BaseItemItemStructurePart extends EntityClass {
     private ItemStructurePart itemStructurePart;
     private List<ColorPossibility> colorPossibilities;
 }

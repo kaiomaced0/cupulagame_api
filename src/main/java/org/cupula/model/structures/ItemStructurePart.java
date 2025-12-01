@@ -2,7 +2,11 @@ package org.cupula.model.structures;
 
 import org.cupula.model.structures.view.ColorMaterial;
 
-public class ItemStructurePart {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class ItemStructurePart extends EntityClass {
     
     private Long inicioX;
     private Long inicioY;

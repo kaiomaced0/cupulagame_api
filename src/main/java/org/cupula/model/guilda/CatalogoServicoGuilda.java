@@ -1,6 +1,10 @@
 package org.cupula.model.guilda;
 
-public class CatalogoServicoGuilda {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class CatalogoServicoGuilda extends EntityClass {
     
     private String titulo;
     private String descricao;

@@ -5,7 +5,11 @@ import java.util.List;
 import org.cupula.model.items.enums.ItemTipoTag;
 import org.cupula.model.structures.ItemStructure;
 
-public class ItemTipo {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class ItemTipo extends EntityClass {
 
     private String nome;
     private String descricao;

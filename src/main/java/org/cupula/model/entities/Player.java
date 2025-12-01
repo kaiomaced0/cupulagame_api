@@ -6,7 +6,11 @@ import org.cupula.model.entities.enums.PlayerTipo;
 import org.cupula.model.items.Item;
 import org.cupula.model.structures.view.ColorMaterial;
 
-public class Player {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class Player extends EntityClass {
     //Atributos Basicos visuais e de tamanho
     private PlayerTipo tipo;
     private Long tamanhoX;

@@ -1,6 +1,9 @@
 package org.cupula.model.entities;
 
-public class Entity {
+import org.cupula.model.EntityClass;
+
+@jakarta.persistence.Entity
+public class Entity extends EntityClass {
 
     private Long inicioX;
     private Long inicioY;

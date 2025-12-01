@@ -7,7 +7,11 @@ import org.cupula.model.guilda.Guilda;
 import org.cupula.model.islands.Ilha;
 import org.cupula.model.items.Item;
 
-public class TransacaoItem {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class TransacaoItem extends EntityClass {
     
     private Item item;
     private String itemTransacaoResponseDTO;

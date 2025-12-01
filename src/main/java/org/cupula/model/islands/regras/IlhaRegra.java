@@ -3,7 +3,11 @@ package org.cupula.model.islands.regras;
 import org.cupula.model.islands.Ilha;
 import org.cupula.model.islands.enums.IlhaRegrasTipo;
 
-public class IlhaRegra {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class IlhaRegra extends EntityClass {
 
     private Ilha ilha;
     private Boolean ativa;

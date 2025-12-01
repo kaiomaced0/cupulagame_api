@@ -6,7 +6,11 @@ import java.util.List;
 import org.cupula.model.islands.Ilha;
 import org.cupula.model.structures.enums.StructureTipo;
 
-public class Structure {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class Structure extends EntityClass {
 
     private List<ItemStructure> itemStructures;
     private List<Container> containers;

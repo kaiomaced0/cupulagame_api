@@ -1,5 +1,9 @@
 package org.cupula.model.containers.enums;
 
-public class ContainerTipo {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class ContainerTipo extends EntityClass {
     
 }

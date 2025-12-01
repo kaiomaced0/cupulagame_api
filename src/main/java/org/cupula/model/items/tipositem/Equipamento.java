@@ -6,6 +6,9 @@ import org.cupula.model.containers.Container;
 import org.cupula.model.items.Item;
 import org.cupula.model.items.enums.EntityCompativel;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Equipamento extends Item{
     
     private List<Container> containers;

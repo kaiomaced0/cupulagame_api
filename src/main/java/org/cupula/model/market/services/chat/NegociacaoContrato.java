@@ -8,7 +8,11 @@ import org.cupula.model.market.enums.MarketTipoPagamento;
 import org.cupula.model.market.services.MarketService;
 import org.cupula.model.market.services.enums.NegociacaoContratoStatus;
 
-public class NegociacaoContrato {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class NegociacaoContrato extends EntityClass {
     private MarketService marketService;
     private List<NegociacaoContratoMensagem> mensagens;
     private List<QuantidadeItemList> itensNecessarios;

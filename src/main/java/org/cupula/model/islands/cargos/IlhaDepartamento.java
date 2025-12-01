@@ -3,7 +3,11 @@ package org.cupula.model.islands.cargos;
 import org.cupula.model.islands.Ilha;
 import org.cupula.model.islands.enums.IlhaCargo;
 
-public class IlhaDepartamento {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class IlhaDepartamento extends EntityClass {
     
     private Ilha ilha;
     private String nomeCargo;

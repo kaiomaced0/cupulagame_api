@@ -5,7 +5,11 @@ import java.util.List;
 import org.cupula.model.islands.acessoilhas.IlhaAcesso;
 import org.cupula.model.islands.enums.IlhaTipo;
 
-public class Ilha {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class Ilha extends EntityClass {
 
     private Long tamanhoX;
     private Long tamanhoY;

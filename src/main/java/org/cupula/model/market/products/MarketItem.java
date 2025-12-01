@@ -6,7 +6,11 @@ import org.cupula.model.items.Item;
 import org.cupula.model.market.enums.MarketTipoPagamento;
 import org.cupula.model.market.products.enums.MarketItemStatus;
 
-public class MarketItem {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class MarketItem extends EntityClass {
     
     private List<Item> itens;
     private Long price;

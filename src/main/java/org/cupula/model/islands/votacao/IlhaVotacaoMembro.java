@@ -1,6 +1,10 @@
 package org.cupula.model.islands.votacao;
 
-public class IlhaVotacaoMembro {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class IlhaVotacaoMembro extends EntityClass {
     
     private IlhaVotacao votacao;
     private Long idMembroHash;

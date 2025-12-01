@@ -6,7 +6,11 @@ import org.cupula.model.items.Item;
 import org.cupula.model.structures.view.ColorMaterial;
 import org.cupula.model.structures.view.Texture;
 
-public class Material {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class Material extends EntityClass {
     
     private String name;
     private List<Texture> textures;

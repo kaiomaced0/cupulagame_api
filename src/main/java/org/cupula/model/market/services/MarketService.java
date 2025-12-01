@@ -8,7 +8,11 @@ import org.cupula.model.market.QuantidadeItemList;
 import org.cupula.model.market.enums.MarketTipoPagamento;
 import org.cupula.model.market.services.enums.MarketServiceTipo;
 
-public class MarketService {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class MarketService extends EntityClass {
 
     private String titutlo;
     private String descricao;

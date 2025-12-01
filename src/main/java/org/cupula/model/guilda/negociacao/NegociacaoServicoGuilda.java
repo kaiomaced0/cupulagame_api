@@ -11,7 +11,11 @@ import org.cupula.model.guilda.enums.NegociacaoTipoPagamento;
 import org.cupula.model.islands.Ilha;
 import org.cupula.model.items.Item;
 
-public class NegociacaoServicoGuilda {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class NegociacaoServicoGuilda extends EntityClass {
     private Guilda guilda;
     private CatalogoServicoGuilda catalogoServicoGuilda;
     private Long priceNegociado;

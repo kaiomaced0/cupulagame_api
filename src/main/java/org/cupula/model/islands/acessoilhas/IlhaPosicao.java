@@ -2,7 +2,11 @@ package org.cupula.model.islands.acessoilhas;
 
 import org.cupula.model.islands.Ilha;
 
-public class IlhaPosicao {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class IlhaPosicao extends EntityClass {
     // essa tabela sera mais um mapeamento de posicoes das ilhas para verificar se faz sentido uma ilha A ter uma IlhaAcesso a ilha B
 
     private Ilha ilha;

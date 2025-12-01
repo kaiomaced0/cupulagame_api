@@ -4,7 +4,11 @@ import java.util.List;
 
 import org.cupula.model.entities.enums.PlayerTipo;
 
-public class PlayerTipoBaseOrelha {
+import jakarta.persistence.Entity;
+import org.cupula.model.EntityClass;
+
+@Entity
+public class PlayerTipoBaseOrelha extends EntityClass {
     
     private PlayerTipo playerTipo;
     private Long possibilidade;
