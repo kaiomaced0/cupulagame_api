@@ -105,3 +105,13 @@ Quando a ação é enviada, o servidor processa:
 4.  **Turno 2 (Player B):**
     * `SURRENDER`: (Player B percebe que esqueceu poções de vida).
     * *API Evento:* Player A recebe: `prompt: "Player B pede rendição. Aceitar? [S/N]"`
+
+
+ter varios tipos de "pvp" no jogo, por exemplo, ao andar no mapa e ver um mob, posso:
+- chamar ele para um pvp visual
+- apenas fazer um "pvp" automatico, no qual meu personagem fica visualmente ao lado dele e
+  executamos uma funcao de duelo basico e eu aguardo um tempo e depois sou "Liberado" do tempo de espera
+  ou "morro" caso tenha perdido. essa funcao basica de duelo ja tem que fazer tudo desde contabilizar minha vida perdida
+  ate meu xp ganho.
+
+
