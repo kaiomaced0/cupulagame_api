@@ -1,0 +1,14 @@
+- Comunicacao entre usuarios
+- Criacao de grupos
+- Trabalhar mais a mecanica de montarias e quantos players podem andar em "carros" juntos
+- como funciona quando estao em grupo?
+- missoes em grupo
+- inscrever o grupo para pegar tasks de guildas
+- diferencas de guildas entre participantes de grupo (o que acontece?)
+- diferenca de raças
+- criacao de novos players a partir da uniao de players.. (habilidades e racas irao influenciar..)
+- ilhas diferentes podem criar grupo?
+- amigos serao definidos para players ou usuarios?
+- nivel de acesso a players do amigo
+- sigilo entre player e usuario
+- 

@@ -114,4 +114,6 @@ ter varios tipos de "pvp" no jogo, por exemplo, ao andar no mapa e ver um mob, p
   ou "morro" caso tenha perdido. essa funcao basica de duelo ja tem que fazer tudo desde contabilizar minha vida perdida
   ate meu xp ganho.
 
+- podem realizar duas acoes por tempo
+- o pvp fica dividido em uma area xyz pequena, ex: 10;10;3z
 
