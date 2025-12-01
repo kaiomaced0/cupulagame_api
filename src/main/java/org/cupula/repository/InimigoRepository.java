@@ -1,0 +1,11 @@
+package org.cupula.repository;
+
+import org.cupula.model.entities.tiposmob.Inimigo;
+
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import jakarta.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
+public class InimigoRepository implements PanacheRepository<Inimigo> {   
+    
+}
