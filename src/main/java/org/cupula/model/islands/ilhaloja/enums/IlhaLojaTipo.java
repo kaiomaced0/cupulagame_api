@@ -1,0 +1,13 @@
+package org.cupula.model.islands.ilhaloja.enums;
+
+public enum IlhaLojaTipo {
+    LOJA_DE_RPG,
+    LOJA_DE_COSMETICOS,
+    LOJA_DE_ITENS_COMUNS,
+    LOJA_DE_SERVICOS,
+    LOJA_DE_ALIMENTOS,
+    LOJA_DE_ARMAS_E_EQUIPAMENTOS,
+    LOJA_DE_ANTIGUIDADES,
+    LOJA_DE_MATERIAIS_DE_CONSTRUCAO,
+    LOJA_DE_OUTROS
+}

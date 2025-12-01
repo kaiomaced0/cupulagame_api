@@ -1,0 +1,162 @@
+package org.cupula.model.player;
+
+import org.cupula.model.EntityClass;
+import org.cupula.model.entities.Player;
+import org.cupula.model.items.Item;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public class PlayerSlotPadrao extends EntityClass {
+    
+    @ManyToOne
+    private Player player;
+    
+    private Integer opcao;
+    private String nome;
+    private String descricao;
+
+    @ManyToOne
+    private Item itemMaoDireita;
+    
+    @ManyToOne
+    private Item itemMaoEsquerda;
+
+    @ManyToOne
+    private Item itemEquipadoCabeca;
+    
+    @ManyToOne
+    private Item itemEquipadoTorso;
+    
+    @ManyToOne
+    private Item itemEquipadoPernas;
+    
+    @ManyToOne
+    private Item itemEquipadoPes;
+
+    @ManyToOne
+    private Item itemEquipadoAcessorio1;
+    
+    @ManyToOne
+    private Item itemEquipadoAcessorio2;
+    
+    @ManyToOne
+    private Item itemEquipadoAcessorio3;
+    
+    @ManyToOne
+    private Item itemEquipadoAcessorio4;
+
+    // Getters e Setters
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Integer getOpcao() {
+        return opcao;
+    }
+
+    public void setOpcao(Integer opcao) {
+        this.opcao = opcao;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Item getItemMaoDireita() {
+        return itemMaoDireita;
+    }
+
+    public void setItemMaoDireita(Item itemMaoDireita) {
+        this.itemMaoDireita = itemMaoDireita;
+    }
+
+    public Item getItemMaoEsquerda() {
+        return itemMaoEsquerda;
+    }
+
+    public void setItemMaoEsquerda(Item itemMaoEsquerda) {
+        this.itemMaoEsquerda = itemMaoEsquerda;
+    }
+
+    public Item getItemEquipadoCabeca() {
+        return itemEquipadoCabeca;
+    }
+
+    public void setItemEquipadoCabeca(Item itemEquipadoCabeca) {
+        this.itemEquipadoCabeca = itemEquipadoCabeca;
+    }
+
+    public Item getItemEquipadoTorso() {
+        return itemEquipadoTorso;
+    }
+
+    public void setItemEquipadoTorso(Item itemEquipadoTorso) {
+        this.itemEquipadoTorso = itemEquipadoTorso;
+    }
+
+    public Item getItemEquipadoPernas() {
+        return itemEquipadoPernas;
+    }
+
+    public void setItemEquipadoPernas(Item itemEquipadoPernas) {
+        this.itemEquipadoPernas = itemEquipadoPernas;
+    }
+
+    public Item getItemEquipadoPes() {
+        return itemEquipadoPes;
+    }
+
+    public void setItemEquipadoPes(Item itemEquipadoPes) {
+        this.itemEquipadoPes = itemEquipadoPes;
+    }
+
+    public Item getItemEquipadoAcessorio1() {
+        return itemEquipadoAcessorio1;
+    }
+
+    public void setItemEquipadoAcessorio1(Item itemEquipadoAcessorio1) {
+        this.itemEquipadoAcessorio1 = itemEquipadoAcessorio1;
+    }
+
+    public Item getItemEquipadoAcessorio2() {
+        return itemEquipadoAcessorio2;
+    }
+
+    public void setItemEquipadoAcessorio2(Item itemEquipadoAcessorio2) {
+        this.itemEquipadoAcessorio2 = itemEquipadoAcessorio2;
+    }
+
+    public Item getItemEquipadoAcessorio3() {
+        return itemEquipadoAcessorio3;
+    }
+
+    public void setItemEquipadoAcessorio3(Item itemEquipadoAcessorio3) {
+        this.itemEquipadoAcessorio3 = itemEquipadoAcessorio3;
+    }
+
+    public Item getItemEquipadoAcessorio4() {
+        return itemEquipadoAcessorio4;
+    }
+
+    public void setItemEquipadoAcessorio4(Item itemEquipadoAcessorio4) {
+        this.itemEquipadoAcessorio4 = itemEquipadoAcessorio4;
+    }
+}
