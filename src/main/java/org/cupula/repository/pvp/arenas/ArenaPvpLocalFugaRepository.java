@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.pvp.arenas;
+package org.cupula.repository.pvp.arenas;
 
 import java.util.List;
 

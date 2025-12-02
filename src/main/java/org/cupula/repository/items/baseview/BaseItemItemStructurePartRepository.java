@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.items.baseview;
+package org.cupula.repository.items.baseview;
 
 import org.cupula.model.items.baseview.BaseItemItemStructurePart;
 

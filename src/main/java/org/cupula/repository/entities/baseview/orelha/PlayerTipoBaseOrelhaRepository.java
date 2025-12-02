@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.entities.baseview.orelha;
+package org.cupula.repository.entities.baseview.orelha;
 
 import org.cupula.model.entities.baseview.orelha.PlayerTipoBaseOrelha;
 

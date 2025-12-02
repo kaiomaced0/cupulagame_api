@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.entities;
+package org.cupula.repository.entities;
 
 import java.util.Optional;
 

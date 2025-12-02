@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.pvp.aposta;
+package org.cupula.repository.pvp.aposta;
 
 import java.util.List;
 

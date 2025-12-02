@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.pvp;
+package org.cupula.repository.pvp;
 
 import org.cupula.model.pvp.Pvp;
 

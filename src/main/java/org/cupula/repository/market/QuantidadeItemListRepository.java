@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.market;
+package org.cupula.repository.market;
 
 import org.cupula.model.market.QuantidadeItemList;
 

@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.market.products.negociacao;
+package org.cupula.repository.market.products.negociacao;
 
 import org.cupula.model.market.products.negociacao.NegociacaoItem;
 

@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.islands.votacao;
+package org.cupula.repository.islands.votacao;
 
 import org.cupula.model.islands.votacao.IlhaVotacao;
 

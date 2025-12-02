@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.guilda.negociacao;
+package org.cupula.repository.guilda.negociacao;
 
 import org.cupula.model.guilda.negociacao.NegociacaoServicoGuilda;
 

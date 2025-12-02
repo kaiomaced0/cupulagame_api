@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.player;
+package org.cupula.repository.player;
 
 import java.util.List;
 import java.util.Optional;

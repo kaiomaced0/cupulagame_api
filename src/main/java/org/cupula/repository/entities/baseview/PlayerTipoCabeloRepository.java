@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.entities.baseview;
+package org.cupula.repository.entities.baseview;
 
 import org.cupula.model.entities.baseview.PlayerTipoCabelo;
 

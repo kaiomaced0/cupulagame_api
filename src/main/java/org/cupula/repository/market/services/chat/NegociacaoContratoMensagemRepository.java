@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.market.services.chat;
+package org.cupula.repository.market.services.chat;
 
 import org.cupula.model.market.services.chat.NegociacaoContratoMensagem;
 

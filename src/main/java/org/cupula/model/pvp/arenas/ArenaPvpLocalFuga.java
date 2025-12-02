@@ -8,7 +8,7 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class ArenaPvpLocalFuga extends EntityClass {
-    // a ideia é que seja um local em um canto do mapa que o player possa fugir, ele tem que estar encima da
+    // a ideia Ã© que seja um local em um canto do mapa que o player possa fugir, ele tem que estar encima da
     // estrutura e realizar dois movimentos para "fora" do mapa para fugir da arena
     
     @ManyToOne

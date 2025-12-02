@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.structures;
+package org.cupula.repository.structures;
 
 import org.cupula.model.structures.ItemStructure;
 

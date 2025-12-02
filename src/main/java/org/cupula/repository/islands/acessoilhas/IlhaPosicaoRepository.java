@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.islands.acessoilhas;
+package org.cupula.repository.islands.acessoilhas;
 
 import org.cupula.model.islands.acessoilhas.IlhaPosicao;
 

@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.banco;
+package org.cupula.repository.banco;
 
 import org.cupula.model.banco.TransacaoBancaria;
 

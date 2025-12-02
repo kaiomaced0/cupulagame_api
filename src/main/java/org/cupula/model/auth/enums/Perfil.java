@@ -31,6 +31,6 @@ public enum Perfil {
             if (id.equals(perfil.getId()))
                 return perfil;
         }
-        throw new IllegalArgumentException("Id inválido:" + id);
+        throw new IllegalArgumentException("Id invÃ¡lido:" + id);
     }
 }

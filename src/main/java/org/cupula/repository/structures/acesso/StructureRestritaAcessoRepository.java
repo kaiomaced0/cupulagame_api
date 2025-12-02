@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.structures.acesso;
+package org.cupula.repository.structures.acesso;
 
 import org.cupula.model.structures.acesso.StructureRestritaAcesso;
 

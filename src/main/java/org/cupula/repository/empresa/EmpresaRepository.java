@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.empresa;
+package org.cupula.repository.empresa;
 
 import org.cupula.model.empresa.Empresa;
 

@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.items;
+package org.cupula.repository.items;
 
 import org.cupula.model.items.Item;
 

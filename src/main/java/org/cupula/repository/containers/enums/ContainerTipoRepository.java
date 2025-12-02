@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.containers.enums;
+package org.cupula.repository.containers.enums;
 
 import org.cupula.model.containers.enums.ContainerTipo;
 

@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.entities.tiposmob;
+package org.cupula.repository.entities.tiposmob;
 
 import org.cupula.model.entities.tiposmob.Inimigo;
 

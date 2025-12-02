@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.islands.cargos;
+package org.cupula.repository.islands.cargos;
 
 import org.cupula.model.islands.cargos.IlhaDepartamento;
 

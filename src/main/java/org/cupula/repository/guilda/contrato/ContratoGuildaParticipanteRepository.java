@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.guilda.contrato;
+package org.cupula.repository.guilda.contrato;
 
 import org.cupula.model.guilda.contrato.ContratoGuildaParticipante;
 

@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.identificacao;
+package org.cupula.repository.identificacao;
 
 import org.cupula.model.identificacao.Identificacao;
 

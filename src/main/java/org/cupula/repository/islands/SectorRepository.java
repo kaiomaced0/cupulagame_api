@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.islands;
+package org.cupula.repository.islands;
 
 import org.cupula.model.islands.Sector;
 

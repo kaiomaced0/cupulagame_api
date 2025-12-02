@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.containers;
+package org.cupula.repository.containers;
 
 import org.cupula.model.containers.Container;
 

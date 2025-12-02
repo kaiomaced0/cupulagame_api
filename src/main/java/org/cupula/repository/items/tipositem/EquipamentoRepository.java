@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.items.tipositem;
+package org.cupula.repository.items.tipositem;
 
 import org.cupula.model.items.tipositem.Equipamento;
 

@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.entities;
+package org.cupula.repository.entities;
 
 import org.cupula.model.entities.Mob;
 

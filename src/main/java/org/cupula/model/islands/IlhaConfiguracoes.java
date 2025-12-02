@@ -1,11 +1,13 @@
 package org.cupula.model.islands;
 
-import jakarta.persistence.Entity;
 import org.cupula.model.EntityClass;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class IlhaConfiguracoes extends EntityClass {
 
+    @ManyToOne
     private Ilha ilha;
     private Long impostoResidente;
     private Long impostoNaoResidente;

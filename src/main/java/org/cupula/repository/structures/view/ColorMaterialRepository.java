@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.structures.view;
+package org.cupula.repository.structures.view;
 
 import org.cupula.model.structures.view.ColorMaterial;
 

@@ -9,7 +9,7 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class PlayerItemEquipado extends EntityClass {
 
-    // Valida espaços possíveis com o PlayerItemEquipadoLimite
+    // Valida espaÃ§os possÃ­veis com o PlayerItemEquipadoLimite
     @OneToOne
     private Player player;
 

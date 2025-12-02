@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.guilda;
+package org.cupula.repository.guilda;
 
 import org.cupula.model.guilda.Guilda;
 

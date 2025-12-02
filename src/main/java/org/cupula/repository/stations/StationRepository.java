@@ -1,4 +1,4 @@
-﻿package org.cupula.repository.stations;
+package org.cupula.repository.stations;
 
 import org.cupula.model.stations.Station;
 

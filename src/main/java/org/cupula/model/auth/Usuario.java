@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.cupula.model.EntityClass;
+import org.cupula.model.auth.enums.AuthProvider;
 import org.cupula.model.auth.enums.Perfil;
 import org.cupula.model.structures.Structure;
 
@@ -23,10 +24,18 @@ public class Usuario extends EntityClass{
 
     private Boolean mudarSenha;
 
+    @Column(name = "login_local_habilitado")
+    private Boolean loginLocalHabilitado = Boolean.TRUE;
+
     @ElementCollection
     @CollectionTable(name = "usuario_perfil", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"))
     @Column(name = "perfil", length = 30)
     private Set<Perfil> perfis;
+
+    // Permite login via provedores externos (Google, Facebook, Apple, Microsoft, GitHub etc.).
+    @ElementCollection
+    @CollectionTable(name = "usuario_login_provider", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"))
+    private Set<UsuarioProvider> provedoresLogin;
 
     private List<Structure> baseStructures;
 
@@ -74,5 +83,26 @@ public class Usuario extends EntityClass{
         this.perfis = perfis;
     }
 
-    
+    public Boolean getLoginLocalHabilitado() {
+        return loginLocalHabilitado;
+    }
+
+    public void setLoginLocalHabilitado(Boolean loginLocalHabilitado) {
+        this.loginLocalHabilitado = loginLocalHabilitado;
+    }
+
+    public Set<UsuarioProvider> getProvedoresLogin() {
+        return provedoresLogin;
+    }
+
+    public void setProvedoresLogin(Set<UsuarioProvider> provedoresLogin) {
+        this.provedoresLogin = provedoresLogin;
+    }
+
+    public boolean suportaProvider(AuthProvider provider) {
+        if (provedoresLogin == null || provider == null) {
+            return false;
+        }
+        return provedoresLogin.stream().anyMatch(p -> provider.equals(p.getProvider()));
+    }
 }
