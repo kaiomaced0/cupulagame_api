@@ -1,7 +1,7 @@
 package org.cupula.model.identificacao;
 
 import org.cupula.model.EntityClass;
-import org.cupula.model.entities.Player;
+import org.cupula.model.entities.player.Player;
 
 import jakarta.persistence.Entity;
 

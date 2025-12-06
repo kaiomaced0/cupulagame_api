@@ -1,4 +1,4 @@
-package org.cupula.model.entities;
+package org.cupula.model.entities.player;
 
 import org.cupula.model.EntityClass;
 import org.cupula.model.auth.Usuario;
@@ -11,7 +11,9 @@ import org.cupula.model.structures.view.ColorMaterial;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Player extends EntityClass {
@@ -41,11 +43,12 @@ public class Player extends EntityClass {
     @ManyToOne
     private Container inventario;
 
-    // posiÃ§Ã£o atual do player
-    private Long x;
-    private Long y;
-    private Long z;
     @ManyToOne
     private Ilha ilhaAtual;
 
+    @OneToOne
+    @JoinColumn(name = "posicao_id")
+    private PlayerPosicao posicao;
+
+    
 }

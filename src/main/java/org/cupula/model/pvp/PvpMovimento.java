@@ -1,8 +1,8 @@
-package org.cupula.model.pvp;
+    package org.cupula.model.pvp;
 
 import org.cupula.model.EntityClass;
-import org.cupula.model.entities.Mob;
-import org.cupula.model.entities.Player;
+import org.cupula.model.entities.mob.Mob;
+import org.cupula.model.entities.player.Player;
 import org.cupula.model.pvp.enums.PvpMovimentoTipo;
 
 import jakarta.persistence.Entity;

@@ -3,7 +3,7 @@ package org.cupula.model.market.services;
 import java.util.List;
 
 import org.cupula.model.EntityClass;
-import org.cupula.model.entities.Player;
+import org.cupula.model.entities.player.Player;
 import org.cupula.model.islands.Ilha;
 import org.cupula.model.market.QuantidadeItemList;
 import org.cupula.model.market.enums.MarketTipoPagamento;

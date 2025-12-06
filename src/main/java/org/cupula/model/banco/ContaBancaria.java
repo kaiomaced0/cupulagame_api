@@ -3,7 +3,7 @@ package org.cupula.model.banco;
 import org.cupula.model.EntityClass;
 import org.cupula.model.banco.enums.ContaBancariaTipo;
 import org.cupula.model.empresa.Empresa;
-import org.cupula.model.entities.Player;
+import org.cupula.model.entities.player.Player;
 import org.cupula.model.guilda.Guilda;
 import org.cupula.model.guilda.contrato.ContratoGuilda;
 import org.cupula.model.islands.Ilha;

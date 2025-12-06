@@ -1,6 +1,6 @@
 package org.cupula.model.entities.tiposmob;
 
-import org.cupula.model.entities.Mob;
+import org.cupula.model.entities.mob.Mob;
 
 import jakarta.persistence.Entity;
 

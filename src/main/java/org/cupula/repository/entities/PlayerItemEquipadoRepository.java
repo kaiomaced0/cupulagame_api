@@ -2,7 +2,7 @@ package org.cupula.repository.entities;
 
 import java.util.Optional;
 
-import org.cupula.model.entities.PlayerItemEquipado;
+import org.cupula.model.entities.player.PlayerItemEquipado;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;

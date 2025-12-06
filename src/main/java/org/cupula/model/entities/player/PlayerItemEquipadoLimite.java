@@ -1,4 +1,4 @@
-package org.cupula.model.entities;
+package org.cupula.model.entities.player;
 
 import org.cupula.model.EntityClass;
 

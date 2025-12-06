@@ -3,8 +3,9 @@ package org.cupula.model.pvp.aposta;
 import java.util.List;
 
 import org.cupula.model.EntityClass;
-import org.cupula.model.entities.Player;
+import org.cupula.model.entities.player.Player;
 import org.cupula.model.items.Item;
+import org.cupula.model.pvp.Pvp;
 import org.cupula.model.pvp.aposta.enums.PvpApostaStatus;
 
 import jakarta.persistence.ElementCollection;
@@ -12,10 +13,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class PvpAposta extends EntityClass {
-    
+    // preciso adicionar a transacao de itens de aposta! elas precisam ir para um container e ao fim ser entregue os itens ao vencedor.
+
     @ElementCollection
     private List<Item> itensApostadosPeloDesafiante;
     
@@ -33,6 +36,9 @@ public class PvpAposta extends EntityClass {
     
     @ManyToOne
     private Player desafiado;
+
+    @OneToOne
+    private Pvp pvp;
     
     @Enumerated(EnumType.STRING)
     private PvpApostaStatus status;

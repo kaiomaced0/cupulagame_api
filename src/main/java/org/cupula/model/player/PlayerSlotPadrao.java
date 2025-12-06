@@ -1,7 +1,7 @@
 package org.cupula.model.player;
 
 import org.cupula.model.EntityClass;
-import org.cupula.model.entities.Player;
+import org.cupula.model.entities.player.Player;
 import org.cupula.model.items.Item;
 
 import jakarta.persistence.Entity;
