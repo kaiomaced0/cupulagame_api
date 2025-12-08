@@ -2,15 +2,15 @@ package org.cupula.model.entities.baseview.orelha;
 
 import java.util.List;
 
-import org.cupula.model.entities.enums.PlayerTipo;
+import org.cupula.model.EntityClass;
+import org.cupula.model.entities.enums.PlayerRaca;
 
 import jakarta.persistence.Entity;
-import org.cupula.model.EntityClass;
 
 @Entity
 public class PlayerTipoBaseOrelha extends EntityClass {
     
-    private PlayerTipo playerTipo;
+    private PlayerRaca playerRaca;
     private Long possibilidade;
     
     private Long eixoXMinimo;
