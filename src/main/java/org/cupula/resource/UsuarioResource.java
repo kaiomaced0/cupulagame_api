@@ -1,9 +1,17 @@
 package org.cupula.resource;
 
+import java.util.List;
+
 import org.cupula.dto.auth.CreateUsuarioRequest;
 import org.cupula.dto.auth.UpdateUsuarioRequest;
 import org.cupula.dto.responses.usuario.UsuarioResponseDTO;
+import org.cupula.dto.usuario.request.AdicionarAmigoRequest;
+import org.cupula.dto.usuario.response.AmizadeResponse;
+import org.cupula.model.auth.Usuario;
+import org.cupula.repository.auth.UsuarioRepository;
+import org.cupula.service.AmizadeService;
 import org.cupula.service.UsuarioService;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
@@ -29,6 +37,15 @@ public class UsuarioResource {
 
     @Inject
     UsuarioService usuarioService;
+
+    @Inject
+    AmizadeService amizadeService;
+
+    @Inject
+    UsuarioRepository usuarioRepository;
+
+    @Inject
+    JsonWebToken jwt;
 
     @GET
     public Response list() {
@@ -76,5 +93,148 @@ public class UsuarioResource {
             return Response.status(Status.NO_CONTENT).build();
         }
         return Response.status(Status.NOT_FOUND).build();
+    }
+
+    // ==================== ENDPOINTS DE AMIZADE ====================
+
+    @POST
+    @Path("/amigos")
+    @RolesAllowed({"User", "Admin"})
+    public Response adicionarAmigo(AdicionarAmigoRequest request) {
+        try {
+            String login = jwt.getSubject();
+            Usuario usuario = usuarioRepository.findByLogin(login);
+            
+            if (usuario == null) {
+                return Response.status(Status.UNAUTHORIZED)
+                    .entity("Usuario nao encontrado")
+                    .build();
+            }
+
+            AmizadeResponse response = amizadeService.adicionarAmigo(usuario, request.emailAmigo());
+            return Response.status(Status.CREATED).entity(response).build();
+        } catch (IllegalArgumentException e) {
+            return Response.status(Status.BAD_REQUEST)
+                .entity(e.getMessage())
+                .build();
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR)
+                .entity("Erro ao adicionar amigo: " + e.getMessage())
+                .build();
+        }
+    }
+
+    @GET
+    @Path("/amigos")
+    @RolesAllowed({"User", "Admin"})
+    public Response listarAmigos() {
+        try {
+            String login = jwt.getSubject();
+            Usuario usuario = usuarioRepository.findByLogin(login);
+            
+            if (usuario == null) {
+                return Response.status(Status.UNAUTHORIZED)
+                    .entity("Usuario nao encontrado")
+                    .build();
+            }
+
+            List<AmizadeResponse> amigos = amizadeService.listarAmigos(usuario);
+            return Response.ok(amigos).build();
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR)
+                .entity("Erro ao listar amigos: " + e.getMessage())
+                .build();
+        }
+    }
+
+    @GET
+    @Path("/amigos/pendentes")
+    @RolesAllowed({"User", "Admin"})
+    public Response listarSolicitacoesPendentes() {
+        try {
+            String login = jwt.getSubject();
+            Usuario usuario = usuarioRepository.findByLogin(login);
+            
+            if (usuario == null) {
+                return Response.status(Status.UNAUTHORIZED)
+                    .entity("Usuario nao encontrado")
+                    .build();
+            }
+
+            List<AmizadeResponse> pendentes = amizadeService.listarSolicitacoesPendentes(usuario);
+            return Response.ok(pendentes).build();
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR)
+                .entity("Erro ao listar solicitacoes pendentes: " + e.getMessage())
+                .build();
+        }
+    }
+
+    @PUT
+    @Path("/amigos/{id}/aceitar")
+    @RolesAllowed({"User", "Admin"})
+    public Response aceitarSolicitacao(@PathParam("id") Long amizadeId) {
+        try {
+            String login = jwt.getSubject();
+            Usuario usuario = usuarioRepository.findByLogin(login);
+            
+            if (usuario == null) {
+                return Response.status(Status.UNAUTHORIZED)
+                    .entity("Usuario nao encontrado")
+                    .build();
+            }
+
+            AmizadeResponse response = amizadeService.aceitarSolicitacao(usuario, amizadeId);
+            
+            if (response == null) {
+                return Response.status(Status.NOT_FOUND)
+                    .entity("Solicitacao nao encontrada")
+                    .build();
+            }
+
+            return Response.ok(response).build();
+        } catch (IllegalArgumentException e) {
+            return Response.status(Status.BAD_REQUEST)
+                .entity(e.getMessage())
+                .build();
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR)
+                .entity("Erro ao aceitar solicitacao: " + e.getMessage())
+                .build();
+        }
+    }
+
+    @PUT
+    @Path("/amigos/{id}/recusar")
+    @RolesAllowed({"User", "Admin"})
+    public Response recusarSolicitacao(@PathParam("id") Long amizadeId) {
+        try {
+            String login = jwt.getSubject();
+            Usuario usuario = usuarioRepository.findByLogin(login);
+            
+            if (usuario == null) {
+                return Response.status(Status.UNAUTHORIZED)
+                    .entity("Usuario nao encontrado")
+                    .build();
+            }
+
+            AmizadeResponse response = amizadeService.recusarSolicitacao(usuario, amizadeId);
+            
+            if (response == null) {
+                return Response.status(Status.NOT_FOUND)
+                    .entity("Solicitacao nao encontrada")
+                    .build();
+            }
+
+            return Response.ok(response).build();
+        } catch (IllegalArgumentException e) {
+            return Response.status(Status.BAD_REQUEST)
+                .entity(e.getMessage())
+                .build();
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR)
+                .entity("Erro ao recusar solicitacao: " + e.getMessage())
+                .build();
+        }
     }
 }

@@ -29,6 +29,18 @@ O Player é o personagem controlado pelo jogador.
 * **possuiArma**: boolean
 * **armaEquipada**: Tool | null
 
+### **Estrutura de Dados**
+
+O Player possui uma relação **OneToOne** com `PlayerStatus`, que concentra todos os atributos de gameplay:
+
+*   **Progressão:** XP atual, nível atual
+*   **Combate:** HP máximo/atual, Estamina máxima/atual
+*   **Movimento:** Velocidade padrão
+*   **Economia:** Saldo em banco
+*   **Estatísticas:** Total de mortes, kills de mobs, kills de players, data da última morte
+*   **Inventário:** Container de itens
+*   **Posição:** Coordenadas no mundo (via `PlayerPosicao`)
+
 ### **Ações**
 
 * **mover(x, y)**
@@ -458,6 +470,74 @@ Mobs não são estáticos; eles envelhecem, e isso altera seus atributos e compo
 *   **Variação de Atributos:**
     *   A "Idade" atua como um multiplicador de atributos (Força, Velocidade, HP).
     *   Comportamento muda com a idade (ex: um Lobo Jovem é imprudente e ataca sozinho; um Lobo Adulto ataca em matilha; um Ancião pode liderar a matilha).
+
+---
+
+# 💀 **15. Sistema de Morte e Respawn**
+
+O sistema de morte é **híbrido**, combinando histórico detalhado com estatísticas rápidas.
+
+## 🪦 **15.1 Estrutura de Dados**
+
+### **PlayerStatus (Estatísticas Resumidas)**
+Armazena contadores globais e informações rápidas:
+*   `totalMortes`: Total de vezes que o player morreu
+*   `totalKillsMobs`: Total de mobs eliminados
+*   `totalKillsPlayers`: Total de players eliminados (PVP)
+*   `ultimaMorte`: Data/hora da última morte
+
+### **PlayerMorte (Histórico Detalhado)**
+Cada morte é registrada individualmente com:
+*   **Tipo de Morte:** PVP, PVE, QUEDA, AFOGAMENTO, FOME, VENENO, ARMADILHA, SUICIDIO
+*   **Localização da Morte:** Coordenadas (X, Y, Z) e Ilha
+*   **Assassino:**
+    *   Se PVP: referência ao Player que matou
+    *   Se PVE: referência ao Mob que matou
+*   **Penalidades Aplicadas:**
+    *   XP perdido
+    *   Gold perdido
+    *   Se dropou itens
+*   **Ponto de Respawn:** Coordenadas e ilha onde o player respawnou
+*   **Datas:** Momento da morte e momento do respawn
+*   **Vingança:** Flag `vindicado` (se o player já se vingou de quem o matou)
+
+## ⏱️ **15.2 Penalidade Progressiva**
+
+Mortes consecutivas em curto período aumentam o tempo de respawn:
+*   **Primeira morte:** Respawn instantâneo
+*   **Segunda morte (em 5 minutos):** Espera de 10 segundos
+*   **Terceira morte (em 5 minutos):** Espera de 30 segundos
+*   **Quarta morte ou mais:** Espera de 60 segundos
+
+## 🪦 **15.3 Sistema de Lápide (Cemitério)**
+
+Ao morrer, é criada uma "lápide" temporária no local da morte:
+*   O player tem **X minutos** para retornar e recuperar seus itens
+*   Se não retornar a tempo, perde os itens (ou uma porcentagem deles)
+*   Outros players podem saquear a lápide após o tempo expirar
+
+## 🎯 **15.4 Lógica de Respawn Inteligente**
+
+O ponto de respawn é definido baseado no contexto da morte:
+*   **Boss/Dungeon:** Respawna longe do perigo, na entrada da dungeon
+*   **PVP:** Respawna na cidade mais próxima com proteção temporária de 30s
+*   **Queda/Acidente:** Respawna no último checkpoint seguro
+*   **Guilda:** Membros podem definir um ponto de respawn na base da guilda
+
+## ⚔️ **15.5 Sistema de Vingança**
+
+Players podem rastrear quem os matou:
+*   Ao morrer em PVP, o assassino é registrado
+*   A morte fica marcada como "não vindicada"
+*   Quando o player mata seu assassino de volta, a morte é marcada como "vindicada"
+*   Vinganças podem conceder recompensas extras (bônus de XP/Gold)
+
+## 🧹 **15.6 Retenção de Dados**
+
+Para evitar acúmulo excessivo de registros:
+*   Mantém-se apenas as **últimas 50 mortes** por player
+*   OU mantém-se mortes dos **últimos 30 dias**
+*   Um job de limpeza periódica remove registros antigos automaticamente
 
 
 
