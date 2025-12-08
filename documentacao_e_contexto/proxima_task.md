@@ -1,3 +1,22 @@
+# Próximas Tarefas
+
+## Prioridade Alta
+- [ ] **Implementar Serviço de Geração de Mundo**: Criar lógica que utiliza `Cenario` e `SpawnRule` para popular chunks.
+- [ ] **Implementar Serviço de Tick de Materiais**: Criar job/scheduler que verifica materiais (como Terra) e aplica a transformação (para Grama) baseada nas regras definidas em `Material`.
+- [ ] **Integração com Plantio**: Garantir que o sistema de plantio respeite as restrições de bioma/cenário.
+
+## Prioridade Média
+- [ ] **Interface de Admin**: Endpoints para criar/editar Cenários e Regras de Spawn via API.
+- [ ] **Expansão de Guildas**: Implementar a lógica de Torres e Filiais detalhada na documentação.
+
+## Concluído Recentemente
+- [x] Reorganização de Repositórios (PVP, Player, Island, World).
+- [x] Documentação de Guildas, Empresas e Cidadania.
+- [x] Sistema de Plantio (Planta, Estagio, Plantacao).
+- [x] Modelagem de Geração de Mundo (Cenario, SpawnRule).
+- [x] Modelagem de Solos Vivos (Transformação de Material).
+
+## Backlog (Ideias Originais)
 - Comunicacao entre usuarios
 - Criacao de grupos
 - Trabalhar mais a mecanica de montarias e quantos players podem andar em "carros" juntos
@@ -11,4 +30,8 @@
 - amigos serao definidos para players ou usuarios?
 - nivel de acesso a players do amigo
 - sigilo entre player e usuario
-- 
+- missoes secundarias
+- missoes por raça
+- missoes padrao do jogo
+- como "dropar" essas missoes no mapa?
+- posso fazer com que algumas missoes sejam por tipo de Cenario, por profissao, raça, nivel, guilda, nivel guilda, quantidade de horas online no jogo..'
