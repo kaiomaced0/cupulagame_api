@@ -3,7 +3,6 @@ package org.cupula.model.entities.player;
 import org.cupula.model.EntityClass;
 import org.cupula.model.auth.Usuario;
 import org.cupula.model.comunity.VisibilidadePerfil;
-import org.cupula.model.containers.Container;
 import org.cupula.model.entities.baseview.PlayerTipoCabelo;
 import org.cupula.model.entities.enums.PlayerRaca;
 import org.cupula.model.islands.Ilha;
@@ -41,19 +40,13 @@ public class Player extends EntityClass {
     private Long tamanhoZOrelha;
     private ColorMaterial corOrelha;
 
-    private Long saldoBanco;
-    private Long xpAtual;
-    private Long nivelAtual;
-
-    @ManyToOne
-    private Container inventario;
+    @OneToOne
+    @JoinColumn(name = "status_id")
+    private PlayerStatus status;
 
     @ManyToOne
     private Ilha ilhaAtual;
 
-    @OneToOne
-    @JoinColumn(name = "posicao_id")
-    private PlayerPosicao posicao;
 
     public Usuario getUsuario() {
         return usuario;
@@ -151,36 +144,12 @@ public class Player extends EntityClass {
         this.corOrelha = corOrelha;
     }
 
-    public Long getSaldoBanco() {
-        return saldoBanco;
+    public PlayerStatus getStatus() {
+        return status;
     }
 
-    public void setSaldoBanco(Long saldoBanco) {
-        this.saldoBanco = saldoBanco;
-    }
-
-    public Long getXpAtual() {
-        return xpAtual;
-    }
-
-    public void setXpAtual(Long xpAtual) {
-        this.xpAtual = xpAtual;
-    }
-
-    public Long getNivelAtual() {
-        return nivelAtual;
-    }
-
-    public void setNivelAtual(Long nivelAtual) {
-        this.nivelAtual = nivelAtual;
-    }
-
-    public Container getInventario() {
-        return inventario;
-    }
-
-    public void setInventario(Container inventario) {
-        this.inventario = inventario;
+    public void setStatus(PlayerStatus status) {
+        this.status = status;
     }
 
     public Ilha getIlhaAtual() {
@@ -190,12 +159,5 @@ public class Player extends EntityClass {
     public void setIlhaAtual(Ilha ilhaAtual) {
         this.ilhaAtual = ilhaAtual;
     }
-
-    public PlayerPosicao getPosicao() {
-        return posicao;
-    }
-
-    public void setPosicao(PlayerPosicao posicao) {
-        this.posicao = posicao;
-    }
+    
 }
