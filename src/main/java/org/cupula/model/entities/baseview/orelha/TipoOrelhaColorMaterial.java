@@ -4,9 +4,13 @@ import org.cupula.model.EntityClass;
 import org.cupula.model.structures.view.ColorMaterial;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class TipoOrelhaColorMaterial extends EntityClass {
+    @ManyToOne
+    @JoinColumn(name = "color_material_id")
     private ColorMaterial colorMaterial;
     private Long possibilidade;
     

@@ -10,6 +10,7 @@ import org.cupula.model.structures.enums.StructureTipo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -17,12 +18,18 @@ import jakarta.persistence.OneToMany;
 public class Structure extends EntityClass {
 
     @OneToMany
+    @JoinColumn(name = "structure_id")
     private List<ItemStructure> itemStructures;
+
     @OneToMany
+    @JoinColumn(name = "structure_id")
     private List<Container> containers;
+
     @Enumerated(EnumType.STRING)
     private StructureTipo tipo;
+
     @ManyToOne
+    @JoinColumn(name = "ilha_id")
     private Ilha ilha;
     
     public List<ItemStructure> getItemStructures() {

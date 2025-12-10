@@ -3,14 +3,27 @@ package org.cupula.model.structures.view;
 import org.cupula.model.structures.enums.ColorMaterialTipo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 import org.cupula.model.EntityClass;
+
+import jakarta.persistence.EnumType;
 
 @Entity
 public class ColorMaterial extends EntityClass {
+
     private String name;
     private String hexCode;
+
+    @ManyToOne
+    @JoinColumn(name = "texture_id")
     private Texture texture;
+
+    @Enumerated(EnumType.STRING)
     private ColorMaterialTipo tipo;
+    
     public String getName() {
         return name;
     }

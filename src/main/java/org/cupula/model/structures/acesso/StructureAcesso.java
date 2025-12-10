@@ -6,11 +6,16 @@ import org.cupula.model.EntityClass;
 import org.cupula.model.entities.player.Player;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class StructureAcesso extends EntityClass {
     
+    @ManyToOne
+    @JoinColumn(name = "player_id")
     private Player player;
+    
     private Boolean acessoLiberado;
     private Boolean tempoRestrito;
     private LocalDateTime dataLimiteAcesso;

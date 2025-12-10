@@ -3,6 +3,9 @@ package org.cupula.model.structures;
 import org.cupula.model.structures.view.ColorMaterial;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 import org.cupula.model.EntityClass;
 
 @Entity
@@ -14,8 +17,14 @@ public class ItemStructurePart extends EntityClass {
     private Long fimY;
     private Long inicioZ;
     private Long fimZ;
+    
+    @ManyToOne
+    @JoinColumn(name = "material_id")
     private Material material;
+    @ManyToOne
+    @JoinColumn(name = "color_material_id")
     private ColorMaterial color;
+
     private Boolean areaContato;
     public Long getInicioX() {
         return inicioX;

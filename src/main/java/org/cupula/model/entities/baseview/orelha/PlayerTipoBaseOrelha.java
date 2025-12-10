@@ -6,10 +6,15 @@ import org.cupula.model.EntityClass;
 import org.cupula.model.entities.enums.PlayerRaca;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class PlayerTipoBaseOrelha extends EntityClass {
-    
+    @ManyToOne
+    @JoinColumn(name = "player_raca_id")
     private PlayerRaca playerRaca;
     private Long possibilidade;
     
@@ -20,6 +25,13 @@ public class PlayerTipoBaseOrelha extends EntityClass {
     private Long eixoZMinimo;
     private Long eixoZMaximo;
 
+    @ManyToMany
+    @JoinTable(
+        name = "player_tipo_base_orelha_color_material"
+        , joinColumns = @JoinColumn(name = "player_tipo_base_orelha_id")
+        , inverseJoinColumns = @JoinColumn(name = "tipo_orelha_color_material_id")
+
+    )
     private List<TipoOrelhaColorMaterial> possiveisColorMaterials;
     
     public PlayerRaca getPlayerRaca() {
