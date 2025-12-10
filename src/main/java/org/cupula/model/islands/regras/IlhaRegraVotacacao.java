@@ -10,4 +10,11 @@ public class IlhaRegraVotacacao extends IlhaVotacao {
     
     @ManyToOne
     private IlhaRegra ilhaRegra;
+    public IlhaRegra getIlhaRegra() {
+        return ilhaRegra;
+    }
+    public void setIlhaRegra(IlhaRegra ilhaRegra) {
+        this.ilhaRegra = ilhaRegra;
+    }
+
 }

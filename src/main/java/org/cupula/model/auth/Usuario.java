@@ -105,4 +105,11 @@ public class Usuario extends EntityClass{
         }
         return provedoresLogin.stream().anyMatch(p -> provider.equals(p.getProvider()));
     }
+    public List<Structure> getBaseStructures() {
+        return baseStructures;
+    }
+    public void setBaseStructures(List<Structure> baseStructures) {
+        this.baseStructures = baseStructures;
+    }
+
 }

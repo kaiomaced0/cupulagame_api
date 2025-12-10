@@ -38,4 +38,29 @@ public class ContratoGuilda extends EntityClass {
     )
     private List<TransacaoBancaria> transacoesBancariasRelacionadas;
     
+    public NegociacaoServicoGuilda getNegociacaoServicoGuilda() {
+        return negociacaoServicoGuilda;
+    }
+    public void setNegociacaoServicoGuilda(NegociacaoServicoGuilda negociacaoServicoGuilda) {
+        this.negociacaoServicoGuilda = negociacaoServicoGuilda;
+    }
+    public List<ContratoGuildaParticipante> getParticipantes() {
+        return participantes;
+    }
+    public void setParticipantes(List<ContratoGuildaParticipante> participantes) {
+        this.participantes = participantes;
+    }
+    public ContratoGuildaStatus getStatus() {
+        return status;
+    }
+    public void setStatus(ContratoGuildaStatus status) {
+        this.status = status;
+    }
+    public List<TransacaoBancaria> getTransacoesBancariasRelacionadas() {
+        return transacoesBancariasRelacionadas;
+    }
+    public void setTransacoesBancariasRelacionadas(List<TransacaoBancaria> transacoesBancariasRelacionadas) {
+        this.transacoesBancariasRelacionadas = transacoesBancariasRelacionadas;
+    }
+
 }

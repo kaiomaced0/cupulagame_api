@@ -14,4 +14,17 @@ public class Equipamento extends Item{
     private List<Container> containers;
     private List<EntityCompativel> entitiesCompativeis;
 
+    public List<Container> getContainers() {
+        return containers;
+    }
+    public void setContainers(List<Container> containers) {
+        this.containers = containers;
+    }
+    public List<EntityCompativel> getEntitiesCompativeis() {
+        return entitiesCompativeis;
+    }
+    public void setEntitiesCompativeis(List<EntityCompativel> entitiesCompativeis) {
+        this.entitiesCompativeis = entitiesCompativeis;
+    }
+
 }

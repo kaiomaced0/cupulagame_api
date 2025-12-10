@@ -14,4 +14,23 @@ public class PlayerTipoBaseColorSkin extends EntityClass {
     
     private ColorMaterial colorMaterial;
 
+    public PlayerRaca getPlayerRaca() {
+        return playerRaca;
+    }
+    public void setPlayerRaca(PlayerRaca playerRaca) {
+        this.playerRaca = playerRaca;
+    }
+    public Long getPossibilidade() {
+        return possibilidade;
+    }
+    public void setPossibilidade(Long possibilidade) {
+        this.possibilidade = possibilidade;
+    }
+    public ColorMaterial getColorMaterial() {
+        return colorMaterial;
+    }
+    public void setColorMaterial(ColorMaterial colorMaterial) {
+        this.colorMaterial = colorMaterial;
+    }
+
 }

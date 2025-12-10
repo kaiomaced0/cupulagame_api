@@ -16,4 +16,29 @@ public class NegociacaoItem extends EntityClass {
     private Long valorNegociado;
     private NegociacaoItemStatus status;
 
+    public List<NegociacaoItemMensagem> getMensagens() {
+        return mensagens;
+    }
+    public void setMensagens(List<NegociacaoItemMensagem> mensagens) {
+        this.mensagens = mensagens;
+    }
+    public List<Item> getItensTroca() {
+        return itensTroca;
+    }
+    public void setItensTroca(List<Item> itensTroca) {
+        this.itensTroca = itensTroca;
+    }
+    public Long getValorNegociado() {
+        return valorNegociado;
+    }
+    public void setValorNegociado(Long valorNegociado) {
+        this.valorNegociado = valorNegociado;
+    }
+    public NegociacaoItemStatus getStatus() {
+        return status;
+    }
+    public void setStatus(NegociacaoItemStatus status) {
+        this.status = status;
+    }
+
 }

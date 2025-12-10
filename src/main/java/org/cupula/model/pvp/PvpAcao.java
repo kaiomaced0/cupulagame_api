@@ -52,4 +52,17 @@ public class PvpAcao extends EntityClass {
     public void setMovimento(PvpMovimento movimento) {
         this.movimento = movimento;
     }
+    public Long getXAlvo() {
+        return xAlvo;
+    }
+    public void setXAlvo(Long xAlvo) {
+        this.xAlvo = xAlvo;
+    }
+    public Long getYAlvo() {
+        return yAlvo;
+    }
+    public void setYAlvo(Long yAlvo) {
+        this.yAlvo = yAlvo;
+    }
+
 }

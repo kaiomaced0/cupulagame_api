@@ -36,4 +36,59 @@ public class ContratoGuildaParticipante extends EntityClass {
     @JoinColumn(name = "transacao_bancaria_id")
     private TransacaoBancaria transacaoBancariaRelacionada;
     
+    public ContratoGuilda getContratoGuilda() {
+        return contratoGuilda;
+    }
+    public void setContratoGuilda(ContratoGuilda contratoGuilda) {
+        this.contratoGuilda = contratoGuilda;
+    }
+    public Player getParticipante() {
+        return participante;
+    }
+    public void setParticipante(Player participante) {
+        this.participante = participante;
+    }
+    public ContratoGuildaMembroTipoParticipante getTipoParticipante() {
+        return tipoParticipante;
+    }
+    public void setTipoParticipante(ContratoGuildaMembroTipoParticipante tipoParticipante) {
+        this.tipoParticipante = tipoParticipante;
+    }
+    public Long getQuantasMoedasGanha() {
+        return quantasMoedasGanha;
+    }
+    public void setQuantasMoedasGanha(Long quantasMoedasGanha) {
+        this.quantasMoedasGanha = quantasMoedasGanha;
+    }
+    public Long getQuantoXpGanha() {
+        return quantoXpGanha;
+    }
+    public void setQuantoXpGanha(Long quantoXpGanha) {
+        this.quantoXpGanha = quantoXpGanha;
+    }
+    public Long getQuantoXpGuildaGanha() {
+        return quantoXpGuildaGanha;
+    }
+    public void setQuantoXpGuildaGanha(Long quantoXpGuildaGanha) {
+        this.quantoXpGuildaGanha = quantoXpGuildaGanha;
+    }
+    public Boolean getConfirmado() {
+        return confirmado;
+    }
+    public void setConfirmado(Boolean confirmado) {
+        this.confirmado = confirmado;
+    }
+    public Boolean getPago() {
+        return pago;
+    }
+    public void setPago(Boolean pago) {
+        this.pago = pago;
+    }
+    public TransacaoBancaria getTransacaoBancariaRelacionada() {
+        return transacaoBancariaRelacionada;
+    }
+    public void setTransacaoBancariaRelacionada(TransacaoBancaria transacaoBancariaRelacionada) {
+        this.transacaoBancariaRelacionada = transacaoBancariaRelacionada;
+    }
+
 }

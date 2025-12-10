@@ -64,4 +64,11 @@ public class CatalogoServicoGuilda extends EntityClass {
     }
 
     
+    public Guilda getGuilda() {
+        return guilda;
+    }
+    public void setGuilda(Guilda guilda) {
+        this.guilda = guilda;
+    }
+
 }

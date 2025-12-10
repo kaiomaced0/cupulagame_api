@@ -15,4 +15,23 @@ public class ItemStructure extends EntityClass {
     private Layer layer;
     private ItemStructureTipo tipo;
     
+    public List<ItemStructurePart> getParts() {
+        return parts;
+    }
+    public void setParts(List<ItemStructurePart> parts) {
+        this.parts = parts;
+    }
+    public Layer getLayer() {
+        return layer;
+    }
+    public void setLayer(Layer layer) {
+        this.layer = layer;
+    }
+    public ItemStructureTipo getTipo() {
+        return tipo;
+    }
+    public void setTipo(ItemStructureTipo tipo) {
+        this.tipo = tipo;
+    }
+
 }

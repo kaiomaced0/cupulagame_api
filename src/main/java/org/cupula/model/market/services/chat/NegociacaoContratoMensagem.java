@@ -12,4 +12,23 @@ public class NegociacaoContratoMensagem extends EntityClass {
     private Player contratante;
     private Player prestadorServico;
     
+    public String getMensagemCriptografada() {
+        return mensagemCriptografada;
+    }
+    public void setMensagemCriptografada(String mensagemCriptografada) {
+        this.mensagemCriptografada = mensagemCriptografada;
+    }
+    public Player getContratante() {
+        return contratante;
+    }
+    public void setContratante(Player contratante) {
+        this.contratante = contratante;
+    }
+    public Player getPrestadorServico() {
+        return prestadorServico;
+    }
+    public void setPrestadorServico(Player prestadorServico) {
+        this.prestadorServico = prestadorServico;
+    }
+
 }

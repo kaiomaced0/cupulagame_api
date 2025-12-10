@@ -15,4 +15,29 @@ public class StructureAcesso extends EntityClass {
     private Boolean tempoRestrito;
     private LocalDateTime dataLimiteAcesso;
 
+    public Player getPlayer() {
+        return player;
+    }
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+    public Boolean getAcessoLiberado() {
+        return acessoLiberado;
+    }
+    public void setAcessoLiberado(Boolean acessoLiberado) {
+        this.acessoLiberado = acessoLiberado;
+    }
+    public Boolean getTempoRestrito() {
+        return tempoRestrito;
+    }
+    public void setTempoRestrito(Boolean tempoRestrito) {
+        this.tempoRestrito = tempoRestrito;
+    }
+    public LocalDateTime getDataLimiteAcesso() {
+        return dataLimiteAcesso;
+    }
+    public void setDataLimiteAcesso(LocalDateTime dataLimiteAcesso) {
+        this.dataLimiteAcesso = dataLimiteAcesso;
+    }
+
 }

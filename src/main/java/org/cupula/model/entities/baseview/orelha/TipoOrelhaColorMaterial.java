@@ -10,4 +10,17 @@ public class TipoOrelhaColorMaterial extends EntityClass {
     private ColorMaterial colorMaterial;
     private Long possibilidade;
     
+    public ColorMaterial getColorMaterial() {
+        return colorMaterial;
+    }
+    public void setColorMaterial(ColorMaterial colorMaterial) {
+        this.colorMaterial = colorMaterial;
+    }
+    public Long getPossibilidade() {
+        return possibilidade;
+    }
+    public void setPossibilidade(Long possibilidade) {
+        this.possibilidade = possibilidade;
+    }
+
 }

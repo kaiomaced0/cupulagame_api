@@ -19,4 +19,41 @@ public class ItemTipo extends EntityClass {
 
     private ItemStructure itemStructureBase;
     private List<ItemTipoTag> tagsBase;
+    public String getNome() {
+        return nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public String getDescricao() {
+        return descricao;
+    }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    public Long getLimiteQuantidade() {
+        return limiteQuantidade;
+    }
+    public void setLimiteQuantidade(Long limiteQuantidade) {
+        this.limiteQuantidade = limiteQuantidade;
+    }
+    public Long getPesoPorQuantidade() {
+        return pesoPorQuantidade;
+    }
+    public void setPesoPorQuantidade(Long pesoPorQuantidade) {
+        this.pesoPorQuantidade = pesoPorQuantidade;
+    }
+    public ItemStructure getItemStructureBase() {
+        return itemStructureBase;
+    }
+    public void setItemStructureBase(ItemStructure itemStructureBase) {
+        this.itemStructureBase = itemStructureBase;
+    }
+    public List<ItemTipoTag> getTagsBase() {
+        return tagsBase;
+    }
+    public void setTagsBase(List<ItemTipoTag> tagsBase) {
+        this.tagsBase = tagsBase;
+    }
+
 }

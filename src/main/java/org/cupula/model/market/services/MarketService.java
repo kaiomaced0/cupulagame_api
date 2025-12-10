@@ -41,4 +41,83 @@ public class MarketService extends EntityClass {
 
     private String proficienciaNoServico;
 
+    public String getTitutlo() {
+        return titutlo;
+    }
+    public void setTitutlo(String titutlo) {
+        this.titutlo = titutlo;
+    }
+    public String getDescricao() {
+        return descricao;
+    }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    public Ilha getIlha() {
+        return ilha;
+    }
+    public void setIlha(Ilha ilha) {
+        this.ilha = ilha;
+    }
+    public Player getPrestadorServico() {
+        return prestadorServico;
+    }
+    public void setPrestadorServico(Player prestadorServico) {
+        this.prestadorServico = prestadorServico;
+    }
+    public MarketServiceTipo getMarketServiceTipo() {
+        return marketServiceTipo;
+    }
+    public void setMarketServiceTipo(MarketServiceTipo marketServiceTipo) {
+        this.marketServiceTipo = marketServiceTipo;
+    }
+    public List<MarketTipoPagamento> getTiposPagamento() {
+        return tiposPagamento;
+    }
+    public void setTiposPagamento(List<MarketTipoPagamento> tiposPagamento) {
+        this.tiposPagamento = tiposPagamento;
+    }
+    public List<QuantidadeItemList> getItensNecessarios() {
+        return itensNecessarios;
+    }
+    public void setItensNecessarios(List<QuantidadeItemList> itensNecessarios) {
+        this.itensNecessarios = itensNecessarios;
+    }
+    public Long getPrice() {
+        return price;
+    }
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+    public List<QuantidadeItemList> getItensTrocaPagamento() {
+        return itensTrocaPagamento;
+    }
+    public void setItensTrocaPagamento(List<QuantidadeItemList> itensTrocaPagamento) {
+        this.itensTrocaPagamento = itensTrocaPagamento;
+    }
+    public List<QuantidadeItemList> getItensPropaganda() {
+        return itensPropaganda;
+    }
+    public void setItensPropaganda(List<QuantidadeItemList> itensPropaganda) {
+        this.itensPropaganda = itensPropaganda;
+    }
+    public Long getDuracaoEmMinutos() {
+        return duracaoEmMinutos;
+    }
+    public void setDuracaoEmMinutos(Long duracaoEmMinutos) {
+        this.duracaoEmMinutos = duracaoEmMinutos;
+    }
+    public Long getTempoLimiteParaAceitarContrato() {
+        return tempoLimiteParaAceitarContrato;
+    }
+    public void setTempoLimiteParaAceitarContrato(Long tempoLimiteParaAceitarContrato) {
+        this.tempoLimiteParaAceitarContrato = tempoLimiteParaAceitarContrato;
+    }
+    public String getProficienciaNoServico() {
+        return proficienciaNoServico;
+    }
+    public void setProficienciaNoServico(String proficienciaNoServico) {
+        this.proficienciaNoServico = proficienciaNoServico;
+    }
+
 }

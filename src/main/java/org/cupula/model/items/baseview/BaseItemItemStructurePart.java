@@ -11,4 +11,17 @@ import org.cupula.model.EntityClass;
 public class BaseItemItemStructurePart extends EntityClass {
     private ItemStructurePart itemStructurePart;
     private List<ColorPossibility> colorPossibilities;
+    public ItemStructurePart getItemStructurePart() {
+        return itemStructurePart;
+    }
+    public void setItemStructurePart(ItemStructurePart itemStructurePart) {
+        this.itemStructurePart = itemStructurePart;
+    }
+    public List<ColorPossibility> getColorPossibilities() {
+        return colorPossibilities;
+    }
+    public void setColorPossibilities(List<ColorPossibility> colorPossibilities) {
+        this.colorPossibilities = colorPossibilities;
+    }
+
 }

@@ -28,4 +28,47 @@ public class IlhaDepartamento extends EntityClass {
 
     private Long limiteMembros; // limite de membros para este cargo!
 
+    public Ilha getIlha() {
+        return ilha;
+    }
+    public void setIlha(Ilha ilha) {
+        this.ilha = ilha;
+    }
+    public String getNomeCargo() {
+        return nomeCargo;
+    }
+    public void setNomeCargo(String nomeCargo) {
+        this.nomeCargo = nomeCargo;
+    }
+    public IlhaCargo getCargo() {
+        return cargo;
+    }
+    public void setCargo(IlhaCargo cargo) {
+        this.cargo = cargo;
+    }
+    public Long getSalarioRepresentante() {
+        return salarioRepresentante;
+    }
+    public void setSalarioRepresentante(Long salarioRepresentante) {
+        this.salarioRepresentante = salarioRepresentante;
+    }
+    public Long getVerbaDepartamentoMesAtual() {
+        return verbaDepartamentoMesAtual;
+    }
+    public void setVerbaDepartamentoMesAtual(Long verbaDepartamentoMesAtual) {
+        this.verbaDepartamentoMesAtual = verbaDepartamentoMesAtual;
+    }
+    public Long getSaldoConta() {
+        return saldoConta;
+    }
+    public void setSaldoConta(Long saldoConta) {
+        this.saldoConta = saldoConta;
+    }
+    public Long getLimiteMembros() {
+        return limiteMembros;
+    }
+    public void setLimiteMembros(Long limiteMembros) {
+        this.limiteMembros = limiteMembros;
+    }
+
 }

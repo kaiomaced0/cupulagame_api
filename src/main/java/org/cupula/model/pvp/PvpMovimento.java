@@ -174,4 +174,41 @@ public class PvpMovimento extends EntityClass {
     public void setMovimentoInimigo(PvpMovimento movimentoInimigo) {
         this.movimentoInimigo = movimentoInimigo;
     }
+    public Long getXInicial() {
+        return xInicial;
+    }
+    public void setXInicial(Long xInicial) {
+        this.xInicial = xInicial;
+    }
+    public Long getXFinal() {
+        return xFinal;
+    }
+    public void setXFinal(Long xFinal) {
+        this.xFinal = xFinal;
+    }
+    public Long getYInicial() {
+        return yInicial;
+    }
+    public void setYInicial(Long yInicial) {
+        this.yInicial = yInicial;
+    }
+    public Long getYFinal() {
+        return yFinal;
+    }
+    public void setYFinal(Long yFinal) {
+        this.yFinal = yFinal;
+    }
+    public Long getZInicial() {
+        return zInicial;
+    }
+    public void setZInicial(Long zInicial) {
+        this.zInicial = zInicial;
+    }
+    public Long getZFinal() {
+        return zFinal;
+    }
+    public void setZFinal(Long zFinal) {
+        this.zFinal = zFinal;
+    }
+
 }

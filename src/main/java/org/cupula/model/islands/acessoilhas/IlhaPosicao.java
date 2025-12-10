@@ -20,4 +20,35 @@ public class IlhaPosicao extends EntityClass {
     private Long yInicial;
     private Long yFinal;
     
+    public Ilha getIlha() {
+        return ilha;
+    }
+    public void setIlha(Ilha ilha) {
+        this.ilha = ilha;
+    }
+    public Long getXInicial() {
+        return xInicial;
+    }
+    public void setXInicial(Long xInicial) {
+        this.xInicial = xInicial;
+    }
+    public Long getXFinal() {
+        return xFinal;
+    }
+    public void setXFinal(Long xFinal) {
+        this.xFinal = xFinal;
+    }
+    public Long getYInicial() {
+        return yInicial;
+    }
+    public void setYInicial(Long yInicial) {
+        this.yInicial = yInicial;
+    }
+    public Long getYFinal() {
+        return yFinal;
+    }
+    public void setYFinal(Long yFinal) {
+        this.yFinal = yFinal;
+    }
+
 }

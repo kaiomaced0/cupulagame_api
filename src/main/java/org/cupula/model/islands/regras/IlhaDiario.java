@@ -16,4 +16,17 @@ public class IlhaDiario extends EntityClass {
     private Ilha ilha;
     @OneToMany
     private List<IlhaDiarioAcontecimentos> acontecimentos;
+    public Ilha getIlha() {
+        return ilha;
+    }
+    public void setIlha(Ilha ilha) {
+        this.ilha = ilha;
+    }
+    public List<IlhaDiarioAcontecimentos> getAcontecimentos() {
+        return acontecimentos;
+    }
+    public void setAcontecimentos(List<IlhaDiarioAcontecimentos> acontecimentos) {
+        this.acontecimentos = acontecimentos;
+    }
+
 }

@@ -13,4 +13,35 @@ public class PlayerTipoCabelo extends EntityClass {
     private Long possibilidade;
     private PlayerRaca playerRaca;
     private Structure estrutura;
+    public String getNome() {
+        return nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public String getPath() {
+        return path;
+    }
+    public void setPath(String path) {
+        this.path = path;
+    }
+    public Long getPossibilidade() {
+        return possibilidade;
+    }
+    public void setPossibilidade(Long possibilidade) {
+        this.possibilidade = possibilidade;
+    }
+    public PlayerRaca getPlayerRaca() {
+        return playerRaca;
+    }
+    public void setPlayerRaca(PlayerRaca playerRaca) {
+        this.playerRaca = playerRaca;
+    }
+    public Structure getEstrutura() {
+        return estrutura;
+    }
+    public void setEstrutura(Structure estrutura) {
+        this.estrutura = estrutura;
+    }
+
 }

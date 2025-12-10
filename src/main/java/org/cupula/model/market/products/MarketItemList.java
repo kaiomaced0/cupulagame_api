@@ -10,4 +10,11 @@ public class MarketItemList extends EntityClass {
     
     private ItemTipo itemTipo;
     private int quantidade;
+    public ItemTipo getItemTipo() {
+        return itemTipo;
+    }
+    public void setItemTipo(ItemTipo itemTipo) {
+        this.itemTipo = itemTipo;
+    }
+
 }

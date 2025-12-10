@@ -21,4 +21,53 @@ public class NegociacaoContrato extends EntityClass {
     private Long valorProposto;
     private MarketTipoPagamento tipoPagamento;
     private NegociacaoContratoStatus status;
+    public MarketService getMarketService() {
+        return marketService;
+    }
+    public void setMarketService(MarketService marketService) {
+        this.marketService = marketService;
+    }
+    public List<NegociacaoContratoMensagem> getMensagens() {
+        return mensagens;
+    }
+    public void setMensagens(List<NegociacaoContratoMensagem> mensagens) {
+        this.mensagens = mensagens;
+    }
+    public List<QuantidadeItemList> getItensNecessarios() {
+        return itensNecessarios;
+    }
+    public void setItensNecessarios(List<QuantidadeItemList> itensNecessarios) {
+        this.itensNecessarios = itensNecessarios;
+    }
+    public List<QuantidadeItemList> getItensQueSeraoEntregues() {
+        return itensQueSeraoEntregues;
+    }
+    public void setItensQueSeraoEntregues(List<QuantidadeItemList> itensQueSeraoEntregues) {
+        this.itensQueSeraoEntregues = itensQueSeraoEntregues;
+    }
+    public List<Item> getIntensTroca() {
+        return intensTroca;
+    }
+    public void setIntensTroca(List<Item> intensTroca) {
+        this.intensTroca = intensTroca;
+    }
+    public Long getValorProposto() {
+        return valorProposto;
+    }
+    public void setValorProposto(Long valorProposto) {
+        this.valorProposto = valorProposto;
+    }
+    public MarketTipoPagamento getTipoPagamento() {
+        return tipoPagamento;
+    }
+    public void setTipoPagamento(MarketTipoPagamento tipoPagamento) {
+        this.tipoPagamento = tipoPagamento;
+    }
+    public NegociacaoContratoStatus getStatus() {
+        return status;
+    }
+    public void setStatus(NegociacaoContratoStatus status) {
+        this.status = status;
+    }
+
 }

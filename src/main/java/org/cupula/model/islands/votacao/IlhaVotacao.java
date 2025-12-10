@@ -26,4 +26,47 @@ public class IlhaVotacao extends EntityClass {
     @Enumerated(EnumType.STRING)
     private IlhaVotacaoTipo tipo;
     
+    public List<IlhaVotacaoMembro> getVotos() {
+        return votos;
+    }
+    public void setVotos(List<IlhaVotacaoMembro> votos) {
+        this.votos = votos;
+    }
+    public LocalDateTime getDataInicioVotacao() {
+        return dataInicioVotacao;
+    }
+    public void setDataInicioVotacao(LocalDateTime dataInicioVotacao) {
+        this.dataInicioVotacao = dataInicioVotacao;
+    }
+    public LocalDateTime getDataFimVotacao() {
+        return dataFimVotacao;
+    }
+    public void setDataFimVotacao(LocalDateTime dataFimVotacao) {
+        this.dataFimVotacao = dataFimVotacao;
+    }
+    public IlhaVotacaoStatus getStatus() {
+        return status;
+    }
+    public void setStatus(IlhaVotacaoStatus status) {
+        this.status = status;
+    }
+    public String getTitulo() {
+        return titulo;
+    }
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+    public String getDescricao() {
+        return descricao;
+    }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    public IlhaVotacaoTipo getTipo() {
+        return tipo;
+    }
+    public void setTipo(IlhaVotacaoTipo tipo) {
+        this.tipo = tipo;
+    }
+
 }

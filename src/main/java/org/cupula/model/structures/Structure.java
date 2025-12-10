@@ -25,4 +25,29 @@ public class Structure extends EntityClass {
     @ManyToOne
     private Ilha ilha;
     
+    public List<ItemStructure> getItemStructures() {
+        return itemStructures;
+    }
+    public void setItemStructures(List<ItemStructure> itemStructures) {
+        this.itemStructures = itemStructures;
+    }
+    public List<Container> getContainers() {
+        return containers;
+    }
+    public void setContainers(List<Container> containers) {
+        this.containers = containers;
+    }
+    public StructureTipo getTipo() {
+        return tipo;
+    }
+    public void setTipo(StructureTipo tipo) {
+        this.tipo = tipo;
+    }
+    public Ilha getIlha() {
+        return ilha;
+    }
+    public void setIlha(Ilha ilha) {
+        this.ilha = ilha;
+    }
+
 }

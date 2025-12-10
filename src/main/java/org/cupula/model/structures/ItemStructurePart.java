@@ -17,4 +17,59 @@ public class ItemStructurePart extends EntityClass {
     private Material material;
     private ColorMaterial color;
     private Boolean areaContato;
+    public Long getInicioX() {
+        return inicioX;
+    }
+    public void setInicioX(Long inicioX) {
+        this.inicioX = inicioX;
+    }
+    public Long getInicioY() {
+        return inicioY;
+    }
+    public void setInicioY(Long inicioY) {
+        this.inicioY = inicioY;
+    }
+    public Long getFimX() {
+        return fimX;
+    }
+    public void setFimX(Long fimX) {
+        this.fimX = fimX;
+    }
+    public Long getFimY() {
+        return fimY;
+    }
+    public void setFimY(Long fimY) {
+        this.fimY = fimY;
+    }
+    public Long getInicioZ() {
+        return inicioZ;
+    }
+    public void setInicioZ(Long inicioZ) {
+        this.inicioZ = inicioZ;
+    }
+    public Long getFimZ() {
+        return fimZ;
+    }
+    public void setFimZ(Long fimZ) {
+        this.fimZ = fimZ;
+    }
+    public Material getMaterial() {
+        return material;
+    }
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+    public ColorMaterial getColor() {
+        return color;
+    }
+    public void setColor(ColorMaterial color) {
+        this.color = color;
+    }
+    public Boolean getAreaContato() {
+        return areaContato;
+    }
+    public void setAreaContato(Boolean areaContato) {
+        this.areaContato = areaContato;
+    }
+
 }

@@ -13,4 +13,17 @@ public class IlhaDepartamentoMembro extends EntityClass {
     @ManyToOne
     private IlhaMembro representanteAtual;
 
+    public IlhaDepartamento getDepartamento() {
+        return departamento;
+    }
+    public void setDepartamento(IlhaDepartamento departamento) {
+        this.departamento = departamento;
+    }
+    public IlhaMembro getRepresentanteAtual() {
+        return representanteAtual;
+    }
+    public void setRepresentanteAtual(IlhaMembro representanteAtual) {
+        this.representanteAtual = representanteAtual;
+    }
+
 }

@@ -115,4 +115,11 @@ public class PvpAposta extends EntityClass {
     public void setStatus(PvpApostaStatus status) {
         this.status = status;
     }
+    public Pvp getPvp() {
+        return pvp;
+    }
+    public void setPvp(Pvp pvp) {
+        this.pvp = pvp;
+    }
+
 }

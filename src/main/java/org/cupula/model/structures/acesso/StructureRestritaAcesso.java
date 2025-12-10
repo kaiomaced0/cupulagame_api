@@ -12,4 +12,17 @@ public class StructureRestritaAcesso extends EntityClass {
     
     private Structure structure;
     private List<StructureAcesso> acessos;
+    public Structure getStructure() {
+        return structure;
+    }
+    public void setStructure(Structure structure) {
+        this.structure = structure;
+    }
+    public List<StructureAcesso> getAcessos() {
+        return acessos;
+    }
+    public void setAcessos(List<StructureAcesso> acessos) {
+        this.acessos = acessos;
+    }
+
 }

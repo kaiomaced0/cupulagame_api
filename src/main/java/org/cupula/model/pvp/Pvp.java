@@ -8,4 +8,11 @@ import org.cupula.model.pvp.enums.PvpTipo;
 public class Pvp extends EntityClass {
     private PvpTipo tipo;
     
+    public PvpTipo getTipo() {
+        return tipo;
+    }
+    public void setTipo(PvpTipo tipo) {
+        this.tipo = tipo;
+    }
+
 }

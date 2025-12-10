@@ -22,4 +22,23 @@ public class Mob extends EntityClass {
     
     private MobTipo tipo;
 
+    public List<Container> getContainers() {
+        return containers;
+    }
+    public void setContainers(List<Container> containers) {
+        this.containers = containers;
+    }
+    public MobPosicao getPosicao() {
+        return posicao;
+    }
+    public void setPosicao(MobPosicao posicao) {
+        this.posicao = posicao;
+    }
+    public MobTipo getTipo() {
+        return tipo;
+    }
+    public void setTipo(MobTipo tipo) {
+        this.tipo = tipo;
+    }
+
 }
