@@ -8,13 +8,17 @@ import java.util.stream.Collectors;
 import org.cupula.dto.auth.AuthResponse;
 import org.cupula.dto.auth.CreateUsuarioRequest;
 import org.cupula.dto.auth.LoginRequest;
+import org.cupula.dto.auth.PlayerLoginRequest;
+import org.cupula.dto.auth.PlayerLoginResponse;
 import org.cupula.dto.auth.ProviderLoginRequest;
 import org.cupula.dto.responses.usuario.UsuarioResponseDTO;
 import org.cupula.model.auth.Usuario;
 import org.cupula.model.auth.UsuarioProvider;
 import org.cupula.model.auth.enums.AuthProvider;
 import org.cupula.model.auth.enums.Perfil;
+import org.cupula.model.entities.player.Player;
 import org.cupula.repository.auth.UsuarioRepository;
+import org.cupula.repository.player.PlayerRepository;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -25,6 +29,9 @@ public class AuthService {
 
     @Inject
     UsuarioRepository usuarioRepository;
+
+    @Inject
+    PlayerRepository playerRepository;
 
     @Inject
     HashService hashService;
@@ -75,6 +82,25 @@ public class AuthService {
         }
 
         return toAuthResponse(usuario, usuario == null ? null : tokenJwtService.generateJwt(usuario));
+    }
+
+    public PlayerLoginResponse loginWithPlayer(Usuario usuario, PlayerLoginRequest request) {
+        if (usuario == null || request == null || request.playerId() == null) {
+            return null;
+        }
+
+        Player player = playerRepository.findById(request.playerId());
+        if (player == null) {
+            return null;
+        }
+
+        // Verificar se o player pertence ao usuário
+        if (!player.getUsuario().getId().equals(usuario.getId())) {
+            return null;
+        }
+
+        String token = tokenJwtService.generateJwt(usuario, player);
+        return new PlayerLoginResponse(player.getId(), token);
     }
 
     @Transactional
