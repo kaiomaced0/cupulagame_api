@@ -13,26 +13,42 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class MarketService extends EntityClass {
 
     private String titutlo;
     private String descricao;
+
     @ManyToOne
+    @JoinColumn(name = "ilha_id")
     private Ilha ilha;
     @ManyToOne
+    @JoinColumn(name = "prestador_servico_id")
     private Player prestadorServico;
+
     @Enumerated(EnumType.STRING)
     private MarketServiceTipo marketServiceTipo;
+
     @ElementCollection
     @Enumerated(EnumType.STRING)
     private List<MarketTipoPagamento> tiposPagamento;
+
+    @OneToMany
+    @JoinColumn(name = "market_service_id")
     private List<QuantidadeItemList> itensNecessarios;
+
     private Long price;
+
+    @OneToMany
+    @JoinColumn(name = "market_service_id")
     private List<QuantidadeItemList> itensTrocaPagamento;
 
+    @OneToMany
+    @JoinColumn(name = "market_service_id")
     private List<QuantidadeItemList> itensPropaganda;
     
     private Long duracaoEmMinutos;

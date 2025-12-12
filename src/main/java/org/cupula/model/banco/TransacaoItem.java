@@ -11,34 +11,52 @@ import org.cupula.model.items.Item;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
 public class TransacaoItem extends EntityClass {
     
     @ManyToOne
+    @JoinColumn(name = "item_id")
     private Item item;
     private String itemTransacaoResponseDTO;
     @Enumerated(EnumType.STRING)
     private TransacaoItemTipo tipo;
 
     @ManyToOne
+    @JoinColumn(name = "jogador_origem_id")
     private Player jogadorOrigem;
+
     @ManyToOne
+    @JoinColumn(name = "guilda_origem_id")
     private Guilda guildaOrigem;
+    
     @ManyToOne
+    @JoinColumn(name = "container_origem_id")
     private Container containerOrigem;
+
     @ManyToOne
+    @JoinColumn(name = "ilha_origem_id")
     private Ilha ilhaOrigem;
     
     @ManyToOne
+    @JoinColumn(name = "jogador_destino_id")
     private Player jogadorDestino;
+
     @ManyToOne
+    @JoinColumn(name = "guilda_destino_id")
     private Guilda guildaDestino;
+
     @ManyToOne
+    @JoinColumn(name = "container_destino_id")
     private Container containerDestino;
+
     @ManyToOne
+    @JoinColumn(name = "ilha_destino_id")
     private Ilha ilhaDestino;
+
+    
     public Item getItem() {
         return item;
     }

@@ -14,7 +14,9 @@ import org.cupula.model.items.ItemTipo;
 
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Material extends EntityClass {
@@ -28,7 +30,8 @@ public class Material extends EntityClass {
     )
     private List<Texture> textures;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "item_tipo_id")
     private ItemTipo itemTipo; 
 
     private Long quantidadeItemPorPixel;
@@ -43,7 +46,7 @@ public class Material extends EntityClass {
     private Long resistenciaFogo;
     private Long resistenciaAgua;
     private Long resistenciaImpacto;
-    
+
     public String getName() {
         return name;
     }

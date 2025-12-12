@@ -2,6 +2,7 @@ package org.cupula.resource;
 
 import java.util.List;
 
+import org.cupula.dto.player.request.AtualizarPosicaoPlayerRequest;
 import org.cupula.dto.player.request.CriarPlayerRequest;
 import org.cupula.dto.player.response.PlayerResponse;
 import org.cupula.model.auth.Usuario;
@@ -9,11 +10,13 @@ import org.cupula.repository.auth.UsuarioRepository;
 import org.cupula.service.PlayerService;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
+import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -42,19 +45,11 @@ public class PlayerResource {
     JsonWebToken jwt;
 
     @POST
-    @RolesAllowed({"User", "Admin"})
+    @PermitAll
     public Response criarPlayer(CriarPlayerRequest request) {
         try {
-            String login = jwt.getSubject();
-            Usuario usuario = usuarioRepository.findByLogin(login);
-            
-            if (usuario == null) {
-                return Response.status(Status.UNAUTHORIZED)
-                    .entity("Usuario nao encontrado")
-                    .build();
-            }
-
-            PlayerResponse response = playerService.criarPlayer(usuario, request);
+            // Cria player sem associar a usuário
+            PlayerResponse response = playerService.criarPlayer(null, request);
             return Response.status(Status.CREATED).entity(response).build();
         } catch (IllegalArgumentException e) {
             return Response.status(Status.BAD_REQUEST)
@@ -68,19 +63,10 @@ public class PlayerResource {
     }
 
     @GET
-    @RolesAllowed({"User", "Admin"})
-    public Response listarMeusPlayers() {
+    @PermitAll
+    public Response listarPlayers() {
         try {
-            String login = jwt.getSubject();
-            Usuario usuario = usuarioRepository.findByLogin(login);
-            
-            if (usuario == null) {
-                return Response.status(Status.UNAUTHORIZED)
-                    .entity("Usuario nao encontrado")
-                    .build();
-            }
-
-            List<PlayerResponse> players = playerService.listarPlayersDoUsuario(usuario);
+            List<PlayerResponse> players = playerService.listarTodosPlayers();
             return Response.ok(players).build();
         } catch (Exception e) {
             return Response.status(Status.INTERNAL_SERVER_ERROR)
@@ -91,18 +77,9 @@ public class PlayerResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({"User", "Admin"})
+    @PermitAll
     public Response buscarPlayer(@PathParam("id") Long id) {
         try {
-            String login = jwt.getSubject();
-            Usuario usuario = usuarioRepository.findByLogin(login);
-            
-            if (usuario == null) {
-                return Response.status(Status.UNAUTHORIZED)
-                    .entity("Usuario nao encontrado")
-                    .build();
-            }
-
             PlayerResponse player = playerService.buscarPorId(id);
             
             if (player == null) {
@@ -111,12 +88,32 @@ public class PlayerResource {
                     .build();
             }
 
-            // Verifica se o player pertence ao usuario logado
-            // (Nota: PlayerResponse não tem usuarioId, então vamos confiar no service)
             return Response.ok(player).build();
         } catch (Exception e) {
             return Response.status(Status.INTERNAL_SERVER_ERROR)
                 .entity("Erro ao buscar player: " + e.getMessage())
+                .build();
+        }
+    }
+
+    @PUT
+    @Path("/{id}/posicao")
+    @PermitAll
+    public Response atualizarPosicao(@PathParam("id") Long id, AtualizarPosicaoPlayerRequest request) {
+        try {
+            playerService.atualizarPosicao(id, request.x(), request.y(), request.z());
+            return Response.ok().entity("Posicao atualizada com sucesso").build();
+        } catch (IllegalArgumentException e) {
+            return Response.status(Status.NOT_FOUND)
+                .entity(e.getMessage())
+                .build();
+        } catch (IllegalStateException e) {
+            return Response.status(Status.BAD_REQUEST)
+                .entity(e.getMessage())
+                .build();
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR)
+                .entity("Erro ao atualizar posicao: " + e.getMessage())
                 .build();
         }
     }

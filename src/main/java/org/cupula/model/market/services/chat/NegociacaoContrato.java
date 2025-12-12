@@ -9,18 +9,52 @@ import org.cupula.model.market.services.MarketService;
 import org.cupula.model.market.services.enums.NegociacaoContratoStatus;
 
 import jakarta.persistence.Entity;
+
 import org.cupula.model.EntityClass;
+
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class NegociacaoContrato extends EntityClass {
+
+    @ManyToOne
+    @JoinColumn(name = "market_service_id")
     private MarketService marketService;
+
+    @OneToMany
+    @JoinColumn(name = "negociacao_contrato_id")
     private List<NegociacaoContratoMensagem> mensagens;
+
+    @OneToMany
+    @JoinColumn(name = "negociacao_contrato_id")
     private List<QuantidadeItemList> itensNecessarios;
+
+    @OneToMany
+    @JoinColumn(name = "negociacao_contrato_id")
     private List<QuantidadeItemList> itensQueSeraoEntregues;
+    
+    @ManyToMany
+    @JoinTable(
+        name = "negociacao_contrato_itens_troca"
+        , joinColumns = @jakarta.persistence.JoinColumn(name = "negociacao_contrato_id")
+        , inverseJoinColumns = @jakarta.persistence.JoinColumn(name = "item_id")
+    )
     private List<Item> intensTroca;
     private Long valorProposto;
+    
+    @Enumerated(EnumType.STRING)
     private MarketTipoPagamento tipoPagamento;
+
+    @Enumerated(EnumType.STRING)
     private NegociacaoContratoStatus status;
+
+    
     public MarketService getMarketService() {
         return marketService;
     }

@@ -5,14 +5,17 @@ import org.cupula.model.entities.player.Player;
 import org.cupula.model.islands.Ilha;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
 public class IlhaMembro extends EntityClass {
     
     @ManyToOne
+    @JoinColumn(name = "ilha_id")
     private Ilha ilha;
     @ManyToOne
+    @JoinColumn(name = "player_id")
     private Player player;
 
     private Long dataEntrada;

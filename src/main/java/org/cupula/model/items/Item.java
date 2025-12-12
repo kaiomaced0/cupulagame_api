@@ -4,19 +4,31 @@ import org.cupula.model.items.enums.ItemTier;
 import org.cupula.model.structures.ItemStructure;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+
 import org.cupula.model.EntityClass;
+
+import jakarta.persistence.EnumType;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Item extends EntityClass {
 
+    @OneToOne
+    @JoinColumn(name = "item_structure_id")
     private ItemStructure itemStructure;
+    @ManyToOne
+    @JoinColumn(name = "item_tipo_id")
     private ItemTipo itemTipo;
+
     private String nome;
     private String descricao;
 
     private Long quantidade;
     private Long durabilidadeAtual;
-    
+    @Enumerated(EnumType.STRING)
     private ItemTier tier;
 
     private Long resistenciaFogo;
@@ -47,8 +59,6 @@ public class Item extends EntityClass {
     private Long buffResistencia;
     private Long buffSorte;
     private Long buffVelocidade;
-    
-
     
     public ItemStructure getItemStructure() {
         return itemStructure;

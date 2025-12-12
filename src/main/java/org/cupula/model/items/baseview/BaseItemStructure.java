@@ -5,14 +5,26 @@ import java.util.List;
 import org.cupula.model.items.ItemTipo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+
 import org.cupula.model.EntityClass;
+
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class BaseItemStructure extends EntityClass {
 
+    @ManyToOne
+    @JoinColumn(name = "base_item_structure_id")
     private ItemTipo item;
     private Long possibilidade;
+
+    @OneToMany
+    @JoinColumn(name = "base_item_structure_id")
     private List<BaseItemItemStructurePart> parts;
+
+
     public ItemTipo getItem() {
         return item;
     }

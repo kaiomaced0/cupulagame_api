@@ -11,6 +11,9 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class NegociacaoServicoGuildaMensagem extends EntityClass {
     private String mensagemCriptografada;
+    
+    @ManyToOne
+    @JoinColumn(name = "remetente_id")
     private Player remetente;
 
     @ManyToOne

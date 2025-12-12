@@ -35,3 +35,6 @@
 - missoes padrao do jogo
 - como "dropar" essas missoes no mapa?
 - posso fazer com que algumas missoes sejam por tipo de Cenario, por profissao, raça, nivel, guilda, nivel guilda, quantidade de horas online no jogo..'
+
+
+- Dependendo do tipo de pedido e do tipo de loja a entrega é feita em um local privado do comprador/cliente.. essa entrega vira uma missao no jogo.. 

@@ -4,6 +4,8 @@ import org.cupula.model.EntityClass;
 import org.cupula.model.items.Item;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -11,19 +13,43 @@ public class PlayerItemEquipado extends EntityClass {
 
     // Valida espaÃ§os possÃ­veis com o PlayerItemEquipadoLimite
     @OneToOne
+    @JoinColumn(name = "player_id")
     private Player player;
 
+    @ManyToOne
+    @JoinColumn(name = "item_mao_direita_id")
     private Item itemMaoDireita;
+    @ManyToOne
+    @JoinColumn(name = "item_mao_esquerda_id")
     private Item itemMaoEsquerda;
 
+    @ManyToOne
+    @JoinColumn(name = "item_equipado_cabeca_id")
     private Item itemEquipadoCabeca;
+    @ManyToOne
+    @JoinColumn(name = "item_equipado_torso_id")
     private Item itemEquipadoTorso;
+    @ManyToOne
+    @JoinColumn(name = "item_equipado_pernas_id")
     private Item itemEquipadoPernas;
+    @ManyToOne
+    @JoinColumn(name = "item_equipado_pes_id")
     private Item itemEquipadoPes;
 
+    @ManyToOne
+    @JoinColumn(name = "item_equipado_acessorio1_id")
     private Item itemEquipadoAcessorio1;
+
+    @ManyToOne
+    @JoinColumn(name = "item_equipado_acessorio2_id")
     private Item itemEquipadoAcessorio2;
+
+    @ManyToOne
+    @JoinColumn(name = "item_equipado_acessorio3_id")
     private Item itemEquipadoAcessorio3;
+
+    @ManyToOne
+    @JoinColumn(name = "item_equipado_acessorio4_id")
     private Item itemEquipadoAcessorio4;
     
     // Getters e Setters

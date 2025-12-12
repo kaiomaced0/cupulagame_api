@@ -8,23 +8,30 @@ import org.cupula.model.structures.ItemStructure;
 import org.cupula.model.structures.Structure;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class IlhaLoja extends EntityClass {
     
     @ManyToOne
+    @JoinColumn(name = "ilha_id")
     private Ilha ilha;
     
     private String nome;
     private String descricao;
     private String horarioFuncionamento;
     
-    @ManyToOne
+    @OneToOne
+    @JoinColumn(name = "structure_id")
     private Structure estruturaLoja;
     
+
+    // essa é a area onde quando o player entra no "range" disponibiliza a tela da loja para ele acessar. (ao sair dessa area, a tela some)
     @OneToMany
+    @JoinColumn(name = "ilha_loja_id")
     private List<ItemStructure> parteDaEstruturaQueAbreALoja;
 
     // Getters e Setters

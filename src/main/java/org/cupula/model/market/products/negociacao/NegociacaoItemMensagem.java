@@ -4,13 +4,22 @@ import org.cupula.model.EntityClass;
 import org.cupula.model.entities.player.Player;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class NegociacaoItemMensagem extends EntityClass {
     
     private String mensagemCriptografada;
+    
+    @ManyToOne
+    @JoinColumn(name = "comprador_id")
     private Player comprador;
+    
+    @ManyToOne
+    @JoinColumn(name = "vendedor_id")
     private Player vendedor;
+    
     public String getMensagemCriptografada() {
         return mensagemCriptografada;
     }

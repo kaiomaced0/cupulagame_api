@@ -5,13 +5,24 @@ import org.cupula.model.entities.enums.PlayerRaca;
 import org.cupula.model.structures.Structure;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class PlayerTipoCabelo extends EntityClass {
+    
     private String nome;
     private String path;
+    
     private Long possibilidade;
+    
+    @Enumerated(EnumType.STRING)
     private PlayerRaca playerRaca;
+
+    @ManyToOne
+    @JoinColumn(name = "structure_id")
     private Structure estrutura;
     public String getNome() {
         return nome;

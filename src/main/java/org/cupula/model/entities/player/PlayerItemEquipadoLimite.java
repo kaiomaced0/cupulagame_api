@@ -3,12 +3,14 @@ package org.cupula.model.entities.player;
 import org.cupula.model.EntityClass;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Entity
 public class PlayerItemEquipadoLimite extends EntityClass {
     
     @OneToOne
+    @JoinColumn(name = "player_id")
     private Player player;
 
     private Boolean itemMaoDireita;

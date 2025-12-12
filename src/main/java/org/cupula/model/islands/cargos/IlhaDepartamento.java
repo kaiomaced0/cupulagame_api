@@ -7,12 +7,14 @@ import org.cupula.model.islands.enums.IlhaCargo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
 public class IlhaDepartamento extends EntityClass {
     
     @ManyToOne
+    @JoinColumn(name = "ilha_id")
     private Ilha ilha;
     private String nomeCargo;
 

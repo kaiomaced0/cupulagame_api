@@ -7,17 +7,25 @@ import org.cupula.model.market.enums.MarketTipoPagamento;
 import org.cupula.model.market.products.enums.MarketItemStatus;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import org.cupula.model.EntityClass;
 
 @Entity
 public class MarketItem extends EntityClass {
     
+    @OneToMany
+    @JoinColumn(name = "market_item_id")
     private List<Item> itens;
     private Long price;
     private int quantity;
     private String descricao;
     private String titulo;
+    
+    @OneToMany
+    @JoinColumn(name = "market_item_id")
     private List<MarketItemList> itensTroca;
+    
     private MarketTipoPagamento tipoPagamento;
     private MarketItemStatus status;
     private Long valorVendido;

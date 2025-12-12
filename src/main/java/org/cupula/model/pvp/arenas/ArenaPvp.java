@@ -9,7 +9,8 @@ import org.cupula.model.structures.Structure;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class ArenaPvp extends EntityClass {
@@ -25,7 +26,12 @@ public class ArenaPvp extends EntityClass {
     private Long y;
     private Long z;
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(
+        name = "arena_pvp_estruturas"
+        , joinColumns = @jakarta.persistence.JoinColumn(name = "arena_pvp_id")
+        , inverseJoinColumns = @jakarta.persistence.JoinColumn(name = "structure_id")
+    )
     private List<Structure> estruturas;
     
     // Getters e Setters

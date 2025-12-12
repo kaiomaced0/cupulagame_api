@@ -6,12 +6,29 @@ import org.cupula.model.containers.Container;
 import org.cupula.model.items.Item;
 import org.cupula.model.items.enums.EntityCompativel;
 
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Equipamento extends Item{
     
+    @OneToMany
+    @JoinColumn(name = "equipamento_id")
     private List<Container> containers;
+
+    @ElementCollection(targetClass = EntityCompativel.class)
+    @CollectionTable(
+        name = "equipamento_entity_compativel",
+        joinColumns = @JoinColumn(name = "equipamento_id")
+    )
+    @Column(name = "entity_compativel")
+    @Enumerated(EnumType.STRING)
     private List<EntityCompativel> entitiesCompativeis;
 
     public List<Container> getContainers() {

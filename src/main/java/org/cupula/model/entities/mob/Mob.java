@@ -5,8 +5,12 @@ import java.util.List;
 import org.cupula.model.containers.Container;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+
+import jakarta.persistence.EnumType;
 
 import org.cupula.model.EntityClass;
 import org.cupula.model.entities.enums.MobTipo;
@@ -14,12 +18,15 @@ import org.cupula.model.entities.enums.MobTipo;
 @Entity
 public class Mob extends EntityClass {
     
+    @OneToMany
+    @JoinColumn(name = "mob_id")
     private List<Container> containers;
 
     @OneToOne
     @JoinColumn(name = "posicao_id")
     private MobPosicao posicao;
     
+    @Enumerated(EnumType.STRING)
     private MobTipo tipo;
 
     public List<Container> getContainers() {

@@ -6,6 +6,8 @@ import org.cupula.model.EntityClass;
 import org.cupula.model.entities.enums.PlayerRaca;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -13,8 +15,8 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class PlayerTipoBaseOrelha extends EntityClass {
-    @ManyToOne
-    @JoinColumn(name = "player_raca_id")
+   
+    @Enumerated(EnumType.STRING)
     private PlayerRaca playerRaca;
     private Long possibilidade;
     

@@ -3,14 +3,21 @@ package org.cupula.model.containers;
 import org.cupula.model.containers.enums.ContainerTipo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
+
 import org.cupula.model.EntityClass;
+
+import jakarta.persistence.EnumType;
 
 @Entity
 public class Container extends EntityClass {
     
+    @Enumerated(EnumType.STRING)
     private ContainerTipo containerTipo;
+
     private Long capacidadeMaximaEspaco;
     private Long pesoMaximo;
+    
     public ContainerTipo getContainerTipo() {
         return containerTipo;
     }

@@ -12,6 +12,9 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
@@ -19,10 +22,20 @@ import jakarta.persistence.OneToOne;
 public class PvpAposta extends EntityClass {
     // preciso adicionar a transacao de itens de aposta! elas precisam ir para um container e ao fim ser entregue os itens ao vencedor.
 
-    @ElementCollection
+    @ManyToMany
+    @JoinTable(
+        name = "pvp_aposta_itens_desafiante",
+        joinColumns = @JoinColumn(name = "pvp_aposta_id"),
+        inverseJoinColumns = @JoinColumn(name = "item_id")
+    )
     private List<Item> itensApostadosPeloDesafiante;
     
-    @ElementCollection
+    @ManyToMany
+    @JoinTable(
+        name = "pvp_aposta_itens_desafiado",
+        joinColumns = @JoinColumn(name = "pvp_aposta_id"),
+        inverseJoinColumns = @JoinColumn(name = "item_id")
+    )
     private List<Item> itensApostadosPeloDesafiado;
     
     private Long quantidadeMoedasPeloDesafiante;

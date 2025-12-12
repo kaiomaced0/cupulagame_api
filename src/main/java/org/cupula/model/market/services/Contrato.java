@@ -7,21 +7,45 @@ import org.cupula.model.market.services.chat.NegociacaoContrato;
 import org.cupula.model.market.services.enums.ContratoStatus;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToOne;
+
 import org.cupula.model.EntityClass;
 import org.cupula.model.entities.player.Player;
+
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Contrato extends EntityClass {
 
+    @ManyToOne
+    @JoinColumn(name = "market_service_id")
     private MarketService marketService;
+
+    @ManyToOne
+    @JoinColumn(name = "negociacao_contrato_id")
     private NegociacaoContrato negociacao;
+    
+    @ManyToOne
+    @JoinColumn(name = "contratante_id")
     private Player contratante;
 
+    @Enumerated(EnumType.STRING)
     private ContratoStatus status;
 
     private Boolean valorPago;
 
     private Boolean itensEntregues;
+    
+    @ManyToMany
+    @JoinTable(
+        name = "contrato_itens_resultado"
+        , joinColumns = @JoinColumn(name = "contrato_id")
+        , inverseJoinColumns = @JoinColumn(name = "item_id")
+    )
     private List<Item> itensResultado;
     
     

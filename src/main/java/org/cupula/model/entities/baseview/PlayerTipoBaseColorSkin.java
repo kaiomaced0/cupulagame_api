@@ -5,13 +5,20 @@ import org.cupula.model.entities.enums.PlayerRaca;
 import org.cupula.model.structures.view.ColorMaterial;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class PlayerTipoBaseColorSkin extends EntityClass {
 
+    @Enumerated(EnumType.STRING)
     private PlayerRaca playerRaca;
     private Long possibilidade;
     
+    @ManyToOne
+    @JoinColumn(name = "color_material_id")
     private ColorMaterial colorMaterial;
 
     public PlayerRaca getPlayerRaca() {

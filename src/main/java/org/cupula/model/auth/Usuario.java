@@ -37,6 +37,7 @@ public class Usuario extends EntityClass{
     @CollectionTable(name = "usuario_login_provider", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"))
     private Set<UsuarioProvider> provedoresLogin;
 
+    @jakarta.persistence.OneToMany(mappedBy = "usuario")
     private List<Structure> baseStructures;
 
     public String getEmail() {

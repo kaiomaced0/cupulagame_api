@@ -20,6 +20,7 @@ public class Player extends EntityClass {
     //Atributos Basicos visuais e de tamanho
 
     @ManyToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     @Enumerated(EnumType.STRING)
@@ -32,12 +33,18 @@ public class Player extends EntityClass {
     private Long tamanhoZ;
     
     @ManyToOne
+    @JoinColumn(name = "tipo_cabelo_id")
     private PlayerTipoCabelo tipoCabelo;
+
+    @ManyToOne
+    @JoinColumn(name = "cor_pele_id")
     private ColorMaterial corPele;
 
     private Long tamanhoXOrelha;
     private Long tamanhoYOrelha;
     private Long tamanhoZOrelha;
+    @ManyToOne
+    @JoinColumn(name = "cor_orelha_id")
     private ColorMaterial corOrelha;
 
     @OneToOne
@@ -45,6 +52,7 @@ public class Player extends EntityClass {
     private PlayerStatus status;
 
     @ManyToOne
+    @JoinColumn(name = "ilha_atual_id")
     private Ilha ilhaAtual;
 
 

@@ -3,8 +3,10 @@ package org.cupula.model.structures;
 import java.util.List;
 
 import org.cupula.model.EntityClass;
+import org.cupula.model.auth.Usuario;
 import org.cupula.model.containers.Container;
 import org.cupula.model.islands.Ilha;
+import org.cupula.model.pvp.arenas.ArenaPvp;
 import org.cupula.model.structures.enums.StructureTipo;
 
 import jakarta.persistence.Entity;
@@ -31,6 +33,14 @@ public class Structure extends EntityClass {
     @ManyToOne
     @JoinColumn(name = "ilha_id")
     private Ilha ilha;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "arena_pvp_id")
+    private ArenaPvp arenaPvp;
     
     public List<ItemStructure> getItemStructures() {
         return itemStructures;
@@ -55,6 +65,22 @@ public class Structure extends EntityClass {
     }
     public void setIlha(Ilha ilha) {
         this.ilha = ilha;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public ArenaPvp getArenaPvp() {
+        return arenaPvp;
+    }
+
+    public void setArenaPvp(ArenaPvp arenaPvp) {
+        this.arenaPvp = arenaPvp;
     }
 
 }

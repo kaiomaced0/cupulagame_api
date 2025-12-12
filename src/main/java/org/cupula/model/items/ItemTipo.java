@@ -6,6 +6,8 @@ import org.cupula.model.items.enums.ItemTipoTag;
 import org.cupula.model.structures.ItemStructure;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import org.cupula.model.EntityClass;
 
 @Entity
@@ -17,7 +19,10 @@ public class ItemTipo extends EntityClass {
     private Long limiteQuantidade;
     private Long pesoPorQuantidade;
 
+    @OneToOne
+    @JoinColumn(name = "item_structure_base_id")
     private ItemStructure itemStructureBase;
+    
     private List<ItemTipoTag> tagsBase;
     public String getNome() {
         return nome;

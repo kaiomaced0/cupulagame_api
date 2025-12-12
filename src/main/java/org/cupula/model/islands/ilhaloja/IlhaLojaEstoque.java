@@ -6,6 +6,7 @@ import org.cupula.model.EntityClass;
 import org.cupula.model.items.Item;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -24,6 +25,7 @@ public class IlhaLojaEstoque extends EntityClass {
     private String pathImagem;
     
     @OneToMany
+    @JoinColumn(name = "ilha_loja_estoque_id")
     private List<Item> itensDisponiveis;
 
     // Getters e Setters
