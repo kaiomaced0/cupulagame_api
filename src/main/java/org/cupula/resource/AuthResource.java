@@ -61,7 +61,7 @@ public class AuthResource {
     @RolesAllowed({"User", "Admin"})
     public Response loginWithPlayer(PlayerLoginRequest request) {
         String login = jwt.getSubject();
-        Usuario usuario = usuarioRepository.findByLogin(login);
+        Usuario usuario = usuarioRepository.findByNickName(login);
         
         if (usuario == null) {
             return Response.status(Status.UNAUTHORIZED).build();

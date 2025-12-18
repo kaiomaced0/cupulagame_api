@@ -1,5 +1,7 @@
 package org.cupula.model.entities.player;
 
+import java.time.LocalDateTime;
+
 import org.cupula.model.EntityClass;
 import org.cupula.model.auth.Usuario;
 import org.cupula.model.comunity.VisibilidadePerfil;
@@ -54,6 +56,12 @@ public class Player extends EntityClass {
     @ManyToOne
     @JoinColumn(name = "ilha_atual_id")
     private Ilha ilhaAtual;
+
+    private String nickName;
+
+    private String tag;
+
+    private LocalDateTime ultimaAlteracaoNickName;
 
 
     public Usuario getUsuario() {
@@ -166,6 +174,24 @@ public class Player extends EntityClass {
 
     public void setIlhaAtual(Ilha ilhaAtual) {
         this.ilhaAtual = ilhaAtual;
+    }
+    public String getNickName() {
+        return nickName;
+    }
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+    public String getTag() {
+        return tag;
+    }
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+    public LocalDateTime getUltimaAlteracaoNickName() {
+        return ultimaAlteracaoNickName;
+    }
+    public void setUltimaAlteracaoNickName(LocalDateTime ultimaAlteracaoNickName) {
+        this.ultimaAlteracaoNickName = ultimaAlteracaoNickName;
     }
     
 }

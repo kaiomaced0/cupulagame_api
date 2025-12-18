@@ -1,5 +1,7 @@
 package org.cupula.service;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -283,6 +285,56 @@ public class PlayerService {
     public PlayerResponse buscarPorId(Long id) {
         Player player = playerRepository.findById(id);
         return player != null ? PlayerResponse.from(player) : null;
+    }
+
+    @Transactional
+    public PlayerResponse alterarNickName(Long playerId, String novoNick, String tag) {
+        Player player = playerRepository.findById(playerId);
+        if (player == null) {
+            throw new IllegalArgumentException("Player nao encontrado");
+        }
+
+        LocalDateTime agora = LocalDateTime.now();
+        LocalDateTime ultima = player.getUltimaAlteracaoNickName();
+
+        if (ultima != null) {
+            LocalDateTime proximaData = ultima.plusDays(60);
+            if (proximaData.isAfter(agora)) {
+                long diasRestantes = ChronoUnit.DAYS.between(agora.toLocalDate(), proximaData.toLocalDate());
+                if (diasRestantes < 0) {
+                    diasRestantes = 0;
+                }
+                throw new IllegalArgumentException(
+                    "NickName so pode ser alterado a cada 60 dias. Dias restantes: " + diasRestantes);
+            }
+        }
+
+        String tagFinal = (tag == null || tag.isBlank()) ? "0000" : tag;
+
+        if (!isValidTag(tagFinal)) {
+            throw new IllegalArgumentException("Tag invalida: deve ser UTF-8 e conter exatamente 4 caracteres");
+        }
+
+        if (novoNick == null || novoNick.isBlank()) {
+            throw new IllegalArgumentException("NickName nao pode ser vazio");
+        }
+
+        player.setNickName(novoNick);
+        player.setTag(tagFinal);
+        player.setUltimaAlteracaoNickName(agora);
+
+        return PlayerResponse.from(player);
+    }
+
+    private boolean isValidTag(String tag) {
+        if (tag == null) {
+            return false;
+        }
+        if (tag.codePointCount(0, tag.length()) != 4) {
+            return false;
+        }
+        // Strings Java sao UTF-16, mas assumimos entrada UTF-8 da API.
+        return true;
     }
 
     /**

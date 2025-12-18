@@ -3,6 +3,7 @@ package org.cupula.resource;
 import java.util.List;
 
 import org.cupula.dto.player.request.AtualizarPosicaoPlayerRequest;
+import org.cupula.dto.player.request.AlterarNickNameRequest;
 import org.cupula.dto.player.request.CriarPlayerRequest;
 import org.cupula.dto.player.response.PlayerResponse;
 import org.cupula.model.auth.Usuario;
@@ -58,6 +59,24 @@ public class PlayerResource {
         } catch (Exception e) {
             return Response.status(Status.INTERNAL_SERVER_ERROR)
                 .entity("Erro ao criar player: " + e.getMessage())
+                .build();
+        }
+    }
+
+    @PUT
+    @Path("/{id}/nickname")
+    @PermitAll
+    public Response alterarNickName(@PathParam("id") Long id, AlterarNickNameRequest request) {
+        try {
+            PlayerResponse response = playerService.alterarNickName(id, request.nickName(), request.tag());
+            return Response.ok(response).build();
+        } catch (IllegalArgumentException e) {
+            return Response.status(Status.BAD_REQUEST)
+                .entity(e.getMessage())
+                .build();
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR)
+                .entity("Erro ao alterar nickname: " + e.getMessage())
                 .build();
         }
     }
@@ -127,8 +146,8 @@ public class PlayerResource {
     @RolesAllowed({"User", "Admin"})
     public Response loginAsPlayer(@PathParam("id") Long id) {
         try {
-            String login = jwt.getSubject();
-            org.cupula.model.auth.Usuario usuario = usuarioRepository.findByLogin(login);
+            String nickName = jwt.getSubject();
+            org.cupula.model.auth.Usuario usuario = usuarioRepository.findByNickName(nickName);
 
             if (usuario == null) {
                 return Response.status(Status.UNAUTHORIZED)

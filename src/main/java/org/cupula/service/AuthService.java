@@ -44,7 +44,7 @@ public class AuthService {
             return null;
         }
 
-        Usuario usuario = usuarioRepository.findByLogin(request.login());
+        Usuario usuario = usuarioRepository.findByNickName(request.login());
         if (usuario == null || Boolean.FALSE.equals(usuario.getLoginLocalHabilitado())) {
             return null;
         }
@@ -105,16 +105,16 @@ public class AuthService {
 
     @Transactional
     public UsuarioResponseDTO createUsuario(CreateUsuarioRequest request) {
-        if (request == null || request.login() == null || request.senha() == null || request.email() == null) {
+        if (request == null || request.nickName() == null || request.senha() == null || request.email() == null) {
             return null;
         }
 
-        if (usuarioRepository.findByLogin(request.login()) != null) {
+        if (usuarioRepository.findByNickName(request.nickName()) != null) {
             return null;
         }
 
         Usuario usuario = new Usuario();
-        usuario.setLogin(request.login());
+        usuario.setNickName(request.nickName());
         usuario.setEmail(request.email());
         usuario.setSenha(hashService.getHashSenha(request.senha()));
         usuario.setLoginLocalHabilitado(Boolean.TRUE);
@@ -134,7 +134,7 @@ public class AuthService {
         Set<AuthProvider> providers = extractProviders(usuario);
         return new AuthResponse(
                 usuario.getId(),
-                usuario.getLogin(),
+                usuario.getNickName(),
                 usuario.getEmail(),
                 usuario.getLoginLocalHabilitado(),
                 usuario.getPerfis(),
@@ -149,7 +149,7 @@ public class AuthService {
         Set<AuthProvider> providers = extractProviders(usuario);
         return new UsuarioResponseDTO(
                 usuario.getId(),
-                usuario.getLogin(),
+                usuario.getNickName(),
                 usuario.getEmail(),
                 usuario.getLoginLocalHabilitado(),
                 usuario.getPerfis(),

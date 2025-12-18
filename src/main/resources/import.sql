@@ -3,18 +3,30 @@
 
 -- ColorMaterial - Cores e materiais para personagens
 INSERT INTO ColorMaterial (id, name, hexCode, tipo, ativo, dataInclusao) VALUES 
-(1, 'Pele Clara', '#F5D5C5', 'SKIN', true, NOW()),
-(2, 'Pele Média', '#D4A574', 'SKIN', true, NOW()),
-(3, 'Pele Escura', '#8D5524', 'SKIN', true, NOW()),
-(4, 'Pele Negra', '#4A2511', 'SKIN', true, NOW()),
-(5, 'Pele Verde Clara', '#8FBC8F', 'SKIN', true, NOW()),
-(6, 'Pele Verde Escura', '#556B2F', 'SKIN', true, NOW()),
-(7, 'Pele Cinza', '#696969', 'SKIN', true, NOW()),
-(8, 'Orelha Natural Clara', '#F5D5C5', 'EAR', true, NOW()),
-(9, 'Orelha Natural Média', '#D4A574', 'EAR', true, NOW()),
-(10, 'Orelha Natural Escura', '#8D5524', 'EAR', true, NOW()),
-(11, 'Orelha Élfica Dourada', '#FFD700', 'EAR', true, NOW()),
-(12, 'Orelha Élfica Prateada', '#C0C0C0', 'EAR', true, NOW());
+(1, 'Pele Clara', '#F5D5C5', 'PELE', true, NOW()),
+(2, 'Pele Média', '#D4A574', 'PELE', true, NOW()),
+(3, 'Pele Escura', '#8D5524', 'PELE', true, NOW()),
+(4, 'Pele Negra', '#4A2511', 'PELE', true, NOW()),
+(5, 'Pele Verde Clara', '#8FBC8F', 'PELE', true, NOW()),
+(6, 'Pele Verde Escura', '#556B2F', 'PELE', true, NOW()),
+(7, 'Pele Cinza', '#696969', 'PELE', true, NOW()),
+(8, 'Orelha Natural Clara', '#F5D5C5', 'ORELHA', true, NOW()),
+(9, 'Orelha Natural Média', '#D4A574', 'ORELHA', true, NOW()),
+(10, 'Orelha Natural Escura', '#8D5524', 'ORELHA', true, NOW()),
+(11, 'Orelha Élfica Dourada', '#FFD700', 'ORELHA', true, NOW()),
+(12, 'Orelha Élfica Prateada', '#C0C0C0', 'ORELHA', true, NOW()),
+-- Cores adicionais para itens
+(13, 'Madeira Clara', '#D2B48C', 'MATERIAL', true, NOW()),
+(14, 'Madeira Escura', '#8B4513', 'MATERIAL', true, NOW()),
+(15, 'Ferro', '#696969', 'MATERIAL', true, NOW()),
+(16, 'Aço', '#C0C0C0', 'MATERIAL', true, NOW()),
+(17, 'Ouro', '#FFD700', 'MATERIAL', true, NOW()),
+(18, 'Bronze', '#CD7F32', 'MATERIAL', true, NOW()),
+(19, 'Couro Marrom', '#8B4513', 'MATERIAL', true, NOW()),
+(20, 'Couro Preto', '#1C1C1C', 'MATERIAL', true, NOW()),
+(21, 'Tecido Branco', '#F5F5F5', 'MATERIAL', true, NOW()),
+(22, 'Tecido Azul', '#4169E1', 'MATERIAL', true, NOW()),
+(23, 'Tecido Vermelho', '#DC143C', 'MATERIAL', true, NOW());
 
 -- PlayerTipoBaseColorSkin - Cores de pele possíveis por raça
 INSERT INTO PlayerTipoBaseColorSkin (id, playerRaca, possibilidade, color_material_id, ativo, dataInclusao) VALUES
@@ -151,20 +163,6 @@ INSERT INTO PlayerTipoCabelo (id, nome, path, possibilidade, playerRaca, ativo, 
 
 -- ==================== ITEMS ====================
 
--- Cores adicionais para itens
-INSERT INTO ColorMaterial (id, name, hexCode, tipo, ativo, dataInclusao) VALUES 
-(10, 'Madeira Clara', '#D2B48C', 'WOOD', true, NOW()),
-(11, 'Madeira Escura', '#8B4513', 'WOOD', true, NOW()),
-(12, 'Ferro', '#696969', 'METAL', true, NOW()),
-(13, 'Aço', '#C0C0C0', 'METAL', true, NOW()),
-(14, 'Ouro', '#FFD700', 'METAL', true, NOW()),
-(15, 'Bronze', '#CD7F32', 'METAL', true, NOW()),
-(16, 'Couro Marrom', '#8B4513', 'LEATHER', true, NOW()),
-(17, 'Couro Preto', '#1C1C1C', 'LEATHER', true, NOW()),
-(18, 'Tecido Branco', '#F5F5F5', 'CLOTH', true, NOW()),
-(19, 'Tecido Azul', '#4169E1', 'CLOTH', true, NOW()),
-(20, 'Tecido Vermelho', '#DC143C', 'CLOTH', true, NOW());
-
 -- ItemTipo - Tipos base de itens
 INSERT INTO ItemTipo (id, nome, descricao, limiteQuantidade, pesoPorQuantidade, ativo, dataInclusao) VALUES
 -- ARMAS CORPO A CORPO (1-10)
@@ -298,19 +296,19 @@ INSERT INTO ColorPossibility (id, possibilidade, ativo, dataInclusao) VALUES
 -- ColorPossibility <-> ColorMaterial (ManyToMany)
 INSERT INTO color_possibility_color_material (color_possibility_id, color_material_id) VALUES
 -- Cores de ferro/aço (espadas, armaduras)
-(1, 12), -- Ferro padrão
-(2, 13), -- Aço comum
-(3, 13), (3, 14), -- Aço com detalhes de ouro
-(4, 14), -- Ouro total (muito raro)
+(1, 15), -- Ferro padrão
+(2, 16), -- Aço comum
+(3, 16), (3, 17), -- Aço com detalhes de ouro
+(4, 17), -- Ouro total (muito raro)
 -- Cores de madeira (cabos, escudos, arcos)
-(5, 10), -- Madeira clara
-(6, 11), -- Madeira escura
+(5, 13), -- Madeira clara
+(6, 14), -- Madeira escura
 -- Cores de couro (armaduras leves)
-(7, 16), -- Couro marrom
-(8, 17), -- Couro preto
+(7, 19), -- Couro marrom
+(8, 20), -- Couro preto
 -- Cores de tecido (capas, detalhes)
-(9, 18), (9, 19), (9, 20), -- Mix de tecidos
-(10, 19), (10, 14); -- Tecido azul com fios dourados
+(9, 21), (9, 22), (9, 23), -- Mix de tecidos
+(10, 22), (10, 17); -- Tecido azul com fios dourados
 
 -- ==================== TEXTURAS E MATERIAIS ====================
 
@@ -381,19 +379,19 @@ INSERT INTO material_textures (material_id, texture_id) VALUES
 -- Material <-> ColorMaterial (ManyToMany)
 INSERT INTO material_color_materials (material_id, color_material_id) VALUES
 -- Madeiras
-(1, 10), (1, 11), -- Carvalho: clara e escura
-(2, 10), -- Pinho: clara
-(3, 11), -- Madeira antiga: escura
+(1, 13), (1, 14), -- Carvalho: clara e escura
+(2, 13), -- Pinho: clara
+(3, 14), -- Madeira antiga: escura
 -- Metais
-(4, 12), -- Ferro: cinza
-(5, 13), -- Aço: prateado
-(6, 14), -- Ouro: dourado
-(7, 15), -- Bronze: bronze
+(4, 15), -- Ferro: cinza
+(5, 16), -- Aço: prateado
+(6, 17), -- Ouro: dourado
+(7, 18), -- Bronze: bronze
 -- Couros
-(8, 16), (8, 17), -- Couro comum: marrom e preto
-(9, 16), (9, 17), -- Couro reforçado: marrom e preto
-(10, 17), -- Couro dragão: preto
+(8, 19), (8, 20), -- Couro comum: marrom e preto
+(9, 19), (9, 20), -- Couro reforçado: marrom e preto
+(10, 20), -- Couro dragão: preto
 -- Tecidos
-(11, 18), -- Linho: branco
-(12, 18), (12, 19), (12, 20), -- Algodão: branco, azul, vermelho
-(13, 18), (13, 14); -- Seda: branco e dourado
+(11, 21), -- Linho: branco
+(12, 21), (12, 22), (12, 23), -- Algodão: branco, azul, vermelho
+(13, 21), (13, 17); -- Seda: branco e dourado

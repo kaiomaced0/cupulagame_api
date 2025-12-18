@@ -1,7 +1,7 @@
 package org.cupula.dto.auth;
 
 public record UpdateUsuarioRequest(
-        String login,
+        String nickName,
         String email,
         Boolean loginLocalHabilitado,
         String senha) {

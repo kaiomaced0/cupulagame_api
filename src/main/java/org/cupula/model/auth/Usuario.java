@@ -5,6 +5,7 @@ import java.util.Set;
 import org.cupula.model.EntityClass;
 import org.cupula.model.auth.enums.AuthProvider;
 import org.cupula.model.auth.enums.Perfil;
+import org.cupula.model.auth.pessoa.Pessoa;
 import org.cupula.model.structures.Structure;
 
 import jakarta.persistence.CollectionTable;
@@ -12,6 +13,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity(name = "Usuario")
 public class Usuario extends EntityClass{
@@ -20,7 +23,8 @@ public class Usuario extends EntityClass{
 
     private String senha;
 
-    private String login;
+    @Column(name = "nickname")
+    private String nickName;
 
     private Boolean mudarSenha;
 
@@ -37,8 +41,12 @@ public class Usuario extends EntityClass{
     @CollectionTable(name = "usuario_login_provider", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"))
     private Set<UsuarioProvider> provedoresLogin;
 
-    @jakarta.persistence.OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario")
     private List<Structure> baseStructures;
+
+    @OneToOne
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
 
     public String getEmail() {
         return email;
@@ -58,12 +66,12 @@ public class Usuario extends EntityClass{
     }
 
 
-    public String getLogin() {
-        return login;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
 
@@ -111,6 +119,14 @@ public class Usuario extends EntityClass{
     }
     public void setBaseStructures(List<Structure> baseStructures) {
         this.baseStructures = baseStructures;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
 }

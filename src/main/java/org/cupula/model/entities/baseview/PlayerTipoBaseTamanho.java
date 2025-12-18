@@ -4,10 +4,13 @@ import org.cupula.model.EntityClass;
 import org.cupula.model.entities.enums.PlayerRaca;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 @Entity
 public class PlayerTipoBaseTamanho extends EntityClass {
 
+    @Enumerated(EnumType.STRING)
     private PlayerRaca playerRaca;
     private Long possibilidade;
     

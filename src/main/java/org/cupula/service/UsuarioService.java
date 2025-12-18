@@ -43,16 +43,16 @@ public class UsuarioService {
 
     @Transactional
     public UsuarioResponseDTO createUsuario(CreateUsuarioRequest request) {
-        if (request == null || request.login() == null || request.email() == null || request.senha() == null) {
+        if (request == null || request.nickName() == null || request.email() == null || request.senha() == null) {
             throw new IllegalArgumentException("Dados obrigatorios faltando");
         }
 
-        if (usuarioRepository.findByLogin(request.login()) != null) {
-            throw new IllegalArgumentException("Login ja existe");
+        if (usuarioRepository.findByNickName(request.nickName()) != null) {
+            throw new IllegalArgumentException("NickName ja existe");
         }
 
         Usuario usuario = new Usuario();
-        usuario.setLogin(request.login());
+        usuario.setNickName(request.nickName());
         usuario.setEmail(request.email());
         usuario.setSenha(hashService.getHashSenha(request.senha()));
         usuario.setLoginLocalHabilitado(Boolean.TRUE);
@@ -74,12 +74,12 @@ public class UsuarioService {
             return null;
         }
 
-        if (request.login() != null && !request.login().equals(usuario.getLogin())) {
-            Usuario existing = usuarioRepository.findByLogin(request.login());
+        if (request.nickName() != null && !request.nickName().equals(usuario.getNickName())) {
+            Usuario existing = usuarioRepository.findByNickName(request.nickName());
             if (existing != null && !existing.getId().equals(id)) {
-                throw new IllegalArgumentException("Login ja existe");
+                throw new IllegalArgumentException("NickName ja existe");
             }
-            usuario.setLogin(request.login());
+            usuario.setNickName(request.nickName());
         }
 
         if (request.email() != null) {
@@ -125,7 +125,7 @@ public class UsuarioService {
 
         return new UsuarioResponseDTO(
                 usuario.getId(),
-                usuario.getLogin(),
+                usuario.getNickName(),
                 usuario.getEmail(),
                 usuario.getLoginLocalHabilitado(),
                 usuario.getPerfis(),

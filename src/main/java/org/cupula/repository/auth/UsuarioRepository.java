@@ -10,11 +10,11 @@ import jakarta.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class UsuarioRepository implements PanacheRepository<Usuario> {   
     
-    public Usuario findByLogin(String login){
-        if (login == null) {
+    public Usuario findByNickName(String nickName) {
+        if (nickName == null) {
             return null;
         }
-        return find("login = ?1", login).firstResult();
+        return find("nickname = ?1", nickName).firstResult();
     }
 
     public Usuario findByProvider(AuthProvider provider, String externalId) {

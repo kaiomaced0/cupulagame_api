@@ -33,7 +33,7 @@ public class TokenJwtService {
             LOG.info("Requisição TokenJwt.generateJwt()");
 
             return Jwt.issuer("kaioprojects-jwt")
-                    .subject(usuario.getLogin())
+                    .subject(usuario.getNickName())
                     .groups(roles)
                     .expiresAt(expiryDate)
                     .sign();
@@ -58,7 +58,7 @@ public class TokenJwtService {
             LOG.info("Requisição TokenJwt.generateJwt(usuario,player)");
 
             return Jwt.issuer("kaioprojects-jwt")
-                    .subject(usuario.getLogin())
+                    .subject(usuario.getNickName())
                     .groups(roles)
                     .claim("playerId", player == null ? null : player.getId())
                     .expiresAt(expiryDate)

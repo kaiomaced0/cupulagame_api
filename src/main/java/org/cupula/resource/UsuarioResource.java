@@ -102,8 +102,8 @@ public class UsuarioResource {
     @RolesAllowed({"User", "Admin"})
     public Response adicionarAmigo(AdicionarAmigoRequest request) {
         try {
-            String login = jwt.getSubject();
-            Usuario usuario = usuarioRepository.findByLogin(login);
+            String nickName = jwt.getSubject();
+            Usuario usuario = usuarioRepository.findByNickName(nickName);
             
             if (usuario == null) {
                 return Response.status(Status.UNAUTHORIZED)
@@ -129,8 +129,8 @@ public class UsuarioResource {
     @RolesAllowed({"User", "Admin"})
     public Response listarAmigos() {
         try {
-            String login = jwt.getSubject();
-            Usuario usuario = usuarioRepository.findByLogin(login);
+            String nickName = jwt.getSubject();
+            Usuario usuario = usuarioRepository.findByNickName(nickName);
             
             if (usuario == null) {
                 return Response.status(Status.UNAUTHORIZED)
@@ -152,8 +152,8 @@ public class UsuarioResource {
     @RolesAllowed({"User", "Admin"})
     public Response listarSolicitacoesPendentes() {
         try {
-            String login = jwt.getSubject();
-            Usuario usuario = usuarioRepository.findByLogin(login);
+            String nickName = jwt.getSubject();
+            Usuario usuario = usuarioRepository.findByNickName(nickName);
             
             if (usuario == null) {
                 return Response.status(Status.UNAUTHORIZED)
@@ -175,8 +175,8 @@ public class UsuarioResource {
     @RolesAllowed({"User", "Admin"})
     public Response aceitarSolicitacao(@PathParam("id") Long amizadeId) {
         try {
-            String login = jwt.getSubject();
-            Usuario usuario = usuarioRepository.findByLogin(login);
+            String nickName = jwt.getSubject();
+            Usuario usuario = usuarioRepository.findByNickName(nickName);
             
             if (usuario == null) {
                 return Response.status(Status.UNAUTHORIZED)
@@ -209,8 +209,8 @@ public class UsuarioResource {
     @RolesAllowed({"User", "Admin"})
     public Response recusarSolicitacao(@PathParam("id") Long amizadeId) {
         try {
-            String login = jwt.getSubject();
-            Usuario usuario = usuarioRepository.findByLogin(login);
+            String nickName = jwt.getSubject();
+            Usuario usuario = usuarioRepository.findByNickName(nickName);
             
             if (usuario == null) {
                 return Response.status(Status.UNAUTHORIZED)
