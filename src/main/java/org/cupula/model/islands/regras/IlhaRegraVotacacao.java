@@ -5,7 +5,7 @@ import org.cupula.model.islands.votacao.IlhaVotacao;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "ilha_regra_votacao")
 public class IlhaRegraVotacacao extends IlhaVotacao {
     
     @ManyToOne

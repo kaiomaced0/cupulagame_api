@@ -9,7 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
-@Entity
+@Entity(name = "ilha_diario")
 public class IlhaDiario extends EntityClass {
     
     @ManyToOne

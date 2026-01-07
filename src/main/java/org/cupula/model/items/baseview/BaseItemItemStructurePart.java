@@ -12,7 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
-@Entity
+@Entity(name = "base_item_item_structure_part")
 public class BaseItemItemStructurePart extends EntityClass {
 
     @OneToOne

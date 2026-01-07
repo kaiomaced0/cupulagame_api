@@ -8,7 +8,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "ilha_diario_acontecimentos")
 public class IlhaDiarioAcontecimentos extends EntityClass {
     
     @ManyToOne

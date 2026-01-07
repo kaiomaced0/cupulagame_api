@@ -16,7 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
-@Entity(name = "Usuario")
+@Entity(name = "usuario")
 public class Usuario extends EntityClass{
 
     private String email;

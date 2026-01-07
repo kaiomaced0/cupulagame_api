@@ -12,7 +12,7 @@ import org.cupula.model.EntityClass;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
-@Entity
+@Entity(name = "base_item_structure")
 public class BaseItemStructure extends EntityClass {
 
     @ManyToOne

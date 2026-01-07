@@ -11,7 +11,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
 
-@Entity
+@Entity(name = "ilha")
 public class Ilha extends EntityClass {
 
     private Long tamanhoX;

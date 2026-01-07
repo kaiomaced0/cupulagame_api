@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
-@Entity
+@Entity(name = "player_item_equipado_limite")
 public class PlayerItemEquipadoLimite extends EntityClass {
     
     @OneToOne

@@ -7,7 +7,7 @@ import org.cupula.model.items.Item;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "player_slot_padrao")
 public class PlayerSlotPadrao extends EntityClass {
     
     @ManyToOne

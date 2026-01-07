@@ -5,7 +5,7 @@ import org.cupula.model.EntityClass;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "pvp_turno")
 public class PvpTurno extends EntityClass {
     
     @ManyToOne

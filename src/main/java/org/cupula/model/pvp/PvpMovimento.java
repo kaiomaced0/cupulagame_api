@@ -8,9 +8,10 @@ import org.cupula.model.pvp.enums.PvpMovimentoTipo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "pvp_movimento")
 public class PvpMovimento extends EntityClass {
     
     @Enumerated(EnumType.STRING)
@@ -26,17 +27,21 @@ public class PvpMovimento extends EntityClass {
     private Long zFinal;
     
     @ManyToOne
+    @JoinColumn(name = "pvp_turno_id")
     private PvpTurno pvpTurno;
     
     private Integer ordem;
     
     @ManyToOne
+    @JoinColumn(name = "pvp_id")
     private Pvp pvp;
 
     @ManyToOne
+    @JoinColumn(name = "player_id")
     private Player player;
     
     @ManyToOne
+    @JoinColumn(name = "mob_id")
     private Mob mob;
 
     private Long danoCausado;
@@ -44,6 +49,7 @@ public class PvpMovimento extends EntityClass {
     private Boolean sucesso;
     
     @ManyToOne
+    @JoinColumn(name = "movimento_inimigo_id")
     private PvpMovimento movimentoInimigo;
     
     // Getters e Setters

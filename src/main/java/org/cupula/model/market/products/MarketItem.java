@@ -11,7 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import org.cupula.model.EntityClass;
 
-@Entity
+@Entity(name = "market_item")
 public class MarketItem extends EntityClass {
     
     @OneToMany

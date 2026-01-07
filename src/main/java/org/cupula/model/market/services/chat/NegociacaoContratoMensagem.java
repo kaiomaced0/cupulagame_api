@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "negociacao_contrato_mensagem")
 public class NegociacaoContratoMensagem extends EntityClass {
     
     private String mensagemCriptografada;

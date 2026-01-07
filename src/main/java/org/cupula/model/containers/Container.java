@@ -9,7 +9,7 @@ import org.cupula.model.EntityClass;
 
 import jakarta.persistence.EnumType;
 
-@Entity
+@Entity(name = "container")
 public class Container extends EntityClass {
     
     @Enumerated(EnumType.STRING)

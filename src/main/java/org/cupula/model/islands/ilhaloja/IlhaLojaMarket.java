@@ -8,7 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
-@Entity
+@Entity(name = "ilha_loja_market")
 public class IlhaLojaMarket extends EntityClass {
     
     // para o player comprar da loja

@@ -10,7 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import org.cupula.model.EntityClass;
 
-@Entity
+@Entity(name = "item_tipo")
 public class ItemTipo extends EntityClass {
 
     private String nome;

@@ -6,7 +6,7 @@ import org.cupula.model.structures.Structure;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "arena_pvp_local_fuga")
 public class ArenaPvpLocalFuga extends EntityClass {
     // a ideia Ã© que seja um local em um canto do mapa que o player possa fugir, ele tem que estar encima da
     // estrutura e realizar dois movimentos para "fora" do mapa para fugir da arena

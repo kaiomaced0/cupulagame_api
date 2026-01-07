@@ -15,7 +15,7 @@ import jakarta.persistence.EnumType;
 import org.cupula.model.EntityClass;
 import org.cupula.model.entities.enums.MobTipo;
 
-@Entity
+@Entity(name = "mob")
 public class Mob extends EntityClass {
     
     @OneToMany

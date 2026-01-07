@@ -17,7 +17,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
-@Entity
+@Entity(name = "market_service")
 public class MarketService extends EntityClass {
 
     private String titutlo;

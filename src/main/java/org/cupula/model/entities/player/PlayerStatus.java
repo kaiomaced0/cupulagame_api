@@ -10,7 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
-@Entity
+@Entity(name = "player_status")
 public class PlayerStatus extends EntityClass {
 
     // Progressão

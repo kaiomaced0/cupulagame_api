@@ -10,7 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
-@Entity
+@Entity(name = "ilha_loja_estoque")
 public class IlhaLojaEstoque extends EntityClass {
     
     // tambem usado para o player fornecer para a loja

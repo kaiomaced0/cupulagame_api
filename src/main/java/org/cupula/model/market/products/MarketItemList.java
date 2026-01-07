@@ -7,7 +7,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import org.cupula.model.EntityClass;
 
-@Entity
+@Entity(name = "market_item_list")
 public class MarketItemList extends EntityClass {
     
     @ManyToOne

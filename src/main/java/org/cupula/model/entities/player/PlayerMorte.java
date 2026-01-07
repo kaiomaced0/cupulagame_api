@@ -13,7 +13,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "player_morte")
 public class PlayerMorte extends EntityClass {
 
     @ManyToOne

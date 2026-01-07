@@ -13,7 +13,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "player_tipo_base_orelha")
 public class PlayerTipoBaseOrelha extends EntityClass {
    
     @Enumerated(EnumType.STRING)

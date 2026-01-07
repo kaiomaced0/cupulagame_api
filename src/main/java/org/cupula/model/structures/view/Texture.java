@@ -1,9 +1,10 @@
 package org.cupula.model.structures.view;
 
-import jakarta.persistence.Entity;
 import org.cupula.model.EntityClass;
 
-@Entity
+import jakarta.persistence.Entity;
+
+@Entity(name = "texture")
 public class Texture extends EntityClass {
     
     private String name;

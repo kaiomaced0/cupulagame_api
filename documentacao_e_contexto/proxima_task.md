@@ -38,3 +38,7 @@
 
 
 - Dependendo do tipo de pedido e do tipo de loja a entrega é feita em um local privado do comprador/cliente.. essa entrega vira uma missao no jogo.. 
+
+- Criar um tipo de Structure "Area Privada" que seria um tipo de "casa" ou quaisquer outra area que um player seja dono, nela ele tera controle de algumas coisas, por exemplo:  (substituira o baseStructures do model de Usuario)
+limitacao de acesso
+pvp permitido

@@ -21,7 +21,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
-@Entity
+@Entity(name = "negociacao_servico_guilda")
 public class NegociacaoServicoGuilda extends EntityClass {
 
     @ManyToOne

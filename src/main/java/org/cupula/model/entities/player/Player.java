@@ -17,7 +17,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
-@Entity
+@Entity(name = "player")
 public class Player extends EntityClass {
     //Atributos Basicos visuais e de tamanho
 

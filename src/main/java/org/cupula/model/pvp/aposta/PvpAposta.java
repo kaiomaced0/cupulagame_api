@@ -8,7 +8,6 @@ import org.cupula.model.items.Item;
 import org.cupula.model.pvp.Pvp;
 import org.cupula.model.pvp.aposta.enums.PvpApostaStatus;
 
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -18,7 +17,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
-@Entity
+@Entity(name = "pvp_aposta")
 public class PvpAposta extends EntityClass {
     // preciso adicionar a transacao de itens de aposta! elas precisam ir para um container e ao fim ser entregue os itens ao vencedor.
 
@@ -45,12 +44,15 @@ public class PvpAposta extends EntityClass {
     private Boolean aceitaApostaDesafiado;
     
     @ManyToOne
+    @JoinColumn(name = "desafiante_id")
     private Player desafiante;
     
     @ManyToOne
+    @JoinColumn(name = "desafiado_id")
     private Player desafiado;
 
     @OneToOne
+    @JoinColumn(name = "pvp_id")
     private Pvp pvp;
     
     @Enumerated(EnumType.STRING)

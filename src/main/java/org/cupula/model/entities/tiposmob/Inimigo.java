@@ -4,7 +4,7 @@ import org.cupula.model.entities.mob.Mob;
 
 import jakarta.persistence.Entity;
 
-@Entity
+@Entity(name = "inimigo")
 public class Inimigo extends Mob {
     
 }

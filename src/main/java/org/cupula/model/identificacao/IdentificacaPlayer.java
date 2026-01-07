@@ -8,7 +8,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
-@Entity
+@Entity(name = "identificacao_player")
 public class IdentificacaPlayer extends EntityClass {
     
     @ManyToOne

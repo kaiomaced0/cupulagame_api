@@ -1,10 +1,11 @@
 package org.cupula.model.islands;
 
 import org.cupula.model.EntityClass;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "ilha_configuracoes")
 public class IlhaConfiguracoes extends EntityClass {
 
     @ManyToOne

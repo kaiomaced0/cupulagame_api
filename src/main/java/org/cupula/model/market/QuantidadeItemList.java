@@ -9,7 +9,7 @@ import org.cupula.model.EntityClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "quantidade_item_list")
 public class QuantidadeItemList extends EntityClass {
     
     @ManyToOne

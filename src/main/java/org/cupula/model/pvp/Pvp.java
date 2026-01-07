@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import org.cupula.model.EntityClass;
 import org.cupula.model.pvp.enums.PvpTipo;
 
-@Entity
+@Entity(name = "pvp")
 public class Pvp extends EntityClass {
     private PvpTipo tipo;
     

@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "ilha_departamento_membro")
 public class IlhaDepartamentoMembro extends EntityClass {
     
     @ManyToOne

@@ -10,7 +10,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "player_tipo_base_color_skin")
 public class PlayerTipoBaseColorSkin extends EntityClass {
 
     @Enumerated(EnumType.STRING)

@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
-@Entity
+@Entity(name = "player_tipo_base_tamanho")
 public class PlayerTipoBaseTamanho extends EntityClass {
 
     @Enumerated(EnumType.STRING)

@@ -8,7 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
-@Entity
+@Entity(name = "identificacao")
 public class Identificacao extends EntityClass {
     
     private String nome;

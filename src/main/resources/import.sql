@@ -2,7 +2,7 @@
 -- The commands are commented as their support depends of the database
 
 -- ColorMaterial - Cores e materiais para personagens
-INSERT INTO ColorMaterial (id, name, hexCode, tipo, ativo, dataInclusao) VALUES 
+INSERT INTO color_material (id, name, hexCode, tipo, ativo, dataInclusao) VALUES 
 (1, 'Pele Clara', '#F5D5C5', 'PELE', true, NOW()),
 (2, 'Pele Média', '#D4A574', 'PELE', true, NOW()),
 (3, 'Pele Escura', '#8D5524', 'PELE', true, NOW()),
@@ -29,7 +29,7 @@ INSERT INTO ColorMaterial (id, name, hexCode, tipo, ativo, dataInclusao) VALUES
 (23, 'Tecido Vermelho', '#DC143C', 'MATERIAL', true, NOW());
 
 -- PlayerTipoBaseColorSkin - Cores de pele possíveis por raça
-INSERT INTO PlayerTipoBaseColorSkin (id, playerRaca, possibilidade, color_material_id, ativo, dataInclusao) VALUES
+INSERT INTO player_tipo_base_color_skin (id, playerRaca, possibilidade, color_material_id, ativo, dataInclusao) VALUES
 -- HUMANO - Todas as variações naturais
 (1, 'HUMANO', 20, 1, true, NOW()),  -- Pele Clara
 (2, 'HUMANO', 30, 2, true, NOW()),  -- Pele Média
@@ -55,7 +55,7 @@ INSERT INTO PlayerTipoBaseColorSkin (id, playerRaca, possibilidade, color_materi
 (16, 'ORC', 5, 3, true, NOW());     -- Pele Escura Natural (raro)
 
 -- PlayerTipoBaseTamanho - Tamanhos base por raça
-INSERT INTO PlayerTipoBaseTamanho (id, playerRaca, possibilidade, eixoXMinimo, eixoXMaximo, eixoYMinimo, eixoYMaximo, eixoZMinimo, eixoZMaximo, ativo, dataInclusao) VALUES
+INSERT INTO player_tipo_base_tamanho (id, playerRaca, possibilidade, eixoXMinimo, eixoXMaximo, eixoYMinimo, eixoYMaximo, eixoZMinimo, eixoZMaximo, ativo, dataInclusao) VALUES
 -- ANÃO - Pequeno e robusto (120-150cm altura)
 (1, 'ANAO', 20, 120, 130, 70, 100, 40, 60, true, NOW()),  -- Anão Atarracado
 (2, 'ANAO', 35, 130, 140, 65, 95, 38, 58, true, NOW()),   -- Anão Robusto
@@ -82,7 +82,7 @@ INSERT INTO PlayerTipoBaseTamanho (id, playerRaca, possibilidade, eixoXMinimo, e
 (17, 'ELFO', 15, 205, 215, 48, 68, 30, 46, true, NOW());  -- Elfo Majestoso
 
 -- TipoOrelhaColorMaterial - Cores de orelhas possíveis
-INSERT INTO TipoOrelhaColorMaterial (id, color_material_id, possibilidade, ativo, dataInclusao) VALUES
+INSERT INTO tipo_orelha_color_material (id, color_material_id, possibilidade, ativo, dataInclusao) VALUES
 (1, 8, 25, true, NOW()),   -- Orelha Natural Clara
 (2, 9, 25, true, NOW()),   -- Orelha Natural Média
 (3, 10, 25, true, NOW()),  -- Orelha Natural Escura
@@ -90,7 +90,7 @@ INSERT INTO TipoOrelhaColorMaterial (id, color_material_id, possibilidade, ativo
 (5, 12, 10, true, NOW());  -- Orelha Élfica Prateada
 
 -- PlayerTipoBaseOrelha - Configuração de orelhas por raça
-INSERT INTO PlayerTipoBaseOrelha (id, playerRaca, possibilidade, eixoXMinimo, eixoXMaximo, eixoYMinimo, eixoYMaximo, eixoZMinimo, eixoZMaximo, ativo, dataInclusao) VALUES
+INSERT INTO player_tipo_base_orelha (id, playerRaca, possibilidade, eixoXMinimo, eixoXMaximo, eixoYMinimo, eixoYMaximo, eixoZMinimo, eixoZMaximo, ativo, dataInclusao) VALUES
 -- ANÃO - Orelhas pequenas e arredondadas
 (1, 'ANAO', 35, 2, 3, 4, 5, 2, 3, true, NOW()),   -- Orelha Anã Pequena
 (2, 'ANAO', 40, 3, 4, 4, 6, 2, 3, true, NOW()),   -- Orelha Anã Normal
@@ -140,7 +140,7 @@ INSERT INTO player_tipo_base_orelha_color_material (player_tipo_base_orelha_id, 
 (15, 1), (15, 2), (15, 4), (15, 5);  -- Orelha Élfica Majestosa
 
 -- PlayerTipoCabelo - Tipos de cabelo por raça
-INSERT INTO PlayerTipoCabelo (id, nome, path, possibilidade, playerRaca, ativo, dataInclusao) VALUES
+INSERT INTO player_tipo_cabelo (id, nome, path, possibilidade, playerRaca, ativo, dataInclusao) VALUES
 -- ANÃO - Cabelos robustos e volumosos
 (1, 'Barba Longa Anã', '/hair/dwarf/long_beard.obj', 40, 'ANAO', true, NOW()),
 (2, 'Barba Trançada', '/hair/dwarf/braided_beard.obj', 35, 'ANAO', true, NOW()),
@@ -164,7 +164,7 @@ INSERT INTO PlayerTipoCabelo (id, nome, path, possibilidade, playerRaca, ativo, 
 -- ==================== ITEMS ====================
 
 -- ItemTipo - Tipos base de itens
-INSERT INTO ItemTipo (id, nome, descricao, limiteQuantidade, pesoPorQuantidade, ativo, dataInclusao) VALUES
+INSERT INTO item_tipo (id, nome, descricao, limiteQuantidade, pesoPorQuantidade, ativo, dataInclusao) VALUES
 -- ARMAS CORPO A CORPO (1-10)
 (1, 'Espada de Ferro', 'Espada básica forjada em ferro', 1, 150, true, NOW()),
 (2, 'Espada de Aço', 'Espada resistente de aço', 1, 180, true, NOW()),
@@ -268,7 +268,7 @@ INSERT INTO ItemTipo (id, nome, descricao, limiteQuantidade, pesoPorQuantidade, 
 (80, 'Anzol', 'Ferramenta de pesca', 10, 5, true, NOW());
 
 -- BaseItemStructure - Estruturas base para geração procedural de itens
-INSERT INTO BaseItemStructure (id, base_item_structure_id, possibilidade, ativo, dataInclusao) VALUES
+INSERT INTO base_item_structure (id, base_item_structure_id, possibilidade, ativo, dataInclusao) VALUES
 (1, 1, 100, true, NOW()), -- Espada de Ferro - estrutura padrão
 (2, 2, 80, true, NOW()),  -- Espada de Aço - variação comum
 (3, 2, 20, true, NOW()),  -- Espada de Aço - variação rara
@@ -281,7 +281,7 @@ INSERT INTO BaseItemStructure (id, base_item_structure_id, possibilidade, ativo,
 (10, 9, 100, true, NOW()); -- Armadura de Ferro - estrutura padrão
 
 -- ColorPossibility - Possibilidades de cores para partes dos itens
-INSERT INTO ColorPossibility (id, possibilidade, ativo, dataInclusao) VALUES
+INSERT INTO color_possibility (id, possibilidade, ativo, dataInclusao) VALUES
 (1, 100, true, NOW()), -- Ferro padrão
 (2, 80, true, NOW()),  -- Aço comum
 (3, 15, true, NOW()),  -- Aço com detalhes dourados (raro)
@@ -313,7 +313,7 @@ INSERT INTO color_possibility_color_material (color_possibility_id, color_materi
 -- ==================== TEXTURAS E MATERIAIS ====================
 
 -- Texture - Texturas para renderização
-INSERT INTO Texture (id, name, path, ativo, dataInclusao) VALUES
+INSERT INTO texture (id, name, path, ativo, dataInclusao) VALUES
 (1, 'Madeira Lisa', '/textures/wood/smooth.png', true, NOW()),
 (2, 'Madeira Rústica', '/textures/wood/rough.png', true, NOW()),
 (3, 'Madeira com Nós', '/textures/wood/knotty.png', true, NOW()),

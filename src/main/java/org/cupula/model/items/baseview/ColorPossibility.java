@@ -12,7 +12,7 @@ import org.cupula.model.EntityClass;
 
 import jakarta.persistence.ManyToMany;
 
-@Entity
+@Entity(name = "color_possibility")
 public class ColorPossibility extends EntityClass {
     
     @ManyToMany

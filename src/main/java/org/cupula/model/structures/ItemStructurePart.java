@@ -1,14 +1,13 @@
 package org.cupula.model.structures;
 
+import org.cupula.model.EntityClass;
 import org.cupula.model.structures.view.ColorMaterial;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-import org.cupula.model.EntityClass;
-
-@Entity
+@Entity(name = "item_structure_part")
 public class ItemStructurePart extends EntityClass {
     
     private Long inicioX;

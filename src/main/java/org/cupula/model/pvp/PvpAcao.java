@@ -8,7 +8,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "pvp_acao")
 public class PvpAcao extends EntityClass {
     
     @Enumerated(EnumType.STRING)

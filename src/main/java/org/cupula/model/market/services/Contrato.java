@@ -18,7 +18,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToMany;
 
-@Entity
+@Entity(name = "contrato")
 public class Contrato extends EntityClass {
 
     @ManyToOne

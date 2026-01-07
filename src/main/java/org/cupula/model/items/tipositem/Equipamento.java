@@ -15,7 +15,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 
-@Entity
+@Entity(name = "equipamento")
 public class Equipamento extends Item{
     
     @OneToMany

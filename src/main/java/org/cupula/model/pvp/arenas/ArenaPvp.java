@@ -12,7 +12,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
-@Entity
+@Entity(name = "arena_pvp")
 public class ArenaPvp extends EntityClass {
     
     @Enumerated(EnumType.STRING)

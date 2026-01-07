@@ -12,7 +12,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
 
-@Entity
+@Entity(name = "ilha_votacao")
 public class IlhaVotacao extends EntityClass {
     
     @OneToMany

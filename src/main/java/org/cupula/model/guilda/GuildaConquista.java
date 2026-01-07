@@ -4,7 +4,7 @@ import org.cupula.model.EntityClass;
 
 import jakarta.persistence.Entity;
 
-@Entity
+@Entity(name = "guilda_conquista")
 public class GuildaConquista extends EntityClass {
     private String nome;
     private String descricao;

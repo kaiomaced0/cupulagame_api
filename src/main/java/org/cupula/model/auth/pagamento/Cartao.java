@@ -11,7 +11,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "cartao")
 public class Cartao extends EntityClass {
 
     @ManyToOne

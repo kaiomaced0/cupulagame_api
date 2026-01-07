@@ -2,19 +2,17 @@ package org.cupula.model.structures;
 
 import java.util.List;
 
+import org.cupula.model.EntityClass;
 import org.cupula.model.structures.enums.ItemStructureTipo;
 import org.cupula.model.structures.enums.Layer;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
-
-import org.cupula.model.EntityClass;
-
-import jakarta.persistence.EnumType;
 import jakarta.persistence.OneToMany;
 
-@Entity
+@Entity(name = "item_structure")
 public class ItemStructure extends EntityClass {
 
     @OneToMany

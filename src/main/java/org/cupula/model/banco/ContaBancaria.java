@@ -15,7 +15,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "conta_bancaria")
 public class ContaBancaria extends EntityClass {
     
     private String numeroConta;

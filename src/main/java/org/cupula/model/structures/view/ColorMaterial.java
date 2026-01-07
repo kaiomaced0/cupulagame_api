@@ -1,17 +1,15 @@
 package org.cupula.model.structures.view;
 
+import org.cupula.model.EntityClass;
 import org.cupula.model.structures.enums.ColorMaterialTipo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-import org.cupula.model.EntityClass;
-
-import jakarta.persistence.EnumType;
-
-@Entity
+@Entity(name = "color_material")
 public class ColorMaterial extends EntityClass {
 
     private String name;

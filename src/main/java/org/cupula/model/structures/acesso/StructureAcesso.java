@@ -9,7 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "structure_acesso")
 public class StructureAcesso extends EntityClass {
     
     @ManyToOne

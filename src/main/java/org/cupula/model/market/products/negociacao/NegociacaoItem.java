@@ -12,7 +12,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import org.cupula.model.EntityClass;
 
-@Entity
+@Entity(name = "negociacao_item")
 public class NegociacaoItem extends EntityClass {
     
     @OneToMany

@@ -2,23 +2,18 @@ package org.cupula.model.structures;
 
 import java.util.List;
 
-import org.cupula.model.items.Item;
+import org.cupula.model.EntityClass;
+import org.cupula.model.items.ItemTipo;
 import org.cupula.model.structures.view.ColorMaterial;
 import org.cupula.model.structures.view.Texture;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinTable;
-
-import org.cupula.model.EntityClass;
-import org.cupula.model.items.ItemTipo;
-
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "material")
 public class Material extends EntityClass {
     
     private String name;

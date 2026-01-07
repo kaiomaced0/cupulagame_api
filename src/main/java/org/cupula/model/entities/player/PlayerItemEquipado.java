@@ -8,7 +8,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
-@Entity
+@Entity(name = "player_item_equipado")
 public class PlayerItemEquipado extends EntityClass {
 
     // Valida espaÃ§os possÃ­veis com o PlayerItemEquipadoLimite

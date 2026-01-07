@@ -10,7 +10,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "amizade_player")
 public class AmizadePlayer extends EntityClass {
 
     @ManyToOne

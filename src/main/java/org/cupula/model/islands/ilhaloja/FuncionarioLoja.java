@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "funcionario_loja")
 public class FuncionarioLoja extends EntityClass {
     
     @ManyToOne

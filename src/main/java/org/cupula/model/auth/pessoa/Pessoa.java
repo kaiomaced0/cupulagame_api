@@ -12,7 +12,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 
-@Entity
+@Entity(name = "pessoa")
 public class Pessoa extends EntityClass {
 
     private String nomeCompleto;

@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "tipo_orelha_color_material")
 public class TipoOrelhaColorMaterial extends EntityClass {
     @ManyToOne
     @JoinColumn(name = "color_material_id")

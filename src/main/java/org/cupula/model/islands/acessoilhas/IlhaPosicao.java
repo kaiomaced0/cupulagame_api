@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "ilha_posicao")
 public class IlhaPosicao extends EntityClass {
     // essa tabela sera mais um mapeamento de posicoes das ilhas para verificar se faz sentido uma ilha A ter uma IlhaAcesso a ilha B
 

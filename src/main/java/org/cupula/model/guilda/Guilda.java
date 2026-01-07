@@ -9,7 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
-@Entity
+@Entity(name = "guilda")
 public class Guilda extends EntityClass {
 
     private String nome;
