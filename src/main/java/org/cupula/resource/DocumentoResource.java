@@ -13,12 +13,9 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-
 import org.jboss.resteasy.reactive.RestForm;
 import org.jboss.resteasy.reactive.multipart.FileUpload;
 
-import io.netty.handler.codec.http.multipart.FileUpload;
-import jakarta.ws.rs.BeanParam;
 
 @Path("/documentos")
 @Produces(MediaType.APPLICATION_JSON)
@@ -30,8 +27,8 @@ public class DocumentoResource {
     @POST
     @Path("/upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response upload(@BeanParam("file") FileUpload file,
-                           @BeanParam("tipo") DocumentoTipo tipo) {
+    public Response upload(@RestForm("file") FileUpload file,
+                           @RestForm("tipo") DocumentoTipo tipo) {
         Documento doc = documentoService.uploadDocumento(file, tipo);
         return Response.status(Response.Status.CREATED).entity(doc).build();
     }
