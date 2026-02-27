@@ -395,3 +395,57 @@ INSERT INTO material_color_materials (material_id, color_material_id) VALUES
 (11, 21), -- Linho: branco
 (12, 21), (12, 22), (12, 23), -- Algodão: branco, azul, vermelho
 (13, 21), (13, 17); -- Seda: branco e dourado
+
+-- ==================== USUÁRIOS E PLAYERS (SEED EXEMPLO) ====================
+-- Senha padrão (HashService.main para "123456"):
+-- nKfKWJJt4zqpQDV0/F3CM5bwcocTBj12OPQD9EV0OjaNPM/QJyxPVhZ/aAmExNkfUFdT/9mHL7jEPj85uFTmXw==
+
+INSERT INTO pessoa (id, nomeCompleto, cpf, dataNascimento, sexo, ativo, dataInclusao) VALUES
+(1, 'Kaio Macedo', '11111111111', '1992-03-15', 'MASCULINO', true, NOW()),
+(2, 'Ana Clara Marinho', '22222222222', '1995-07-10', 'FEMININO', true, NOW()),
+(3, 'Rafael Aguiar', '33333333333', '1990-01-21', 'MASCULINO', true, NOW()),
+(4, 'David Silva', '44444444444', '1998-11-03', 'MASCULINO', true, NOW()),
+(5, 'Diego Dias', '55555555555', '1993-05-29', 'MASCULINO', true, NOW());
+
+INSERT INTO usuario (id, email, senha, nickname, mudarSenha, login_local_habilitado, pessoa_id, ativo, dataInclusao) VALUES
+(1, '0Glacks@cupula.dev', 'nKfKWJJt4zqpQDV0/F3CM5bwcocTBj12OPQD9EV0OjaNPM/QJyxPVhZ/aAmExNkfUFdT/9mHL7jEPj85uFTmXw==', '0Glacks', false, true, 1, true, NOW()),
+(2, 'aaa123@cupula.dev', 'nKfKWJJt4zqpQDV0/F3CM5bwcocTBj12OPQD9EV0OjaNPM/QJyxPVhZ/aAmExNkfUFdT/9mHL7jEPj85uFTmXw==', 'aaa123', false, true, 2, true, NOW()),
+(3, 'bbb123@cupula.dev', 'nKfKWJJt4zqpQDV0/F3CM5bwcocTBj12OPQD9EV0OjaNPM/QJyxPVhZ/aAmExNkfUFdT/9mHL7jEPj85uFTmXw==', 'bbb123', false, true, 3, true, NOW()),
+(4, 'ccc123@cupula.dev', 'nKfKWJJt4zqpQDV0/F3CM5bwcocTBj12OPQD9EV0OjaNPM/QJyxPVhZ/aAmExNkfUFdT/9mHL7jEPj85uFTmXw==', 'ccc123', false, true, 4, true, NOW()),
+(5, 'ddd123@cupula.dev', 'nKfKWJJt4zqpQDV0/F3CM5bwcocTBj12OPQD9EV0OjaNPM/QJyxPVhZ/aAmExNkfUFdT/9mHL7jEPj85uFTmXw==', 'ddd123', false, true, 5, true, NOW());
+
+INSERT INTO usuario_perfil (id_usuario, perfil) VALUES
+(1, 'USER'),
+(2, 'USER'),
+(3, 'USER'),
+(4, 'USER'),
+(5, 'USER');
+
+-- Distribuição solicitada:
+-- Usuários com 1 player: 0Glacks, aaa123
+-- Usuários com 2 players: bbb123, ccc123, ddd123
+INSERT INTO player (
+	id, usuario_id, visibilidade, raca,
+	tamanhoX, tamanhoY, tamanhoZ,
+	tipo_cabelo_id, cor_pele_id,
+	tamanhoXOrelha, tamanhoYOrelha, tamanhoZOrelha, cor_orelha_id,
+	nickName, tag, ultimaAlteracaoNickName,
+	ativo, dataInclusao
+) VALUES
+-- user1 (1 player)
+(1, 1, 'AMIGOS', 'HUMANO', 172, 68, 39, 5, 2, 4, 7, 3, 9, 'u1_main', 'U1A', NOW(), true, NOW()),
+
+-- user2 (1 player)
+(2, 2, 'AMIGOS', 'ELFO', 198, 52, 30, 11, 1, 5, 14, 2, 11, 'u2_main', 'U2A', NOW(), true, NOW()),
+
+-- user3 (2 players)
+(3, 3, 'AMIGOS', 'ORC', 196, 118, 58, 7, 6, 7, 11, 5, 10, 'u3_war', 'U3A', NOW(), true, NOW()),
+(4, 3, 'PUBLICO', 'ANAO', 136, 85, 48, 2, 3, 3, 6, 3, 10, 'u3_smith', 'U3B', NOW(), true, NOW()),
+
+-- user4 (2 players)
+(5, 4, 'AMIGOS', 'HUMANO', 178, 72, 42, 4, 4, 4, 8, 3, 8, 'u4_guard', 'U4A', NOW(), true, NOW()),
+(6, 4, 'PRIVADO', 'ELFO', 205, 50, 31, 10, 2, 6, 16, 3, 12, 'u4_arch', 'U4B', NOW(), true, NOW()),
+
+-- user5 (2 players)
+(7, 5, 'AMIGOS', 'ANAO', 142, 88, 50, 1, 3, 3, 5, 3, 9, 'u5_tank', 'U5A', NOW(), true, NOW()),
+(8, 5, 'PUBLICO', 'ORC', 202, 125, 62, 9, 5, 8, 12, 6, 10, 'u5_hunt', 'U5B', NOW(), true, NOW());

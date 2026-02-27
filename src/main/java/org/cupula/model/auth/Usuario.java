@@ -6,12 +6,15 @@ import org.cupula.model.EntityClass;
 import org.cupula.model.auth.enums.AuthProvider;
 import org.cupula.model.auth.enums.Perfil;
 import org.cupula.model.auth.pessoa.Pessoa;
+import org.cupula.model.configuracoes.BackgroundAsset;
 import org.cupula.model.structures.Structure;
 
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -33,6 +36,7 @@ public class Usuario extends EntityClass{
 
     @ElementCollection
     @CollectionTable(name = "usuario_perfil", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"))
+    @Enumerated(EnumType.STRING)
     @Column(name = "perfil", length = 30)
     private Set<Perfil> perfis;
 
@@ -47,6 +51,11 @@ public class Usuario extends EntityClass{
     @OneToOne
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
+
+    @OneToOne
+    @JoinColumn(name = "background_asset_id")
+    private BackgroundAsset backGroundAsset;
+
 
     public String getEmail() {
         return email;
@@ -127,6 +136,14 @@ public class Usuario extends EntityClass{
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public BackgroundAsset getBackGroundAsset() {
+        return backGroundAsset;
+    }
+
+    public void setBackGroundAsset(BackgroundAsset backGroundAsset) {
+        this.backGroundAsset = backGroundAsset;
     }
 
 }
