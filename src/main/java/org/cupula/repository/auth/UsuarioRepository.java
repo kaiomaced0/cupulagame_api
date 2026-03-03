@@ -14,7 +14,7 @@ public class UsuarioRepository implements PanacheRepository<Usuario> {
         if (nickName == null) {
             return null;
         }
-        return find("nickname = ?1", nickName).firstResult();
+        return find("nickName = ?1", nickName).firstResult();
     }
 
     public Usuario findByProvider(AuthProvider provider, String externalId) {

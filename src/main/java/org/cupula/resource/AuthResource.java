@@ -12,6 +12,7 @@ import org.cupula.repository.auth.UsuarioRepository;
 import org.cupula.service.AuthService;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
+import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -38,6 +39,7 @@ public class AuthResource {
 
     @POST
     @Path("/login")
+    @PermitAll
     public Response login(LoginRequest request) {
         AuthResponse response = authService.login(request);
         if (response == null) {
@@ -48,6 +50,7 @@ public class AuthResource {
 
     @POST
     @Path("/provider")
+    @PermitAll
     public Response loginWithProvider(ProviderLoginRequest request) {
         AuthResponse response = authService.loginWithProvider(request);
         if (response == null) {
@@ -77,6 +80,7 @@ public class AuthResource {
 
     @POST
     @Path("/usuarios")
+    @PermitAll
     public Response createUsuario(CreateUsuarioRequest request) {
         UsuarioResponseDTO response = authService.createUsuario(request);
         if (response == null) {
