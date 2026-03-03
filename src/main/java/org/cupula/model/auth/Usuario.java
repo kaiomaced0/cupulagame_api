@@ -7,6 +7,7 @@ import org.cupula.model.auth.enums.AuthProvider;
 import org.cupula.model.auth.enums.Perfil;
 import org.cupula.model.auth.pessoa.Pessoa;
 import org.cupula.model.configuracoes.BackgroundAsset;
+import org.cupula.model.entities.player.Player;
 import org.cupula.model.structures.Structure;
 
 import jakarta.persistence.CollectionTable;
@@ -47,6 +48,9 @@ public class Usuario extends EntityClass{
 
     @OneToMany(mappedBy = "usuario")
     private List<Structure> baseStructures;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Player> players;
 
     @OneToOne
     @JoinColumn(name = "pessoa_id")
@@ -128,6 +132,14 @@ public class Usuario extends EntityClass{
     }
     public void setBaseStructures(List<Structure> baseStructures) {
         this.baseStructures = baseStructures;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
     }
 
     public Pessoa getPessoa() {

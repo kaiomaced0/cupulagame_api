@@ -6,6 +6,7 @@ import org.cupula.dto.auth.LoginRequest;
 import org.cupula.dto.auth.PlayerLoginRequest;
 import org.cupula.dto.auth.PlayerLoginResponse;
 import org.cupula.dto.auth.ProviderLoginRequest;
+import org.cupula.dto.responses.usuario.UsuarioLogadoDTO;
 import org.cupula.dto.responses.usuario.UsuarioResponseDTO;
 import org.cupula.model.auth.Usuario;
 import org.cupula.repository.auth.UsuarioRepository;
@@ -16,6 +17,7 @@ import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -75,6 +77,28 @@ public class AuthResource {
             return Response.status(Status.FORBIDDEN).build();
         }
         
+        return Response.ok(response).build();
+    }
+
+    @GET
+    @Path("/me")
+    @RolesAllowed({"User", "Admin"})
+    public Response getUsuarioLogado() {
+        String login = jwt.getSubject();
+        if (login == null) {
+            return Response.status(Status.UNAUTHORIZED).build();
+        }
+
+        Usuario usuario = usuarioRepository.findByNickName(login);
+        if (usuario == null) {
+            return Response.status(Status.UNAUTHORIZED).build();
+        }
+
+        UsuarioLogadoDTO response = authService.getUsuarioLogado(usuario);
+        if (response == null) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+        }
+
         return Response.ok(response).build();
     }
 

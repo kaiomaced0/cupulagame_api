@@ -2,6 +2,7 @@ package org.cupula.service;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,6 +12,8 @@ import org.cupula.dto.auth.LoginRequest;
 import org.cupula.dto.auth.PlayerLoginRequest;
 import org.cupula.dto.auth.PlayerLoginResponse;
 import org.cupula.dto.auth.ProviderLoginRequest;
+import org.cupula.dto.responses.player.PlayerBasicDTO;
+import org.cupula.dto.responses.usuario.UsuarioLogadoDTO;
 import org.cupula.dto.responses.usuario.UsuarioResponseDTO;
 import org.cupula.model.auth.Usuario;
 import org.cupula.model.auth.UsuarioProvider;
@@ -101,6 +104,33 @@ public class AuthService {
 
         String token = tokenJwtService.generateJwt(usuario, player);
         return new PlayerLoginResponse(player.getId(), token);
+    }
+
+    public UsuarioLogadoDTO getUsuarioLogado(Usuario usuario) {
+        if (usuario == null) {
+            return null;
+        }
+
+        Set<AuthProvider> providers = extractProviders(usuario);
+        List<PlayerBasicDTO> playersDTO = null;
+        
+        if (usuario.getPlayers() != null) {
+            playersDTO = usuario.getPlayers().stream()
+                    .map(player -> new PlayerBasicDTO(
+                            player.getId(),
+                            player.getNickName(),
+                            player.getRaca() != null ? player.getRaca().name() : null))
+                    .toList();
+        }
+
+        return new UsuarioLogadoDTO(
+                usuario.getId(),
+                usuario.getNickName(),
+                usuario.getEmail(),
+                usuario.getLoginLocalHabilitado(),
+                usuario.getPerfis(),
+                providers,
+                playersDTO);
     }
 
     @Transactional
