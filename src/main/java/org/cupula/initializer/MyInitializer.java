@@ -123,35 +123,35 @@ public class MyInitializer {
 
             // Usuário Teste 1
             usuarioService.createUsuario(new CreateUsuarioRequest(
-                "jogador1",
-                "jogador1@cupula.com",
+                "0Glacks",
+                "0glacks@cupula.com",
                 "senha123"
             ));
-            System.out.println("✓ Usuário jogador1 criado");
+            System.out.println("✓ Usuário 0Glacks criado");
 
             // Usuário Teste 2
             usuarioService.createUsuario(new CreateUsuarioRequest(
-                "jogador2",
-                "jogador2@cupula.com",
+                "Glacks",
+                "glacks@cupula.com",
                 "senha123"
             ));
-            System.out.println("✓ Usuário jogador2 criado");
+            System.out.println("✓ Usuário Glacks criado");
 
             // Usuário Teste 3
             usuarioService.createUsuario(new CreateUsuarioRequest(
-                "elfico",
-                "elfico@cupula.com",
+                "Gobila",
+                "gobila@cupula.com",
                 "senha123"
             ));
-            System.out.println("✓ Usuário elfico criado");
+            System.out.println("✓ Usuário Gobila criado");
 
             // Usuário Teste 4
             usuarioService.createUsuario(new CreateUsuarioRequest(
-                "orc_warrior",
-                "orc@cupula.com",
+                "Capelao",
+                "capelao@cupula.com",
                 "senha123"
             ));
-            System.out.println("✓ Usuário orc_warrior criado");
+            System.out.println("✓ Usuário Capelao criado");
 
         } catch (Exception e) {
             System.err.println("Erro ao criar usuários: " + e.getMessage());
@@ -161,31 +161,32 @@ public class MyInitializer {
     private void seedPlayers() {
         try {
             // Criar players para alguns usuários
-            Usuario jogador1 = usuarioRepository.findByNickName("jogador1");
-            if (jogador1 != null) {
-                playerService.criarPlayer(jogador1, new CriarPlayerRequest());
-                System.out.println("✓ Player criado para jogador1");
+            Usuario usuario1 = usuarioRepository.findByNickName("0Glacks");
+            if (usuario1 != null) {
+                playerService.criarPlayer(usuario1, new CriarPlayerRequest());
+                playerService.criarPlayer(usuario1, new CriarPlayerRequest());
+                playerService.criarPlayer(usuario1, new CriarPlayerRequest());
+                System.out.println("✓ 3 Players criados para 0Glacks");
             }
 
-            Usuario jogador2 = usuarioRepository.findByNickName("jogador2");
-            if (jogador2 != null) {
-                playerService.criarPlayer(jogador2, new CriarPlayerRequest());
-                playerService.criarPlayer(jogador2, new CriarPlayerRequest());
-                System.out.println("✓ 2 Players criados para jogador2");
+            Usuario usuario2 = usuarioRepository.findByNickName("Glacks");
+            if (usuario2 != null) {
+                playerService.criarPlayer(usuario2, new CriarPlayerRequest());
+                System.out.println("✓ Player criado para Glacks");
             }
 
-            Usuario elfico = usuarioRepository.findByNickName("elfico");
-            if (elfico != null) {
-                playerService.criarPlayer(elfico, new CriarPlayerRequest());
-                System.out.println("✓ Player criado para elfico");
+            Usuario usuario3 = usuarioRepository.findByNickName("Gobila");
+            if (usuario3 != null) {
+                playerService.criarPlayer(usuario3, new CriarPlayerRequest());
+                System.out.println("✓ Player criado para Gobila");
             }
 
-            Usuario orcWarrior = usuarioRepository.findByNickName("orc_warrior");
-            if (orcWarrior != null) {
-                playerService.criarPlayer(orcWarrior, new CriarPlayerRequest());
-                playerService.criarPlayer(orcWarrior, new CriarPlayerRequest());
-                playerService.criarPlayer(orcWarrior, new CriarPlayerRequest());
-                System.out.println("✓ 3 Players criados para orc_warrior");
+            Usuario usuario4 = usuarioRepository.findByNickName("Capelao");
+            if (usuario4 != null) {
+                playerService.criarPlayer(usuario4, new CriarPlayerRequest());
+                playerService.criarPlayer(usuario4, new CriarPlayerRequest());
+                playerService.criarPlayer(usuario4, new CriarPlayerRequest());
+                System.out.println("✓ 3 Players criados para Capelao");
             }
 
         } catch (Exception e) {
