@@ -31,6 +31,11 @@ public enum Perfil {
             if (id.equals(perfil.getId()))
                 return perfil;
         }
-        throw new IllegalArgumentException("Id invÃ¡lido:" + id);
+        throw new IllegalArgumentException("Id inválido:" + id);
+    }
+
+    // Alias para fromId para manter consistência com outros enums
+    public static Perfil fromId(Integer id) throws IllegalArgumentException {
+        return valueOf(id);
     }
 }

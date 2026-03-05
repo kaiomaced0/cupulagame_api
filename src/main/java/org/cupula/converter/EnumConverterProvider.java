@@ -4,7 +4,12 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 import org.cupula.model.auth.enums.AuthProvider;
+import org.cupula.model.auth.enums.Perfil;
+import org.cupula.model.auth.pagamento.BandeiraCartao;
 import org.cupula.model.auth.pessoa.Sexo;
+import org.cupula.model.comunity.VisibilidadePerfil;
+import org.cupula.model.entities.enums.MobTipo;
+import org.cupula.model.entities.enums.PlayerRaca;
 
 import jakarta.ws.rs.ext.ParamConverter;
 import jakarta.ws.rs.ext.ParamConverterProvider;
@@ -21,6 +26,21 @@ public class EnumConverterProvider implements ParamConverterProvider {
         }
         if (rawType.equals(AuthProvider.class)) {
             return (ParamConverter<T>) new AuthProviderConverter();
+        }
+        if (rawType.equals(BandeiraCartao.class)) {
+            return (ParamConverter<T>) new BandeiraCartaoConverter();
+        }
+        if (rawType.equals(PlayerRaca.class)) {
+            return (ParamConverter<T>) new PlayerRacaConverter();
+        }
+        if (rawType.equals(MobTipo.class)) {
+            return (ParamConverter<T>) new MobTipoConverter();
+        }
+        if (rawType.equals(VisibilidadePerfil.class)) {
+            return (ParamConverter<T>) new VisibilidadePerfilConverter();
+        }
+        if (rawType.equals(Perfil.class)) {
+            return (ParamConverter<T>) new PerfilConverter();
         }
         return null;
     }
