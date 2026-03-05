@@ -12,7 +12,6 @@ import org.cupula.model.auth.Usuario;
 import org.cupula.model.baseatributo.combate.PlayerBaseAtributoCombate;
 import org.cupula.model.comunity.VisibilidadePerfil;
 import org.cupula.model.containers.Inventario;
-import org.cupula.model.containers.enums.ContainerTipo;
 import org.cupula.model.entities.baseview.PlayerTipoBaseTamanho;
 import org.cupula.model.entities.baseview.PlayerTipoCabelo;
 import org.cupula.model.entities.baseview.orelha.PlayerTipoBaseOrelha;
@@ -68,6 +67,9 @@ public class PlayerService {
 
     @Inject
     StructureService structureService;
+
+    @Inject
+    ContainerService containerService;
 
     private final Random random = new Random();
 
@@ -358,13 +360,37 @@ public class PlayerService {
     }
 
     /**
+     * Classe auxiliar para retornar valores calculados de capacidade
+     */
+    public static class CapacidadeInventario {
+        private final Long capacidadeEspaco;
+        private final Long pesoMaximo;
+        
+        public CapacidadeInventario(Long capacidadeEspaco, Long pesoMaximo) {
+            this.capacidadeEspaco = capacidadeEspaco;
+            this.pesoMaximo = pesoMaximo;
+        }
+        
+        public Long getCapacidadeEspaco() {
+            return capacidadeEspaco;
+        }
+        
+        public Long getPesoMaximo() {
+            return pesoMaximo;
+        }
+    }
+
+    /**
      * Calcula a capacidade do inventário baseado nos atributos do player
      * - resistencia: armadura
      * - forca: ad (Attack Damage)
      * - tamanho: média dos tamanhos X, Y, Z
      * - raca: multiplicador específico por raça
+     * 
+     * Retorna apenas os valores calculados. O ContainerService criará o inventário
+     * com visual aleatório e validará os limites contra a base configurada.
      */
-    public Inventario calcularCapacidadeInventario(Player player) {
+    public CapacidadeInventario calcularCapacidadeInventario(Player player) {
         if (player.getArmadura() == null || player.getAd() == null || 
             player.getTamanhoX() == null || player.getTamanhoY() == null || 
             player.getTamanhoZ() == null || player.getRaca() == null) {
@@ -386,14 +412,7 @@ public class PlayerService {
         Long pesoMaximo = Math.round(50 + (player.getArmadura() * 10) + (player.getAd() * 5) + 
                                       (tamanhoMedio * multiplicadorRaca * 0.3));
         
-        // Criar novo inventário
-        Inventario inventario = new Inventario();
-        inventario.setContainerTipo(ContainerTipo.INVENTARIO);
-        inventario.setCapacidadeMaximaEspaco(capacidadeEspaco);
-        inventario.setPesoMaximo(pesoMaximo);
-        inventario.setPlayer(player);
-        
-        return inventario;
+        return new CapacidadeInventario(capacidadeEspaco, pesoMaximo);
     }
 
     /**
@@ -447,9 +466,17 @@ public class PlayerService {
         // Aplicar atributos de combate baseado na raça
         aplicarAtributosCombate(player, racaSorteada);
         
-        // Criar inventário com capacidade baseada nos atributos
-        Inventario inventario = calcularCapacidadeInventario(player);
-        inventarioRepository.persist(inventario);
+        // Calcular capacidade do inventário baseado nos atributos
+        CapacidadeInventario capacidade = calcularCapacidadeInventario(player);
+        
+        // Criar inventário com visual aleatório através do ContainerService
+        // O visual é sorteado entre as configurações base de INVENTARIO
+        Inventario inventario = containerService.criarInventario(
+            player, 
+            capacidade.getCapacidadeEspaco(), 
+            capacidade.getPesoMaximo()
+        );
+        
         player.setInventario(inventario);
         
         player.setStatus(status);

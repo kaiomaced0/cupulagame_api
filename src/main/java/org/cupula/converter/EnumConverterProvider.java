@@ -8,8 +8,10 @@ import org.cupula.model.auth.enums.Perfil;
 import org.cupula.model.auth.pagamento.BandeiraCartao;
 import org.cupula.model.auth.pessoa.Sexo;
 import org.cupula.model.comunity.VisibilidadePerfil;
+import org.cupula.model.containers.enums.ContainerTipo;
 import org.cupula.model.entities.enums.MobTipo;
 import org.cupula.model.entities.enums.PlayerRaca;
+import org.cupula.model.structures.enums.ColorMaterialTipo;
 import org.cupula.model.structures.enums.StructureTipo;
 
 import jakarta.ws.rs.ext.ParamConverter;
@@ -45,6 +47,12 @@ public class EnumConverterProvider implements ParamConverterProvider {
         }
         if (rawType.equals(StructureTipo.class)) {
             return (ParamConverter<T>) new StructureTipoConverter();
+        }
+        if (rawType.equals(ContainerTipo.class)) {
+            return (ParamConverter<T>) new ContainerTipoConverter();
+        }
+        if (rawType.equals(ColorMaterialTipo.class)) {
+            return (ParamConverter<T>) new ColorMaterialTipoConverter();
         }
         return null;
     }

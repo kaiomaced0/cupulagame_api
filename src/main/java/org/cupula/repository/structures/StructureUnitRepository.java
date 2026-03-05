@@ -1,12 +1,10 @@
 package org.cupula.repository.structures;
 
-import org.cupula.model.structures.ItemStructure;
+import org.cupula.model.structures.StructureUnit;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class ItemStructureRepository implements PanacheRepository<ItemStructure> {   
-    
+public class StructureUnitRepository implements PanacheRepository<StructureUnit> {   
 }
-

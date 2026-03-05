@@ -9,7 +9,12 @@ import java.util.stream.Collectors;
 import org.cupula.dto.auth.CreateUsuarioRequest;
 import org.cupula.dto.auth.UpdateUsuarioRequest;
 import org.cupula.dto.responses.usuario.UsuarioResponseDTO;
+import org.cupula.dto.usuario.response.FavoritasResponse;
+import org.cupula.dto.usuario.response.StructureFavoritaResponse;
+import org.cupula.dto.usuario.response.StructureUnitFavoritaResponse;
 import org.cupula.model.auth.Usuario;
+import org.cupula.model.structures.Structure;
+import org.cupula.model.structures.StructureUnit;
 import org.cupula.model.auth.UsuarioProvider;
 import org.cupula.model.auth.enums.AuthProvider;
 import org.cupula.model.auth.enums.Perfil;
@@ -130,5 +135,58 @@ public class UsuarioService {
                 usuario.getLoginLocalHabilitado(),
                 usuario.getPerfis(),
                 providers);
+    }
+
+    public FavoritasResponse buscarFavoritas(Long usuarioId, String nomeFilter, String tipoFilter) {
+        if (usuarioId == null) {
+            return new FavoritasResponse(List.of(), List.of());
+        }
+
+        Usuario usuario = usuarioRepository.findById(usuarioId);
+        if (usuario == null) {
+            return new FavoritasResponse(List.of(), List.of());
+        }
+
+        List<Structure> structures = usuario.getStructureFavoritas() != null 
+            ? new java.util.ArrayList<>(usuario.getStructureFavoritas())
+            : List.of();
+
+        List<StructureUnit> structureUnits = usuario.getStructureUnitFavoritas() != null 
+            ? new java.util.ArrayList<>(usuario.getStructureUnitFavoritas())
+            : List.of();
+
+        // Filtrar por nome
+        if (nomeFilter != null && !nomeFilter.trim().isEmpty()) {
+            String filterLower = nomeFilter.trim().toLowerCase();
+            structures = structures.stream()
+                .filter(s -> s.getNome() != null && s.getNome().toLowerCase().contains(filterLower))
+                .collect(Collectors.toList());
+            
+            structureUnits = structureUnits.stream()
+                .filter(s -> s.getNome() != null && s.getNome().toLowerCase().contains(filterLower))
+                .collect(Collectors.toList());
+        }
+
+        // Filtrar por tipo (nome do enum)
+        if (tipoFilter != null && !tipoFilter.trim().isEmpty()) {
+            String filterLower = tipoFilter.trim().toLowerCase();
+            structures = structures.stream()
+                .filter(s -> s.getTipo() != null && s.getTipo().name().toLowerCase().contains(filterLower))
+                .collect(Collectors.toList());
+            
+            structureUnits = structureUnits.stream()
+                .filter(s -> s.getTipo() != null && s.getTipo().name().toLowerCase().contains(filterLower))
+                .collect(Collectors.toList());
+        }
+
+        List<StructureFavoritaResponse> structureResponses = structures.stream()
+            .map(StructureFavoritaResponse::from)
+            .collect(Collectors.toList());
+
+        List<StructureUnitFavoritaResponse> structureUnitResponses = structureUnits.stream()
+            .map(StructureUnitFavoritaResponse::from)
+            .collect(Collectors.toList());
+
+        return new FavoritasResponse(structureResponses, structureUnitResponses);
     }
 }

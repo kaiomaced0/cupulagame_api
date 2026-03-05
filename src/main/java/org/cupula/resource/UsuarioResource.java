@@ -7,6 +7,7 @@ import org.cupula.dto.auth.UpdateUsuarioRequest;
 import org.cupula.dto.responses.usuario.UsuarioResponseDTO;
 import org.cupula.dto.usuario.request.AdicionarAmigoRequest;
 import org.cupula.dto.usuario.response.AmizadeResponse;
+import org.cupula.dto.usuario.response.FavoritasResponse;
 import org.cupula.model.auth.Usuario;
 import org.cupula.repository.auth.UsuarioRepository;
 import org.cupula.service.AmizadeService;
@@ -23,6 +24,7 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
@@ -93,6 +95,33 @@ public class UsuarioResource {
             return Response.status(Status.NO_CONTENT).build();
         }
         return Response.status(Status.NOT_FOUND).build();
+    }
+
+    // ==================== ENDPOINTS DE FAVORITAS ====================
+
+    @GET
+    @Path("/favoritas")
+    @RolesAllowed({"User", "Admin"})
+    public Response buscarFavoritas(
+            @QueryParam("nome") String nomeFilter,
+            @QueryParam("tipo") String tipoFilter) {
+        try {
+            String nickName = jwt.getSubject();
+            Usuario usuario = usuarioRepository.findByNickName(nickName);
+            
+            if (usuario == null) {
+                return Response.status(Status.UNAUTHORIZED)
+                    .entity("Usuario nao encontrado")
+                    .build();
+            }
+
+            FavoritasResponse response = usuarioService.buscarFavoritas(usuario.getId(), nomeFilter, tipoFilter);
+            return Response.ok(response).build();
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR)
+                .entity("Erro ao buscar favoritas: " + e.getMessage())
+                .build();
+        }
     }
 
     // ==================== ENDPOINTS DE AMIZADE ====================
