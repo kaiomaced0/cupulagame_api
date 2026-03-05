@@ -5,11 +5,13 @@ import java.time.LocalDateTime;
 import org.cupula.model.EntityClass;
 import org.cupula.model.auth.Usuario;
 import org.cupula.model.comunity.VisibilidadePerfil;
+import org.cupula.model.containers.Inventario;
 import org.cupula.model.entities.baseview.PlayerTipoCabelo;
 import org.cupula.model.entities.enums.PlayerRaca;
 import org.cupula.model.islands.Ilha;
 import org.cupula.model.structures.view.ColorMaterial;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -52,6 +54,9 @@ public class Player extends EntityClass {
     @OneToOne
     @JoinColumn(name = "status_id")
     private PlayerStatus status;
+
+    @OneToOne(mappedBy = "player", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Inventario inventario;
 
     @ManyToOne
     @JoinColumn(name = "ilha_atual_id")
@@ -179,6 +184,17 @@ public class Player extends EntityClass {
 
     public void setStatus(PlayerStatus status) {
         this.status = status;
+    }
+
+    public Inventario getInventario() {
+        return inventario;
+    }
+
+    public void setInventario(Inventario inventario) {
+        this.inventario = inventario;
+        if (inventario != null) {
+            inventario.setPlayer(this);
+        }
     }
 
     public Ilha getIlhaAtual() {

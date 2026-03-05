@@ -11,6 +11,8 @@ import org.cupula.dto.player.response.PlayerResponse;
 import org.cupula.model.auth.Usuario;
 import org.cupula.model.baseatributo.combate.PlayerBaseAtributoCombate;
 import org.cupula.model.comunity.VisibilidadePerfil;
+import org.cupula.model.containers.Inventario;
+import org.cupula.model.containers.enums.ContainerTipo;
 import org.cupula.model.entities.baseview.PlayerTipoBaseTamanho;
 import org.cupula.model.entities.baseview.PlayerTipoCabelo;
 import org.cupula.model.entities.baseview.orelha.PlayerTipoBaseOrelha;
@@ -21,6 +23,7 @@ import org.cupula.model.entities.player.PlayerPosicao;
 import org.cupula.model.entities.player.PlayerStatus;
 import org.cupula.model.structures.view.ColorMaterial;
 import org.cupula.repository.baseatributo.PlayerBaseAtributoCombateRepository;
+import org.cupula.repository.containers.InventarioRepository;
 import org.cupula.repository.entities.baseview.PlayerTipoBaseTamanhoRepository;
 import org.cupula.repository.entities.baseview.PlayerTipoCabeloRepository;
 import org.cupula.repository.entities.baseview.orelha.PlayerTipoBaseOrelhaRepository;
@@ -59,6 +62,9 @@ public class PlayerService {
 
     @Inject
     PlayerBaseAtributoCombateRepository playerBaseAtributoCombateRepository;
+
+    @Inject
+    InventarioRepository inventarioRepository;
 
     private final Random random = new Random();
 
@@ -335,7 +341,57 @@ public class PlayerService {
     }
 
     /**
-     * 
+     * Retorna o multiplicador de capacidade baseado na raça do player
+     */
+    private double getMultiplicadorRaca(PlayerRaca raca) {
+        return switch (raca) {
+            case GIGANTE -> 2.0;  // Gigantes têm o dobro de capacidade
+            case ORC -> 1.5;      // Orcs têm 50% a mais
+            case HUMANO -> 1.0;   // Humanos têm capacidade padrão
+            case ANAO -> 0.9;     // Anões têm 10% a menos
+            case ELFO -> 0.8;     // Elfos têm 20% a menos
+            case GOBLIN -> 0.6;   // Goblins têm 40% a menos
+        };
+    }
+
+    /**
+     * Calcula a capacidade do inventário baseado nos atributos do player
+     * - resistencia: armadura
+     * - forca: ad (Attack Damage)
+     * - tamanho: média dos tamanhos X, Y, Z
+     * - raca: multiplicador específico por raça
+     */
+    public Inventario calcularCapacidadeInventario(Player player) {
+        if (player.getArmadura() == null || player.getAd() == null || 
+            player.getTamanhoX() == null || player.getTamanhoY() == null || 
+            player.getTamanhoZ() == null || player.getRaca() == null) {
+            throw new IllegalStateException("Player deve ter todos os atributos definidos para calcular capacidade");
+        }
+
+        // Cálculo do tamanho médio
+        double tamanhoMedio = (player.getTamanhoX() + player.getTamanhoY() + player.getTamanhoZ()) / 3.0;
+        
+        // Multiplicador racial
+        double multiplicadorRaca = getMultiplicadorRaca(player.getRaca());
+        
+        // Capacidade Máxima de Espaço (slots)
+        // Base: 100 slots + tamanho médio * multiplicador racial * 0.5
+        Long capacidadeEspaco = Math.round(100 + (tamanhoMedio * multiplicadorRaca * 0.5));
+        
+        // Peso Máximo (em unidades de peso)
+        // Base: 50 + (armadura * 10) + (ad * 5) + (tamanho médio * multiplicador racial * 0.3)
+        Long pesoMaximo = Math.round(50 + (player.getArmadura() * 10) + (player.getAd() * 5) + 
+                                      (tamanhoMedio * multiplicadorRaca * 0.3));
+        
+        // Criar novo inventário
+        Inventario inventario = new Inventario();
+        inventario.setContainerTipo(ContainerTipo.INVENTARIO);
+        inventario.setCapacidadeMaximaEspaco(capacidadeEspaco);
+        inventario.setPesoMaximo(pesoMaximo);
+        inventario.setPlayer(player);
+        
+        return inventario;
+    }
 
     /**
      * Cria um novo player para o usuário logado
@@ -387,6 +443,11 @@ public class PlayerService {
         
         // Aplicar atributos de combate baseado na raça
         aplicarAtributosCombate(player, racaSorteada);
+        
+        // Criar inventário com capacidade baseada nos atributos
+        Inventario inventario = calcularCapacidadeInventario(player);
+        inventarioRepository.persist(inventario);
+        player.setInventario(inventario);
         
         player.setStatus(status);
         

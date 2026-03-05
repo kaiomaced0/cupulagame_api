@@ -2,8 +2,8 @@ package org.cupula.resource;
 
 import java.util.List;
 
-import org.cupula.dto.player.request.AtualizarPosicaoPlayerRequest;
 import org.cupula.dto.player.request.AlterarNickNameRequest;
+import org.cupula.dto.player.request.AtualizarPosicaoPlayerRequest;
 import org.cupula.dto.player.request.CriarPlayerRequest;
 import org.cupula.dto.player.response.PlayerResponse;
 import org.cupula.model.auth.Usuario;
@@ -46,11 +46,21 @@ public class PlayerResource {
     JsonWebToken jwt;
 
     @POST
-    @PermitAll
+    @RolesAllowed({"User", "Admin"})
     public Response criarPlayer(CriarPlayerRequest request) {
         try {
-            // Cria player sem associar a usuário
-            PlayerResponse response = playerService.criarPlayer(null, request);
+            // Busca o usuário logado
+            String nickName = jwt.getSubject();
+            Usuario usuario = usuarioRepository.findByNickName(nickName);
+
+            if (usuario == null) {
+                return Response.status(Status.UNAUTHORIZED)
+                    .entity("Usuario nao encontrado")
+                    .build();
+            }
+
+            // Cria player associado ao usuário logado
+            PlayerResponse response = playerService.criarPlayer(usuario, request);
             return Response.status(Status.CREATED).entity(response).build();
         } catch (IllegalArgumentException e) {
             return Response.status(Status.BAD_REQUEST)
@@ -65,9 +75,32 @@ public class PlayerResource {
 
     @PUT
     @Path("/{id}/nickname")
-    @PermitAll
+    @RolesAllowed({"User", "Admin"})
     public Response alterarNickName(@PathParam("id") Long id, AlterarNickNameRequest request) {
         try {
+            // Validar ownership do player
+            String nickName = jwt.getSubject();
+            Usuario usuario = usuarioRepository.findByNickName(nickName);
+            
+            if (usuario == null) {
+                return Response.status(Status.UNAUTHORIZED)
+                    .entity("Usuario nao encontrado")
+                    .build();
+            }
+
+            org.cupula.model.entities.player.Player player = playerRepository.findById(id);
+            if (player == null) {
+                return Response.status(Status.NOT_FOUND)
+                    .entity("Player nao encontrado")
+                    .build();
+            }
+
+            if (player.getUsuario() == null || !player.getUsuario().getId().equals(usuario.getId())) {
+                return Response.status(Status.FORBIDDEN)
+                    .entity("Player nao pertence ao usuario autenticado")
+                    .build();
+            }
+
             PlayerResponse response = playerService.alterarNickName(id, request.nickName(), request.tag());
             return Response.ok(response).build();
         } catch (IllegalArgumentException e) {
@@ -117,9 +150,37 @@ public class PlayerResource {
 
     @PUT
     @Path("/{id}/posicao")
-    @PermitAll
+    @RolesAllowed({"User", "Admin"})
     public Response atualizarPosicao(@PathParam("id") Long id, AtualizarPosicaoPlayerRequest request) {
         try {
+            // Validar ownership do player ou que está logado como esse player
+            String nickName = jwt.getSubject();
+            Usuario usuario = usuarioRepository.findByNickName(nickName);
+            
+            if (usuario == null) {
+                return Response.status(Status.UNAUTHORIZED)
+                    .entity("Usuario nao encontrado")
+                    .build();
+            }
+
+            org.cupula.model.entities.player.Player player = playerRepository.findById(id);
+            if (player == null) {
+                return Response.status(Status.NOT_FOUND)
+                    .entity("Player nao encontrado")
+                    .build();
+            }
+
+            // Verificar se o player pertence ao usuário OU se está logado como esse player
+            Long playerIdNoToken = jwt.getClaim("playerId");
+            boolean isOwner = player.getUsuario() != null && player.getUsuario().getId().equals(usuario.getId());
+            boolean isLoggedAsPlayer = playerIdNoToken != null && playerIdNoToken.equals(id);
+
+            if (!isOwner && !isLoggedAsPlayer) {
+                return Response.status(Status.FORBIDDEN)
+                    .entity("Nao autorizado a mover este player")
+                    .build();
+            }
+
             playerService.atualizarPosicao(id, request.x(), request.y(), request.z());
             return Response.ok().entity("Posicao atualizada com sucesso").build();
         } catch (IllegalArgumentException e) {
@@ -138,16 +199,15 @@ public class PlayerResource {
     }
 
     /**
-     * Gera um token de sessão "como" o player selecionado. O usuário precisa
-     * estar logado e o player deve pertencer a ele.
+     * Lista os players do usuário logado
      */
-    @POST
-    @Path("/{id}/login")
+    @GET
+    @Path("/meus")
     @RolesAllowed({"User", "Admin"})
-    public Response loginAsPlayer(@PathParam("id") Long id) {
+    public Response listarMeusPlayers() {
         try {
             String nickName = jwt.getSubject();
-            org.cupula.model.auth.Usuario usuario = usuarioRepository.findByNickName(nickName);
+            Usuario usuario = usuarioRepository.findByNickName(nickName);
 
             if (usuario == null) {
                 return Response.status(Status.UNAUTHORIZED)
@@ -155,23 +215,11 @@ public class PlayerResource {
                     .build();
             }
 
-            org.cupula.model.entities.player.Player player = playerRepository.findById(id);
-            if (player == null) {
-                return Response.status(Status.NOT_FOUND).entity("Player nao encontrado").build();
-            }
-
-            if (player.getUsuario() == null || !player.getUsuario().getId().equals(usuario.getId())) {
-                return Response.status(Status.FORBIDDEN).entity("Player nao pertence ao usuario autenticado").build();
-            }
-
-            String token = tokenJwtService.generateJwt(usuario, player);
-
-            org.cupula.dto.auth.PlayerLoginResponse resp = new org.cupula.dto.auth.PlayerLoginResponse(player.getId(), token);
-
-            return Response.ok(resp).build();
+            List<PlayerResponse> players = playerService.listarPlayersDoUsuario(usuario);
+            return Response.ok(players).build();
         } catch (Exception e) {
             return Response.status(Status.INTERNAL_SERVER_ERROR)
-                .entity("Erro ao logar como player: " + e.getMessage())
+                .entity("Erro ao listar players: " + e.getMessage())
                 .build();
         }
     }
