@@ -7,8 +7,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-@Entity(name = "item_structure_part")
-public class ItemStructurePart extends EntityClass {
+@Entity(name = "structure_unit_part")
+public class StructureUnitPart extends EntityClass {
+    
+    private String nome;
     
     private Long inicioX;
     private Long inicioY;
@@ -25,6 +27,13 @@ public class ItemStructurePart extends EntityClass {
     private ColorMaterial color;
 
     private Boolean areaContato;
+    
+    public String getNome() {
+        return nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
     public Long getInicioX() {
         return inicioX;
     }

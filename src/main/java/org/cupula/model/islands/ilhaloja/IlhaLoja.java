@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.cupula.model.EntityClass;
 import org.cupula.model.islands.Ilha;
-import org.cupula.model.structures.ItemStructure;
+import org.cupula.model.structures.StructureUnit;
 import org.cupula.model.structures.Structure;
 
 import jakarta.persistence.Entity;
@@ -32,7 +32,7 @@ public class IlhaLoja extends EntityClass {
     // essa é a area onde quando o player entra no "range" disponibiliza a tela da loja para ele acessar. (ao sair dessa area, a tela some)
     @OneToMany
     @JoinColumn(name = "ilha_loja_id")
-    private List<ItemStructure> parteDaEstruturaQueAbreALoja;
+    private List<StructureUnit> parteDaEstruturaQueAbreALoja;
 
     // Getters e Setters
     public Ilha getIlha() {
@@ -75,11 +75,11 @@ public class IlhaLoja extends EntityClass {
         this.estruturaLoja = estruturaLoja;
     }
 
-    public List<ItemStructure> getParteDaEstruturaQueAbreALoja() {
+    public List<StructureUnit> getParteDaEstruturaQueAbreALoja() {
         return parteDaEstruturaQueAbreALoja;
     }
 
-    public void setParteDaEstruturaQueAbreALoja(List<ItemStructure> parteDaEstruturaQueAbreALoja) {
+    public void setParteDaEstruturaQueAbreALoja(List<StructureUnit> parteDaEstruturaQueAbreALoja) {
         this.parteDaEstruturaQueAbreALoja = parteDaEstruturaQueAbreALoja;
     }
 }

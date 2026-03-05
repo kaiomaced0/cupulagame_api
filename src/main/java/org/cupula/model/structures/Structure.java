@@ -19,9 +19,11 @@ import jakarta.persistence.OneToMany;
 @Entity(name = "structure")
 public class Structure extends EntityClass {
 
+    private String nome;
+
     @OneToMany
     @JoinColumn(name = "structure_id")
-    private List<ItemStructure> itemStructures;
+    private List<StructureUnit> structureUnits;
 
     @OneToMany
     @JoinColumn(name = "structure_id")
@@ -42,11 +44,17 @@ public class Structure extends EntityClass {
     @JoinColumn(name = "arena_pvp_id")
     private ArenaPvp arenaPvp;
     
-    public List<ItemStructure> getItemStructures() {
-        return itemStructures;
+    public String getNome() {
+        return nome;
     }
-    public void setItemStructures(List<ItemStructure> itemStructures) {
-        this.itemStructures = itemStructures;
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public List<StructureUnit> getStructureUnits() {
+        return structureUnits;
+    }
+    public void setStructureUnits(List<StructureUnit> structureUnits) {
+        this.structureUnits = structureUnits;
     }
     public List<Container> getContainers() {
         return containers;

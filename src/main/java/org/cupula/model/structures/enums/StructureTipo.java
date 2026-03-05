@@ -10,7 +10,8 @@ public enum StructureTipo {
     EMPRESA(),
     GUILDA(),
     SALA_RESTRITA(),
-    PRISAO();
+    PRISAO(),
+    GERAL();
 
     public static StructureTipo fromId(Integer id) {
         if (id == null) return null;

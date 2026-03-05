@@ -1,7 +1,7 @@
 package org.cupula.model.items;
 
 import org.cupula.model.items.enums.ItemTier;
-import org.cupula.model.structures.ItemStructure;
+import org.cupula.model.structures.StructureUnit;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
@@ -18,8 +18,8 @@ import jakarta.persistence.OneToOne;
 public class Item extends EntityClass {
 
     @OneToOne
-    @JoinColumn(name = "item_structure_id")
-    private ItemStructure itemStructure;
+    @JoinColumn(name = "structure_unit_id")
+    private StructureUnit structureUnit;
     @ManyToOne
     @JoinColumn(name = "item_tipo_id")
     private ItemTipo itemTipo;
@@ -62,12 +62,12 @@ public class Item extends EntityClass {
     private Long buffSorte;
     private Long buffVelocidade;
 
-    public ItemStructure getItemStructure() {
-        return itemStructure;
+    public StructureUnit getStructureUnit() {
+        return structureUnit;
     }
 
-    public void setItemStructure(ItemStructure itemStructure) {
-        this.itemStructure = itemStructure;
+    public void setStructureUnit(StructureUnit structureUnit) {
+        this.structureUnit = structureUnit;
     }
 
     public ItemTipo getItemTipo() {

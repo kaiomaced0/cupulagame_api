@@ -3,7 +3,7 @@ package org.cupula.model.items;
 import java.util.List;
 
 import org.cupula.model.items.enums.ItemTipoTag;
-import org.cupula.model.structures.ItemStructure;
+import org.cupula.model.structures.StructureUnit;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -20,8 +20,8 @@ public class ItemTipo extends EntityClass {
     private Long pesoPorQuantidade;
 
     @OneToOne
-    @JoinColumn(name = "item_structure_base_id")
-    private ItemStructure itemStructureBase;
+    @JoinColumn(name = "structure_unit_base_id")
+    private StructureUnit structureUnitBase;
     
     private List<ItemTipoTag> tagsBase;
     public String getNome() {
@@ -48,11 +48,11 @@ public class ItemTipo extends EntityClass {
     public void setPesoPorQuantidade(Long pesoPorQuantidade) {
         this.pesoPorQuantidade = pesoPorQuantidade;
     }
-    public ItemStructure getItemStructureBase() {
-        return itemStructureBase;
+    public StructureUnit getStructureUnitBase() {
+        return structureUnitBase;
     }
-    public void setItemStructureBase(ItemStructure itemStructureBase) {
-        this.itemStructureBase = itemStructureBase;
+    public void setStructureUnitBase(StructureUnit structureUnitBase) {
+        this.structureUnitBase = structureUnitBase;
     }
     public List<ItemTipoTag> getTagsBase() {
         return tagsBase;

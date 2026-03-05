@@ -1,4 +1,4 @@
-package org.cupula.model.structures.basestructure;
+ package org.cupula.model.structures.basestructure;
 
 import org.cupula.model.EntityClass;
 import org.cupula.model.entities.enums.PlayerRaca;
@@ -11,8 +11,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-@Entity(name = "base_structure_tipo")
-public class BaseStructureTipo extends EntityClass {
+@Entity(name = "base_structure")
+public class BaseStructure extends EntityClass {
     
     @Enumerated(EnumType.STRING)
     private StructureTipo structureTipo;
@@ -80,10 +80,12 @@ public class BaseStructureTipo extends EntityClass {
         this.possibilidade = possibilidade;
     }
 
+    @Override
     public Boolean getAtivo() {
         return ativo;
     }
 
+    @Override
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
     }

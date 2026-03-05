@@ -1,4 +1,5 @@
 package org.cupula.model.auth;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -9,6 +10,7 @@ import org.cupula.model.auth.pessoa.Pessoa;
 import org.cupula.model.configuracoes.BackgroundAsset;
 import org.cupula.model.entities.player.Player;
 import org.cupula.model.structures.Structure;
+import org.cupula.model.structures.StructureUnit;
 
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
@@ -17,6 +19,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
@@ -59,6 +63,22 @@ public class Usuario extends EntityClass{
     @OneToOne
     @JoinColumn(name = "background_asset_id")
     private BackgroundAsset backGroundAsset;
+
+    @ManyToMany
+    @JoinTable(
+        name = "usuario_structure_favorita",
+        joinColumns = @JoinColumn(name = "usuario_id"),
+        inverseJoinColumns = @JoinColumn(name = "structure_id")
+    )
+    private Set<Structure> structureFavoritas = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+        name = "usuario_structure_unit_favorita",
+        joinColumns = @JoinColumn(name = "usuario_id"),
+        inverseJoinColumns = @JoinColumn(name = "structure_unit_id")
+    )
+    private Set<StructureUnit> structureUnitFavoritas = new HashSet<>();
 
 
     public String getEmail() {
@@ -156,6 +176,22 @@ public class Usuario extends EntityClass{
 
     public void setBackGroundAsset(BackgroundAsset backGroundAsset) {
         this.backGroundAsset = backGroundAsset;
+    }
+
+    public Set<Structure> getStructureFavoritas() {
+        return structureFavoritas;
+    }
+
+    public void setStructureFavoritas(Set<Structure> structureFavoritas) {
+        this.structureFavoritas = structureFavoritas;
+    }
+
+    public Set<StructureUnit> getStructureUnitFavoritas() {
+        return structureUnitFavoritas;
+    }
+
+    public void setStructureUnitFavoritas(Set<StructureUnit> structureUnitFavoritas) {
+        this.structureUnitFavoritas = structureUnitFavoritas;
     }
 
 }

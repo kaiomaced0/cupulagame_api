@@ -22,7 +22,7 @@ public class BaseItemStructure extends EntityClass {
 
     @OneToMany
     @JoinColumn(name = "base_item_structure_id")
-    private List<BaseItemItemStructurePart> parts;
+    private List<BaseItemStructureUnitPart> parts;
 
 
     public ItemTipo getItem() {
@@ -37,10 +37,10 @@ public class BaseItemStructure extends EntityClass {
     public void setPossibilidade(Long possibilidade) {
         this.possibilidade = possibilidade;
     }
-    public List<BaseItemItemStructurePart> getParts() {
+    public List<BaseItemStructureUnitPart> getParts() {
         return parts;
     }
-    public void setParts(List<BaseItemItemStructurePart> parts) {
+    public void setParts(List<BaseItemStructureUnitPart> parts) {
         this.parts = parts;
     }
 
