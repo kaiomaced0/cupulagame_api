@@ -66,6 +66,9 @@ public class PlayerService {
     @Inject
     InventarioRepository inventarioRepository;
 
+    @Inject
+    StructureService structureService;
+
     private final Random random = new Random();
 
     /**
@@ -452,6 +455,9 @@ public class PlayerService {
         player.setStatus(status);
         
         playerRepository.persist(player);
+        
+        // Criar HOME_PLAYER para o player
+        structureService.criarHomePlayer(player);
         
         return PlayerResponse.from(player);
     }

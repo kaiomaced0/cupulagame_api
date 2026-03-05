@@ -10,6 +10,7 @@ import org.cupula.model.auth.pessoa.Sexo;
 import org.cupula.model.comunity.VisibilidadePerfil;
 import org.cupula.model.entities.enums.MobTipo;
 import org.cupula.model.entities.enums.PlayerRaca;
+import org.cupula.model.structures.enums.StructureTipo;
 
 import jakarta.ws.rs.ext.ParamConverter;
 import jakarta.ws.rs.ext.ParamConverterProvider;
@@ -41,6 +42,9 @@ public class EnumConverterProvider implements ParamConverterProvider {
         }
         if (rawType.equals(Perfil.class)) {
             return (ParamConverter<T>) new PerfilConverter();
+        }
+        if (rawType.equals(StructureTipo.class)) {
+            return (ParamConverter<T>) new StructureTipoConverter();
         }
         return null;
     }

@@ -11,5 +11,18 @@ public enum StructureTipo {
     GUILDA(),
     SALA_RESTRITA(),
     PRISAO();
+
+    public static StructureTipo fromId(Integer id) {
+        if (id == null) return null;
+        StructureTipo[] values = StructureTipo.values();
+        if (id < 0 || id >= values.length) {
+            throw new IllegalArgumentException("ID inválido para StructureTipo: " + id);
+        }
+        return values[id];
+    }
+
+    public Integer getId() {
+        return this.ordinal();
+    }
     
 }
