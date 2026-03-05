@@ -63,6 +63,19 @@ public class Player extends EntityClass {
 
     private LocalDateTime ultimaAlteracaoNickName;
 
+    // Atributos de combate
+    private Double velocidade;
+    private Long hp;
+    private Double armadura;
+    private Double mr; // Magic Resist
+    private Double ad; // Attack Damage
+    private Double ap; // Ability Power
+    private Double as; // Attack Speed
+    private Integer critico; // 0-100 (porcentagem)
+    private Double alcanceAtaque;
+    private Long mana;
+    private Double regeneracaoMana; // Porcentagem por segundo
+
 
     public Usuario getUsuario() {
         return usuario;
@@ -192,6 +205,72 @@ public class Player extends EntityClass {
     }
     public void setUltimaAlteracaoNickName(LocalDateTime ultimaAlteracaoNickName) {
         this.ultimaAlteracaoNickName = ultimaAlteracaoNickName;
+    }
+    public Double getVelocidade() {
+        return velocidade;
+    }
+    public void setVelocidade(Double velocidade) {
+        this.velocidade = velocidade;
+    }
+    public Long getHp() {
+        return hp;
+    }
+    public void setHp(Long hp) {
+        this.hp = hp;
+    }
+    public Double getArmadura() {
+        return armadura;
+    }
+    public void setArmadura(Double armadura) {
+        this.armadura = armadura;
+    }
+    public Double getMr() {
+        return mr;
+    }
+    public void setMr(Double mr) {
+        this.mr = mr;
+    }
+    public Double getAd() {
+        return ad;
+    }
+    public void setAd(Double ad) {
+        this.ad = ad;
+    }
+    public Double getAp() {
+        return ap;
+    }
+    public void setAp(Double ap) {
+        this.ap = ap;
+    }
+    public Double getAs() {
+        return as;
+    }
+    public void setAs(Double as) {
+        this.as = as;
+    }
+    public Integer getCritico() {
+        return critico;
+    }
+    public void setCritico(Integer critico) {
+        this.critico = critico;
+    }
+    public Double getAlcanceAtaque() {
+        return alcanceAtaque;
+    }
+    public void setAlcanceAtaque(Double alcanceAtaque) {
+        this.alcanceAtaque = alcanceAtaque;
+    }
+    public Long getMana() {
+        return mana;
+    }
+    public void setMana(Long mana) {
+        this.mana = mana;
+    }
+    public Double getRegeneracaoMana() {
+        return regeneracaoMana;
+    }
+    public void setRegeneracaoMana(Double regeneracaoMana) {
+        this.regeneracaoMana = regeneracaoMana;
     }
     
 }

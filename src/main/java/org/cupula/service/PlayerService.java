@@ -9,9 +9,10 @@ import java.util.stream.Collectors;
 import org.cupula.dto.player.request.CriarPlayerRequest;
 import org.cupula.dto.player.response.PlayerResponse;
 import org.cupula.model.auth.Usuario;
+import org.cupula.model.baseatributo.combate.PlayerBaseAtributoCombate;
 import org.cupula.model.comunity.VisibilidadePerfil;
-import org.cupula.model.entities.baseview.PlayerTipoCabelo;
 import org.cupula.model.entities.baseview.PlayerTipoBaseTamanho;
+import org.cupula.model.entities.baseview.PlayerTipoCabelo;
 import org.cupula.model.entities.baseview.orelha.PlayerTipoBaseOrelha;
 import org.cupula.model.entities.baseview.orelha.TipoOrelhaColorMaterial;
 import org.cupula.model.entities.enums.PlayerRaca;
@@ -19,8 +20,9 @@ import org.cupula.model.entities.player.Player;
 import org.cupula.model.entities.player.PlayerPosicao;
 import org.cupula.model.entities.player.PlayerStatus;
 import org.cupula.model.structures.view.ColorMaterial;
-import org.cupula.repository.entities.baseview.PlayerTipoCabeloRepository;
+import org.cupula.repository.baseatributo.PlayerBaseAtributoCombateRepository;
 import org.cupula.repository.entities.baseview.PlayerTipoBaseTamanhoRepository;
+import org.cupula.repository.entities.baseview.PlayerTipoCabeloRepository;
 import org.cupula.repository.entities.baseview.orelha.PlayerTipoBaseOrelhaRepository;
 import org.cupula.repository.player.PlayerPosicaoRepository;
 import org.cupula.repository.player.PlayerRepository;
@@ -54,6 +56,9 @@ public class PlayerService {
 
     @Inject
     PlayerTipoBaseOrelhaRepository playerTipoBaseOrelhaRepository;
+
+    @Inject
+    PlayerBaseAtributoCombateRepository playerBaseAtributoCombateRepository;
 
     private final Random random = new Random();
 
@@ -205,6 +210,134 @@ public class PlayerService {
     }
 
     /**
+     * Sorteia uma configuração base de atributos de combate aleatória para a raça
+     */
+    private PlayerBaseAtributoCombate sortearAtributosCombate(PlayerRaca raca) {
+        List<PlayerBaseAtributoCombate> atributos = playerBaseAtributoCombateRepository.findByRaca(raca);
+        
+        if (atributos.isEmpty()) {
+            throw new IllegalStateException("Nenhuma configuração de atributos de combate para a raça " + raca);
+        }
+        
+        return atributos.get(random.nextInt(atributos.size()));
+    }
+
+    /**
+     * Calcula o valor final de um atributo com base no mínimo e variação
+     * Fórmula: valorFinal = minimo + (minimo * variacao * random(0-1))
+     */
+    private Double calcularAtributoDouble(Double minimo, Double variacao) {
+        if (minimo == null || variacao == null) {
+            return minimo;
+        }
+        double randomFactor = random.nextDouble(); // 0.0 a 1.0
+        return minimo + (minimo * variacao * randomFactor);
+    }
+
+    /**
+     * Calcula o valor final de um atributo Long com base no mínimo e variação
+     */
+    private Long calcularAtributoLong(Long minimo, Double variacao) {
+        if (minimo == null || variacao == null) {
+            return minimo;
+        }
+        double randomFactor = random.nextDouble(); // 0.0 a 1.0
+        double valorFinal = minimo + (minimo * variacao * randomFactor);
+        return Math.round(valorFinal);
+    }
+
+    /**
+     * Calcula o valor final de um atributo Integer (crítico) garantindo limite de 0-100
+     */
+    private Integer calcularAtributoCritico(Integer minimo, Double variacao) {
+        if (minimo == null || variacao == null) {
+            return minimo;
+        }
+        double randomFactor = random.nextDouble(); // 0.0 a 1.0
+        double valorFinal = minimo + (minimo * variacao * randomFactor);
+        int resultado = (int) Math.round(valorFinal);
+        
+        // Garantir limite de 0-100 (porcentagem)
+        return Math.min(100, Math.max(0, resultado));
+    }
+
+    /**
+     * Aplica os atributos de combate ao player baseado na configuração sorteada
+     */
+    private void aplicarAtributosCombate(Player player, PlayerRaca raca) {
+        PlayerBaseAtributoCombate baseAtributos = sortearAtributosCombate(raca);
+        
+        // Velocidade
+        player.setVelocidade(calcularAtributoDouble(
+            baseAtributos.getVelocidadeMinimo(), 
+            baseAtributos.getVelocidadeVariacao()
+        ));
+        
+        // HP
+        player.setHp(calcularAtributoLong(
+            baseAtributos.getHpMinimo(), 
+            baseAtributos.getHpVariacao()
+        ));
+        
+        // Armadura
+        player.setArmadura(calcularAtributoDouble(
+            baseAtributos.getArmaduraMinimo(), 
+            baseAtributos.getArmaduraVariacao()
+        ));
+        
+        // Magic Resist
+        player.setMr(calcularAtributoDouble(
+            baseAtributos.getMrMinimo(), 
+            baseAtributos.getMrVariacao()
+        ));
+        
+        // Attack Damage
+        player.setAd(calcularAtributoDouble(
+            baseAtributos.getAdMinimo(), 
+            baseAtributos.getAdVariacao()
+        ));
+        
+        // Ability Power
+        player.setAp(calcularAtributoDouble(
+            baseAtributos.getApMinimo(), 
+            baseAtributos.getApVariacao()
+        ));
+        
+        // Attack Speed
+        player.setAs(calcularAtributoDouble(
+            baseAtributos.getAsMinimo(), 
+            baseAtributos.getAsVariacao()
+        ));
+        
+        // Crítico (0-100%)
+        player.setCritico(calcularAtributoCritico(
+            baseAtributos.getCriticoMinimo(), 
+            baseAtributos.getCriticoVariacao()
+        ));
+        
+        // Alcance de Ataque
+        player.setAlcanceAtaque(calcularAtributoDouble(
+            baseAtributos.getAlcanceAtaqueMinimo(), 
+            baseAtributos.getAlcanceAtaqueVariacao()
+        ));
+        
+        // Mana
+        player.setMana(calcularAtributoLong(
+            baseAtributos.getManaMinimo(), 
+            baseAtributos.getManaVariacao()
+        ));
+        
+        // Regeneração de Mana
+        player.setRegeneracaoMana(calcularAtributoDouble(
+            baseAtributos.getRegeneracaoManaMinimo(), 
+            baseAtributos.getRegeneracaoManaVariacao()
+        ));
+    }
+
+    /**
+     * 
+
+    /**
      * Cria um novo player para o usuário logado
      */
     @Transactional
@@ -251,6 +384,9 @@ public class PlayerService {
         
         // Sortear cor de orelha das possibilidades configuradas
         player.setCorOrelha(sortearCorOrelha(orelhaBase));
+        
+        // Aplicar atributos de combate baseado na raça
+        aplicarAtributosCombate(player, racaSorteada);
         
         player.setStatus(status);
         

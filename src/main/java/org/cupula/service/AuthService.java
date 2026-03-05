@@ -70,16 +70,15 @@ public class AuthService {
             return null;
         }
 
-        AuthProvider provider = request.provider();
         Usuario usuario = null;
 
         if (request.externalId() != null) {
-            usuario = usuarioRepository.findByProvider(provider, request.externalId());
+            usuario = usuarioRepository.findByProvider(request.provider(), request.externalId());
         }
 
         if (usuario == null && request.email() != null) {
             Usuario candidate = usuarioRepository.findByEmail(request.email());
-            if (candidate != null && usuarioRepository.hasProvider(candidate, provider)) {
+            if (candidate != null && usuarioRepository.hasProvider(candidate, request.provider())) {
                 usuario = candidate;
             }
         }
