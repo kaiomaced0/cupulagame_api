@@ -3,5 +3,6 @@ package org.cupula.model.entities.enums;
 public enum MobTipo {
     INIMIGO,
     ANIMAL,
-    VEICULO
+    VEICULO,
+    MORADOR_LOCAL
 }
