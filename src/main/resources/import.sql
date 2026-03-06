@@ -1,32 +1,9 @@
 -- This file allow to write SQL commands that will be emitted in test and dev.
 -- The commands are commented as their support depends of the database
 
--- ColorMaterial - Cores e materiais para personagens
-INSERT INTO color_material (id, name, hexCode, tipo, ativo, dataInclusao) VALUES 
-(1, 'Pele Clara', '#F5D5C5', 'PELE', true, NOW()),
-(2, 'Pele Média', '#D4A574', 'PELE', true, NOW()),
-(3, 'Pele Escura', '#8D5524', 'PELE', true, NOW()),
-(4, 'Pele Negra', '#4A2511', 'PELE', true, NOW()),
-(5, 'Pele Verde Clara', '#8FBC8F', 'PELE', true, NOW()),
-(6, 'Pele Verde Escura', '#556B2F', 'PELE', true, NOW()),
-(7, 'Pele Cinza', '#696969', 'PELE', true, NOW()),
-(8, 'Orelha Natural Clara', '#F5D5C5', 'ORELHA', true, NOW()),
-(9, 'Orelha Natural Média', '#D4A574', 'ORELHA', true, NOW()),
-(10, 'Orelha Natural Escura', '#8D5524', 'ORELHA', true, NOW()),
-(11, 'Orelha Élfica Dourada', '#FFD700', 'ORELHA', true, NOW()),
-(12, 'Orelha Élfica Prateada', '#C0C0C0', 'ORELHA', true, NOW()),
--- Cores adicionais para itens
-(13, 'Madeira Clara', '#D2B48C', 'MATERIAL', true, NOW()),
-(14, 'Madeira Escura', '#8B4513', 'MATERIAL', true, NOW()),
-(15, 'Ferro', '#696969', 'MATERIAL', true, NOW()),
-(16, 'Aço', '#C0C0C0', 'MATERIAL', true, NOW()),
-(17, 'Ouro', '#FFD700', 'MATERIAL', true, NOW()),
-(18, 'Bronze', '#CD7F32', 'MATERIAL', true, NOW()),
-(19, 'Couro Marrom', '#8B4513', 'MATERIAL', true, NOW()),
-(20, 'Couro Preto', '#1C1C1C', 'MATERIAL', true, NOW()),
-(21, 'Tecido Branco', '#F5F5F5', 'MATERIAL', true, NOW()),
-(22, 'Tecido Azul', '#4169E1', 'MATERIAL', true, NOW()),
-(23, 'Tecido Vermelho', '#DC143C', 'MATERIAL', true, NOW());
+-- ==================== COLOR MATERIALS (MOVIDO PARA MyInitializer.java) ====================
+-- Os inserts de ColorMaterial foram movidos para o MyInitializer.java para serem criados programaticamente.
+-- Isso permite melhor controle de dependências e consistência com os outros seeds.
 
 -- ==================== PLAYER TIPO (MOVIDO PARA MyInitializer.java) ====================
 -- Os inserts abaixo foram movidos para o MyInitializer.java para serem criados programaticamente.

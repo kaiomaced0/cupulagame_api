@@ -22,6 +22,7 @@ import org.cupula.model.containers.enums.ContainerTipo;
 import org.cupula.model.structures.Material;
 import org.cupula.model.structures.StructureUnit;
 import org.cupula.model.structures.StructureUnitPart;
+import org.cupula.model.structures.enums.ColorMaterialTipo;
 import org.cupula.model.structures.enums.Layer;
 import org.cupula.model.structures.enums.StructureUnitTipo;
 import org.cupula.model.structures.basestructure.BaseStructure;
@@ -101,7 +102,10 @@ public class MyInitializer {
     public void init(@Observes StartupEvent event) {
         System.out.println("=== Iniciando Seeds ===");
         
-        // Seed de ItemTipo (primeiro, pois são usados em vários lugares)
+        // Seed de ColorMaterial (PRIMEIRO - usado por todos os outros)
+        seedColorMaterials();
+        
+        // Seed de ItemTipo (usado em vários lugares)
         seedItemTipos();
         
         // Seed de PlayerTipo (primeiro, pois são usados na criação de players)
@@ -814,6 +818,59 @@ public class MyInitializer {
         base.setAtivo(true);
         base.setDataInclusao(LocalDateTime.now());
         baseContainerStructureUnitRepository.persist(base);
+    }
+
+    private void seedColorMaterials() {
+        try {
+            if (colorMaterialRepository.count() > 0) {
+                System.out.println("✓ ColorMaterials já existem, pulando seed");
+                return;
+            }
+
+            // PELE - Cores de pele para personagens (IDs 1-7)
+            createColorMaterial("Pele Clara", "#F5D5C5", ColorMaterialTipo.PELE);
+            createColorMaterial("Pele Média", "#D4A574", ColorMaterialTipo.PELE);
+            createColorMaterial("Pele Escura", "#8D5524", ColorMaterialTipo.PELE);
+            createColorMaterial("Pele Negra", "#4A2511", ColorMaterialTipo.PELE);
+            createColorMaterial("Pele Verde Clara", "#8FBC8F", ColorMaterialTipo.PELE);
+            createColorMaterial("Pele Verde Escura", "#556B2F", ColorMaterialTipo.PELE);
+            createColorMaterial("Pele Cinza", "#696969", ColorMaterialTipo.PELE);
+
+            // ORELHA - Cores de orelha (IDs 8-12)
+            createColorMaterial("Orelha Natural Clara", "#F5D5C5", ColorMaterialTipo.ORELHA);
+            createColorMaterial("Orelha Natural Média", "#D4A574", ColorMaterialTipo.ORELHA);
+            createColorMaterial("Orelha Natural Escura", "#8D5524", ColorMaterialTipo.ORELHA);
+            createColorMaterial("Orelha Élfica Dourada", "#FFD700", ColorMaterialTipo.ORELHA);
+            createColorMaterial("Orelha Élfica Prateada", "#C0C0C0", ColorMaterialTipo.ORELHA);
+
+            // MATERIAL - Cores para materiais de itens/containers (IDs 13-23)
+            createColorMaterial("Madeira Clara", "#D2B48C", ColorMaterialTipo.MATERIAL);
+            createColorMaterial("Madeira Escura", "#8B4513", ColorMaterialTipo.MATERIAL);
+            createColorMaterial("Ferro", "#696969", ColorMaterialTipo.MATERIAL);
+            createColorMaterial("Aço", "#C0C0C0", ColorMaterialTipo.MATERIAL);
+            createColorMaterial("Ouro", "#FFD700", ColorMaterialTipo.MATERIAL);
+            createColorMaterial("Bronze", "#CD7F32", ColorMaterialTipo.MATERIAL);
+            createColorMaterial("Couro Marrom", "#8B4513", ColorMaterialTipo.MATERIAL);
+            createColorMaterial("Couro Preto", "#1C1C1C", ColorMaterialTipo.MATERIAL);
+            createColorMaterial("Tecido Branco", "#F5F5F5", ColorMaterialTipo.MATERIAL);
+            createColorMaterial("Tecido Azul", "#4169E1", ColorMaterialTipo.MATERIAL);
+            createColorMaterial("Tecido Vermelho", "#DC143C", ColorMaterialTipo.MATERIAL);
+
+            System.out.println("✓ ColorMaterials criados (23 registros)");
+        } catch (Exception e) {
+            System.err.println("Erro ao criar ColorMaterials: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void createColorMaterial(String name, String hexCode, ColorMaterialTipo tipo) {
+        ColorMaterial entity = new ColorMaterial();
+        entity.setName(name);
+        entity.setHexCode(hexCode);
+        entity.setTipo(tipo);
+        entity.setAtivo(true);
+        entity.setDataInclusao(LocalDateTime.now());
+        colorMaterialRepository.persist(entity);
     }
 
     private void seedItemTipos() {
