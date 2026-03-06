@@ -315,7 +315,7 @@ public class PlayerService {
         ));
         
         // Attack Speed
-        player.setAs(calcularAtributoDouble(
+        player.setAttackSpeed(calcularAtributoDouble(
             baseAtributos.getAsMinimo(), 
             baseAtributos.getAsVariacao()
         ));

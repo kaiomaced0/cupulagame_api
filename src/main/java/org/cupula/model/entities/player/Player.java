@@ -51,8 +51,7 @@ public class Player extends EntityClass {
     @JoinColumn(name = "cor_orelha_id")
     private ColorMaterial corOrelha;
 
-    @OneToOne
-    @JoinColumn(name = "status_id")
+    @OneToOne(mappedBy = "player", cascade = CascadeType.ALL, orphanRemoval = true)
     private PlayerStatus status;
 
     @OneToOne(mappedBy = "player", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -75,7 +74,7 @@ public class Player extends EntityClass {
     private Double mr; // Magic Resist
     private Double ad; // Attack Damage
     private Double ap; // Ability Power
-    private Double as; // Attack Speed
+    private Double attackSpeed; // Attack Speed
     private Integer critico; // 0-100 (porcentagem)
     private Double alcanceAtaque;
     private Long mana;
@@ -258,11 +257,11 @@ public class Player extends EntityClass {
     public void setAp(Double ap) {
         this.ap = ap;
     }
-    public Double getAs() {
-        return as;
+    public Double getAttackSpeed() {
+        return attackSpeed;
     }
-    public void setAs(Double as) {
-        this.as = as;
+    public void setAttackSpeed(Double attackSpeed) {
+        this.attackSpeed = attackSpeed;
     }
     public Integer getCritico() {
         return critico;

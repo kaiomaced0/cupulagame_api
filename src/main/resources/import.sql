@@ -28,138 +28,27 @@ INSERT INTO color_material (id, name, hexCode, tipo, ativo, dataInclusao) VALUES
 (22, 'Tecido Azul', '#4169E1', 'MATERIAL', true, NOW()),
 (23, 'Tecido Vermelho', '#DC143C', 'MATERIAL', true, NOW());
 
--- PlayerTipoBaseColorSkin - Cores de pele possíveis por raça
-INSERT INTO player_tipo_base_color_skin (id, playerRaca, possibilidade, color_material_id, ativo, dataInclusao) VALUES
--- HUMANO - Todas as variações naturais
-(1, 'HUMANO', 20, 1, true, NOW()),  -- Pele Clara
-(2, 'HUMANO', 30, 2, true, NOW()),  -- Pele Média
-(3, 'HUMANO', 30, 3, true, NOW()),  -- Pele Escura
-(4, 'HUMANO', 20, 4, true, NOW()),  -- Pele Negra
+-- ==================== PLAYER TIPO (MOVIDO PARA MyInitializer.java) ====================
+-- Os inserts abaixo foram movidos para o MyInitializer.java para serem criados programaticamente.
+-- Isso permite melhor controle de dependências e evita problemas com IDs auto-gerados.
 
--- ELFO - Predominantemente tons claros
-(5, 'ELFO', 40, 1, true, NOW()),    -- Pele Clara (mais comum)
-(6, 'ELFO', 35, 2, true, NOW()),    -- Pele Média
-(7, 'ELFO', 20, 3, true, NOW()),    -- Pele Escura (raro)
-(8, 'ELFO', 5, 4, true, NOW()),     -- Pele Negra (muito raro)
+-- PlayerTipoBaseColorSkin - Cores de pele possíveis por raça (MOVIDO PARA MyInitializer)
+-- INSERT INTO player_tipo_base_color_skin (id, playerRaca, possibilidade, color_material_id, ativo, dataInclusao) VALUES ...
 
--- ANÃO - Predominantemente tons médios/escuros
-(9, 'ANAO', 15, 1, true, NOW()),    -- Pele Clara (raro)
-(10, 'ANAO', 30, 2, true, NOW()),   -- Pele Média
-(11, 'ANAO', 35, 3, true, NOW()),   -- Pele Escura (mais comum)
-(12, 'ANAO', 20, 4, true, NOW()),   -- Pele Negra
+-- PlayerTipoBaseTamanho - Tamanhos base por raça (MOVIDO PARA MyInitializer)
+-- INSERT INTO player_tipo_base_tamanho (id, playerRaca, possibilidade, eixoXMinimo, eixoXMaximo, eixoYMinimo, eixoYMaximo, eixoZMinimo, eixoZMaximo, ativo, dataInclusao) VALUES ...
 
--- ORC - Tons verdes e cinzas (característico)
-(13, 'ORC', 30, 5, true, NOW()),    -- Pele Verde Clara
-(14, 'ORC', 40, 6, true, NOW()),    -- Pele Verde Escura (mais comum)
-(15, 'ORC', 25, 7, true, NOW()),    -- Pele Cinza
-(16, 'ORC', 5, 3, true, NOW());     -- Pele Escura Natural (raro)
+-- TipoOrelhaColorMaterial - Cores de orelhas possíveis (MOVIDO PARA MyInitializer)
+-- INSERT INTO tipo_orelha_color_material (id, color_material_id, possibilidade, ativo, dataInclusao) VALUES ...
 
--- PlayerTipoBaseTamanho - Tamanhos base por raça
-INSERT INTO player_tipo_base_tamanho (id, playerRaca, possibilidade, eixoXMinimo, eixoXMaximo, eixoYMinimo, eixoYMaximo, eixoZMinimo, eixoZMaximo, ativo, dataInclusao) VALUES
--- ANÃO - Pequeno e robusto (120-150cm altura)
-(1, 'ANAO', 20, 120, 130, 70, 100, 40, 60, true, NOW()),  -- Anão Atarracado
-(2, 'ANAO', 35, 130, 140, 65, 95, 38, 58, true, NOW()),   -- Anão Robusto
-(3, 'ANAO', 30, 140, 150, 60, 90, 35, 55, true, NOW()),   -- Anão Alto
-(4, 'ANAO', 15, 125, 135, 75, 105, 42, 62, true, NOW()),  -- Anão Muito Largo
+-- PlayerTipoBaseOrelha - Configuração de orelhas por raça (MOVIDO PARA MyInitializer)
+-- INSERT INTO player_tipo_base_orelha (id, playerRaca, possibilidade, eixoXMinimo, eixoXMaximo, eixoYMinimo, eixoYMaximo, eixoZMinimo, eixoZMaximo, ativo, dataInclusao) VALUES ...
 
--- HUMANO - Médio e equilibrado (160-190cm altura)
-(5, 'HUMANO', 15, 160, 170, 50, 70, 30, 45, true, NOW()), -- Humano Magro
-(6, 'HUMANO', 30, 165, 178, 55, 75, 32, 48, true, NOW()), -- Humano Médio
-(7, 'HUMANO', 30, 172, 185, 58, 80, 35, 50, true, NOW()), -- Humano Atlético
-(8, 'HUMANO', 15, 175, 190, 65, 90, 38, 55, true, NOW()), -- Humano Forte
-(9, 'HUMANO', 10, 160, 168, 70, 95, 40, 58, true, NOW()), -- Humano Robusto
+-- PlayerTipoBaseOrelha <-> TipoOrelhaColorMaterial (ManyToMany) (MOVIDO PARA MyInitializer)
+-- INSERT INTO player_tipo_base_orelha_color_material (player_tipo_base_orelha_id, tipo_orelha_color_material_id) VALUES ...
 
--- ORC - Alto e muito largo (180-220cm altura, mais largo que humano)
-(10, 'ORC', 20, 180, 195, 90, 130, 45, 75, true, NOW()),  -- Orc Guerreiro
-(11, 'ORC', 35, 190, 205, 95, 135, 48, 78, true, NOW()),  -- Orc Forte
-(12, 'ORC', 25, 200, 215, 100, 140, 50, 80, true, NOW()), -- Orc Gigante
-(13, 'ORC', 20, 185, 200, 105, 145, 52, 82, true, NOW()), -- Orc Colossal
-
--- ELFO - Bem mais alto e esbelto (185-215cm altura, mais magro)
-(14, 'ELFO', 25, 185, 195, 40, 60, 25, 40, true, NOW()),  -- Elfo Esbelto
-(15, 'ELFO', 35, 195, 205, 43, 63, 27, 42, true, NOW()),  -- Elfo Alto
-(16, 'ELFO', 25, 200, 210, 45, 65, 28, 44, true, NOW()),  -- Elfo Muito Alto
-(17, 'ELFO', 15, 205, 215, 48, 68, 30, 46, true, NOW());  -- Elfo Majestoso
-
--- TipoOrelhaColorMaterial - Cores de orelhas possíveis
-INSERT INTO tipo_orelha_color_material (id, color_material_id, possibilidade, ativo, dataInclusao) VALUES
-(1, 8, 25, true, NOW()),   -- Orelha Natural Clara
-(2, 9, 25, true, NOW()),   -- Orelha Natural Média
-(3, 10, 25, true, NOW()),  -- Orelha Natural Escura
-(4, 11, 15, true, NOW()),  -- Orelha Élfica Dourada
-(5, 12, 10, true, NOW());  -- Orelha Élfica Prateada
-
--- PlayerTipoBaseOrelha - Configuração de orelhas por raça
-INSERT INTO player_tipo_base_orelha (id, playerRaca, possibilidade, eixoXMinimo, eixoXMaximo, eixoYMinimo, eixoYMaximo, eixoZMinimo, eixoZMaximo, ativo, dataInclusao) VALUES
--- ANÃO - Orelhas pequenas e arredondadas
-(1, 'ANAO', 35, 2, 3, 4, 5, 2, 3, true, NOW()),   -- Orelha Anã Pequena
-(2, 'ANAO', 40, 3, 4, 4, 6, 2, 3, true, NOW()),   -- Orelha Anã Normal
-(3, 'ANAO', 25, 2, 4, 5, 7, 2, 3, true, NOW()),   -- Orelha Anã Destacada
-
--- HUMANO - Orelhas médias e variadas
-(4, 'HUMANO', 25, 3, 4, 5, 7, 2, 3, true, NOW()), -- Orelha Humana Pequena
-(5, 'HUMANO', 40, 3, 5, 6, 8, 2, 4, true, NOW()), -- Orelha Humana Normal
-(6, 'HUMANO', 25, 4, 6, 6, 9, 3, 4, true, NOW()), -- Orelha Humana Grande
-(7, 'HUMANO', 10, 3, 5, 5, 7, 2, 3, true, NOW()), -- Orelha Humana Colada
-
--- ORC - Orelhas grandes, pontiagudas e grossas
-(8, 'ORC', 30, 5, 7, 7, 10, 3, 5, true, NOW()),   -- Orelha Orc Normal
-(9, 'ORC', 35, 6, 8, 8, 12, 4, 6, true, NOW()),   -- Orelha Orc Grande
-(10, 'ORC', 25, 7, 9, 9, 13, 4, 6, true, NOW()),  -- Orelha Orc Gigante
-(11, 'ORC', 10, 5, 8, 6, 9, 3, 5, true, NOW()),   -- Orelha Orc Larga
-
--- ELFO - Orelhas longas e pontiagudas (característica marcante)
-(12, 'ELFO', 20, 4, 6, 10, 14, 2, 3, true, NOW()), -- Orelha Élfica Alongada
-(13, 'ELFO', 35, 5, 7, 12, 16, 2, 3, true, NOW()), -- Orelha Élfica Longa
-(14, 'ELFO', 30, 5, 8, 14, 18, 2, 3, true, NOW()), -- Orelha Élfica Muito Longa
-(15, 'ELFO', 15, 6, 8, 16, 20, 2, 3, true, NOW()); -- Orelha Élfica Majestosa
-
--- PlayerTipoBaseOrelha <-> TipoOrelhaColorMaterial (ManyToMany)
-INSERT INTO player_tipo_base_orelha_color_material (player_tipo_base_orelha_id, tipo_orelha_color_material_id) VALUES
--- ANÃO - Tons naturais (clara, média, escura)
-(1, 1), (1, 2), (1, 3),  -- Orelha Anã Pequena
-(2, 1), (2, 2), (2, 3),  -- Orelha Anã Normal
-(3, 1), (3, 2), (3, 3),  -- Orelha Anã Destacada
-
--- HUMANO - Todos os tons naturais
-(4, 1), (4, 2), (4, 3),  -- Orelha Humana Pequena
-(5, 1), (5, 2), (5, 3),  -- Orelha Humana Normal
-(6, 1), (6, 2), (6, 3),  -- Orelha Humana Grande
-(7, 1), (7, 2), (7, 3),  -- Orelha Humana Colada
-
--- ORC - Tons escuros e verdes
-(8, 2), (8, 3),          -- Orelha Orc Normal
-(9, 2), (9, 3),          -- Orelha Orc Grande
-(10, 2), (10, 3),        -- Orelha Orc Gigante
-(11, 2), (11, 3),        -- Orelha Orc Larga
-
--- ELFO - Tons claros e especiais (dourado, prateado)
-(12, 1), (12, 2), (12, 4), (12, 5),  -- Orelha Élfica Alongada
-(13, 1), (13, 2), (13, 4), (13, 5),  -- Orelha Élfica Longa
-(14, 1), (14, 2), (14, 4), (14, 5),  -- Orelha Élfica Muito Longa
-(15, 1), (15, 2), (15, 4), (15, 5);  -- Orelha Élfica Majestosa
-
--- PlayerTipoCabelo - Tipos de cabelo por raça
-INSERT INTO player_tipo_cabelo (id, nome, path, possibilidade, playerRaca, ativo, dataInclusao) VALUES
--- ANÃO - Cabelos robustos e volumosos
-(1, 'Barba Longa Anã', '/hair/dwarf/long_beard.obj', 40, 'ANAO', true, NOW()),
-(2, 'Barba Trançada', '/hair/dwarf/braided_beard.obj', 35, 'ANAO', true, NOW()),
-(3, 'Cabelo Curto com Barba', '/hair/dwarf/short_with_beard.obj', 25, 'ANAO', true, NOW()),
-
--- HUMANO - Cabelos variados e versáteis
-(4, 'Cabelo Curto', '/hair/human/short_hair.obj', 30, 'HUMANO', true, NOW()),
-(5, 'Cabelo Médio', '/hair/human/medium_hair.obj', 40, 'HUMANO', true, NOW()),
-(6, 'Cabelo Longo', '/hair/human/long_hair.obj', 30, 'HUMANO', true, NOW()),
-
--- ORC - Cabelos selvagens e guerreiros
-(7, 'Moicano Orc', '/hair/orc/mohawk.obj', 35, 'ORC', true, NOW()),
-(8, 'Cabelo Espetado', '/hair/orc/spiked_hair.obj', 30, 'ORC', true, NOW()),
-(9, 'Crinas Longas', '/hair/orc/long_mane.obj', 35, 'ORC', true, NOW()),
-
--- ELFO - Cabelos elegantes e fluidos
-(10, 'Cabelo Liso Longo', '/hair/elf/straight_long.obj', 35, 'ELFO', true, NOW()),
-(11, 'Cabelo Ondulado', '/hair/elf/wavy_hair.obj', 40, 'ELFO', true, NOW()),
-(12, 'Tranças Élficas', '/hair/elf/elven_braids.obj', 25, 'ELFO', true, NOW());
+-- PlayerTipoCabelo - Tipos de cabelo por raça (MOVIDO PARA MyInitializer)
+-- INSERT INTO player_tipo_cabelo (id, nome, path, possibilidade, playerRaca, ativo, dataInclusao) VALUES ...
 
 -- ==================== ITEMS ====================
 

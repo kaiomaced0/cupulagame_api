@@ -44,6 +44,10 @@ public class PlayerStatus extends EntityClass {
     @JoinColumn(name = "posicao_id")
     private PlayerPosicao posicao;
 
+    @OneToOne
+    @JoinColumn(name = "player_id")
+    private Player player;
+
     // Getters e Setters
     public Long getXpAtual() {
         return xpAtual;
@@ -154,5 +158,13 @@ public class PlayerStatus extends EntityClass {
 
     public void setUltimaMorte(LocalDateTime ultimaMorte) {
         this.ultimaMorte = ultimaMorte;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

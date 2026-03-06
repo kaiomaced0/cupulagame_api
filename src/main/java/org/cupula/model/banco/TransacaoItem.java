@@ -20,7 +20,9 @@ public class TransacaoItem extends EntityClass {
     @ManyToOne
     @JoinColumn(name = "item_id")
     private Item item;
+
     private String itemTransacaoResponseDTO;
+    
     @Enumerated(EnumType.STRING)
     private TransacaoItemTipo tipo;
 
