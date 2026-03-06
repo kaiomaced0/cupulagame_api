@@ -1,5 +1,37 @@
-*
-!target/*-runner
-!target/*-runner.jar
-!target/lib/*
-!target/quarkus-app/*
+# Build artifacts
+target/
+*.jar
+*.war
+
+# IDE
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Docs
+*.md
+!README.md
+
+# Logs
+*.log
+
+# Maven local
+.m2/
+
+# Deploy script
+deploy.sh
+
+# NÃO ignorar .env (precisa ser copiado para a imagem)
+# .env
