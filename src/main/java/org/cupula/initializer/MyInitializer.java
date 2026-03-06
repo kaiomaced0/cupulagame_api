@@ -24,6 +24,8 @@ import org.cupula.model.structures.StructureUnit;
 import org.cupula.model.structures.StructureUnitPart;
 import org.cupula.model.structures.enums.Layer;
 import org.cupula.model.structures.enums.StructureUnitTipo;
+import org.cupula.model.structures.basestructure.BaseStructure;
+import org.cupula.model.structures.enums.StructureTipo;
 import org.cupula.repository.auth.UsuarioRepository;
 import org.cupula.repository.playertipo.PlayerTipoBaseColorSkinRepository;
 import org.cupula.repository.playertipo.PlayerTipoBaseOrelhaRepository;
@@ -86,9 +88,21 @@ public class MyInitializer {
     @Inject
     org.cupula.repository.containers.basecontainer.BaseContainerStructureUnitRepository baseContainerStructureUnitRepository;
 
+    @Inject
+    org.cupula.repository.items.ItemTipoRepository itemTipoRepository;
+
+    @Inject
+    org.cupula.repository.structures.basestructure.BaseStructureRepository baseStructureRepository;
+
+    @Inject
+    org.cupula.repository.structures.StructureRepository structureRepository;
+
     @Transactional
     public void init(@Observes StartupEvent event) {
         System.out.println("=== Iniciando Seeds ===");
+        
+        // Seed de ItemTipo (primeiro, pois são usados em vários lugares)
+        seedItemTipos();
         
         // Seed de PlayerTipo (primeiro, pois são usados na criação de players)
         seedPlayerTipoBaseColorSkin();
@@ -99,6 +113,9 @@ public class MyInitializer {
         
         // Seed de Base Containers
         seedBaseContainers();
+        
+        // Seed de Base Structures (HOME_PLAYER para cada raça)
+        seedBaseStructures();
         
         // Seed de Pessoas
         seedPessoas();
@@ -797,5 +814,261 @@ public class MyInitializer {
         base.setAtivo(true);
         base.setDataInclusao(LocalDateTime.now());
         baseContainerStructureUnitRepository.persist(base);
+    }
+
+    private void seedItemTipos() {
+        try {
+            // ARMAS CORPO A CORPO (1-10)
+            createItemTipo("Espada de Ferro", "Espada básica forjada em ferro", 1L, 150L);
+            createItemTipo("Espada de Aço", "Espada resistente de aço", 1L, 180L);
+            createItemTipo("Espada Longa", "Espada de duas mãos com grande alcance", 1L, 250L);
+            createItemTipo("Adaga", "Lâmina curta e ágil", 1L, 50L);
+            createItemTipo("Machado de Batalha", "Machado pesado de guerra", 1L, 200L);
+            createItemTipo("Machado de Madeira", "Machado simples com cabo de madeira", 1L, 120L);
+            createItemTipo("Lança", "Arma de haste com ponta afiada", 1L, 180L);
+            createItemTipo("Martelo de Guerra", "Martelo maciço para combate", 1L, 300L);
+            createItemTipo("Foice", "Lâmina curva montada em cabo longo", 1L, 140L);
+            createItemTipo("Katana", "Espada curva oriental afiada", 1L, 160L);
+
+            // ARMAS À DISTÂNCIA (11-15)
+            createItemTipo("Arco Curto", "Arco leve e rápido", 1L, 60L);
+            createItemTipo("Arco Longo", "Arco de madeira para longa distância", 1L, 80L);
+            createItemTipo("Besta", "Arco mecânico potente", 1L, 150L);
+            createItemTipo("Zarabatana", "Tubo para disparar dardos", 1L, 30L);
+            createItemTipo("Shuriken", "Estrela de arremesso ninja", 50L, 5L);
+
+            // ESCUDOS (16-20)
+            createItemTipo("Escudo de Madeira", "Escudo básico de madeira reforçada", 1L, 200L);
+            createItemTipo("Escudo de Ferro", "Escudo robusto de ferro", 1L, 300L);
+            createItemTipo("Escudo Grande", "Escudo de corpo inteiro", 1L, 400L);
+            createItemTipo("Escudo Redondo", "Escudo circular ágil", 1L, 150L);
+            createItemTipo("Tarja", "Pequeno escudo de braço", 1L, 100L);
+
+            // ARMADURAS CABEÇA (21-25)
+            createItemTipo("Elmo de Ferro", "Capacete básico de ferro", 1L, 100L);
+            createItemTipo("Elmo de Aço", "Capacete reforçado de aço", 1L, 120L);
+            createItemTipo("Capuz de Couro", "Proteção leve para a cabeça", 1L, 40L);
+            createItemTipo("Coroa de Ouro", "Ornamento régio dourado", 1L, 200L);
+            createItemTipo("Máscara Ninja", "Máscara furtiva preta", 1L, 20L);
+
+            // ARMADURAS CORPO (26-30)
+            createItemTipo("Armadura de Couro", "Armadura leve de couro", 1L, 250L);
+            createItemTipo("Armadura de Ferro", "Armadura pesada de ferro", 1L, 500L);
+            createItemTipo("Cota de Malha", "Armadura de anéis entrelaçados", 1L, 350L);
+            createItemTipo("Armadura de Aço", "Armadura completa de aço", 1L, 600L);
+            createItemTipo("Túnica de Mago", "Veste mágica encantada", 1L, 80L);
+
+            // ARMADURAS PERNAS (31-35)
+            createItemTipo("Calças de Couro", "Proteção leve para pernas", 1L, 100L);
+            createItemTipo("Perneiras de Ferro", "Proteção pesada de ferro", 1L, 200L);
+            createItemTipo("Calças de Tecido", "Calças simples de tecido", 1L, 30L);
+            createItemTipo("Botas de Couro", "Botas resistentes de couro", 1L, 80L);
+            createItemTipo("Botas de Ferro", "Botas pesadas blindadas", 1L, 150L);
+
+            // ACESSÓRIOS (36-40)
+            createItemTipo("Anel de Ouro", "Anel valioso dourado", 10L, 2L);
+            createItemTipo("Colar de Prata", "Colar elegante prateado", 10L, 5L);
+            createItemTipo("Amuleto Mágico", "Talismã com poder arcano", 1L, 3L);
+            createItemTipo("Cinto de Couro", "Cinto resistente com fivela", 1L, 20L);
+            createItemTipo("Mochila", "Bolsa para carregar itens", 1L, 50L);
+
+            // CONSUMÍVEIS (41-50)
+            createItemTipo("Poção de Vida Pequena", "Restaura 50 HP", 99L, 5L);
+            createItemTipo("Poção de Vida", "Restaura 150 HP", 99L, 8L);
+            createItemTipo("Poção de Vida Grande", "Restaura 300 HP", 99L, 12L);
+            createItemTipo("Poção de Mana Pequena", "Restaura 30 MP", 99L, 5L);
+            createItemTipo("Poção de Mana", "Restaura 100 MP", 99L, 8L);
+            createItemTipo("Poção de Mana Grande", "Restaura 200 MP", 99L, 12L);
+            createItemTipo("Poção de Energia", "Restaura stamina", 99L, 6L);
+            createItemTipo("Antídoto", "Cura envenenamento", 99L, 4L);
+            createItemTipo("Pão", "Alimento básico nutritivo", 99L, 2L);
+            createItemTipo("Carne Assada", "Carne cozida restauradora", 99L, 4L);
+
+            // MATERIAIS DE CRAFT (51-65)
+            createItemTipo("Madeira", "Tábuas de madeira para construção", 999L, 10L);
+            createItemTipo("Tora de Madeira", "Madeira bruta cortada", 999L, 15L);
+            createItemTipo("Minério de Ferro", "Minério bruto de ferro", 999L, 20L);
+            createItemTipo("Barra de Ferro", "Ferro processado", 999L, 25L);
+            createItemTipo("Minério de Ouro", "Minério bruto de ouro", 999L, 18L);
+            createItemTipo("Barra de Ouro", "Ouro puro refinado", 999L, 22L);
+            createItemTipo("Carvão", "Combustível mineral", 999L, 8L);
+            createItemTipo("Pedra", "Blocos de pedra", 999L, 30L);
+            createItemTipo("Areia", "Areia fina para construção", 999L, 5L);
+            createItemTipo("Argila", "Barro moldável", 999L, 12L);
+            createItemTipo("Couro", "Pele curtida de animal", 999L, 6L);
+            createItemTipo("Tecido", "Tecido básico de algodão", 999L, 3L);
+            createItemTipo("Corda", "Corda resistente de fibra", 999L, 3L);
+            createItemTipo("Prego", "Prego de metal", 999L, 1L);
+            createItemTipo("Cola", "Substância adesiva", 999L, 2L);
+
+            // GEMAS E TESOUROS (66-75)
+            createItemTipo("Pedra Preciosa", "Gema valiosa para comércio", 999L, 1L);
+            createItemTipo("Rubi", "Gema vermelha rara", 99L, 1L);
+            createItemTipo("Safira", "Gema azul valiosa", 99L, 1L);
+            createItemTipo("Esmeralda", "Gema verde reluzente", 99L, 1L);
+            createItemTipo("Diamante", "Gema transparente raríssima", 50L, 1L);
+            createItemTipo("Pérola", "Gema oceânica iridescente", 99L, 1L);
+            createItemTipo("Moeda de Ouro", "Moeda valiosa", 9999L, 0L);
+            createItemTipo("Moeda de Prata", "Moeda comum", 9999L, 0L);
+            createItemTipo("Relíquia Antiga", "Artefato histórico valioso", 1L, 10L);
+            createItemTipo("Cristal Mágico", "Cristal com energia arcana", 50L, 2L);
+
+            // FERRAMENTAS (76-80)
+            createItemTipo("Picareta de Ferro", "Ferramenta para minerar", 1L, 180L);
+            createItemTipo("Machado de Lenhador", "Ferramenta para cortar árvores", 1L, 160L);
+            createItemTipo("Pá", "Ferramenta para cavar", 1L, 120L);
+            createItemTipo("Foice de Colheita", "Ferramenta agrícola", 1L, 100L);
+            createItemTipo("Anzol", "Ferramenta de pesca", 10L, 5L);
+
+            System.out.println("✓ ItemTipos criados (80 registros)");
+        } catch (Exception e) {
+            System.err.println("Erro ao criar ItemTipos: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void createItemTipo(String nome, String descricao, Long limiteQuantidade, Long pesoPorQuantidade) {
+        org.cupula.model.items.ItemTipo entity = new org.cupula.model.items.ItemTipo();
+        entity.setNome(nome);
+        entity.setDescricao(descricao);
+        entity.setLimiteQuantidade(limiteQuantidade);
+        entity.setPesoPorQuantidade(pesoPorQuantidade);
+        entity.setAtivo(true);
+        entity.setDataInclusao(LocalDateTime.now());
+        itemTipoRepository.persist(entity);
+    }
+
+    private void seedBaseStructures() {
+        try {
+            // Buscar material e cor padrão
+            Material materialMadeira = materialRepository.findById(1L);
+            ColorMaterial corMarrom = colorMaterialRepository.findById(1L);
+            
+            if (materialMadeira == null || corMarrom == null) {
+                System.err.println("⚠ Material ou ColorMaterial não encontrado, pulando seed de BaseStructures");
+                return;
+            }
+
+            // HUMANO - Casa simples de madeira
+            createBaseStructureHomePlayer(
+                PlayerRaca.HUMANO,
+                "Casa Humana Simples",
+                "Casa de madeira básica para humanos",
+                100L,
+                materialMadeira, corMarrom,
+                5000L, 3000L, 2500L  // 5m largura x 3m altura x 2.5m profundidade
+            );
+
+            // ELFO - Casa Élfica elegante
+            createBaseStructureHomePlayer(
+                PlayerRaca.ELFO,
+                "Casa Élfica",
+                "Habitação élfica elegante em harmonia com a natureza",
+                100L,
+                materialMadeira, corMarrom,
+                4500L, 3500L, 2500L  // Casa mais alta e estreita
+            );
+
+            // ANAO - Casa Anã robusta
+            createBaseStructureHomePlayer(
+                PlayerRaca.ANAO,
+                "Casa Anã",
+                "Habitação anã robusta e compacta",
+                100L,
+                materialMadeira, corMarrom,
+                4000L, 2500L, 3000L  // Casa mais baixa e larga
+            );
+
+            // ORC - Cabana Orc
+            createBaseStructureHomePlayer(
+                PlayerRaca.ORC,
+                "Cabana Orc",
+                "Habitação orc simples e funcional",
+                100L,
+                materialMadeira, corMarrom,
+                6000L, 3500L, 3000L  // Casa grande e espaçosa
+            );
+
+            // GOBLIN - Toca Goblin
+            createBaseStructureHomePlayer(
+                PlayerRaca.GOBLIN,
+                "Toca Goblin",
+                "Pequena toca adaptada para goblins",
+                100L,
+                materialMadeira, corMarrom,
+                3000L, 2000L, 2000L  // Casa pequena
+            );
+
+            // GIGANTE - Salão Gigante
+            createBaseStructureHomePlayer(
+                PlayerRaca.GIGANTE,
+                "Salão Gigante",
+                "Grande salão para acomodar gigantes",
+                100L,
+                materialMadeira, corMarrom,
+                8000L, 5000L, 4000L  // Casa enorme
+            );
+
+            System.out.println("✓ BaseStructures HOME_PLAYER criadas (6 registros)");
+        } catch (Exception e) {
+            System.err.println("Erro ao criar BaseStructures: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void createBaseStructureHomePlayer(
+        PlayerRaca raca,
+        String nome,
+        String descricao,
+        Long possibilidade,
+        Material material,
+        ColorMaterial color,
+        Long largura,
+        Long altura,
+        Long profundidade
+    ) {
+        // Criar StructureUnitPart (paredes da casa)
+        StructureUnitPart part = new StructureUnitPart();
+        part.setNome(nome + " - Estrutura");
+        part.setInicioX(0L);
+        part.setInicioY(0L);
+        part.setInicioZ(0L);
+        part.setFimX(largura);
+        part.setFimY(altura);
+        part.setFimZ(profundidade);
+        part.setMaterial(material);
+        part.setColor(color);
+        part.setAreaContato(true);
+        part.setDataInclusao(LocalDateTime.now());
+        structureUnitPartRepository.persist(part);
+
+        // Criar StructureUnit
+        StructureUnit unit = new StructureUnit();
+        unit.setNome(nome + " Unit");
+        unit.setParts(List.of(part));
+        unit.setLayer(Layer.EXTERIOR);
+        unit.setTipo(StructureUnitTipo.PADRAO);
+        unit.setDataInclusao(LocalDateTime.now());
+        structureUnitRepository.persist(unit);
+
+        // Criar Structure Template
+        org.cupula.model.structures.Structure structureTemplate = new org.cupula.model.structures.Structure();
+        structureTemplate.setNome(nome + " Template");
+        structureTemplate.setStructureUnits(List.of(unit));
+        structureTemplate.setTipo(StructureTipo.HOME_PLAYER);
+        structureTemplate.setDataInclusao(LocalDateTime.now());
+        structureRepository.persist(structureTemplate);
+
+        // Criar BaseStructure
+        BaseStructure base = new BaseStructure();
+        base.setNome(nome);
+        base.setDescricao(descricao);
+        base.setStructureTipo(StructureTipo.HOME_PLAYER);
+        base.setPlayerRaca(raca);
+        base.setStructureTemplate(structureTemplate);
+        base.setPossibilidade(possibilidade);
+        base.setAtivo(true);
+        base.setDataInclusao(LocalDateTime.now());
+        baseStructureRepository.persist(base);
     }
 }
