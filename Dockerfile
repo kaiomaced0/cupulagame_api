@@ -21,8 +21,13 @@ COPY .env /app/.env
 # Dar permissão de execução ao mvnw
 RUN chmod +x ./mvnw
 
-# Criar usuário não-root para segurança
-RUN groupadd -r appgroup && useradd -r -g appgroup appuser && \
+# Criar usuário e grupo com home directory
+RUN groupadd -r appgroup && \
+    useradd -r -g appgroup -m -d /home/appuser appuser
+
+# Criar diretório .m2 para o Maven e dar permissões
+RUN mkdir -p /home/appuser/.m2 && \
+    chown -R appuser:appgroup /home/appuser && \
     chown -R appuser:appgroup /app
 
 USER appuser
